@@ -1,0 +1,14 @@
+CREATE DATABASE pog_db;
+
+USE pog_db;
+
+CREATE TABLE member(
+    id INT AUTO_INCREMENT,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    email VARCHAR(50),
+    PRIMARY KEY(id));
+
+INSERT INTO member VALUES(1,'Lay', 'Heng', 'lay@gmail.com');
+INSERT INTO member VALUES(2,'Zan', 'Wang', 'zan@gmail.com');
+INSERT INTO member VALUES(3,'John', 'Johnson', 'john@gmail.com');
