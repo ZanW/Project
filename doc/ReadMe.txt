@@ -1,0 +1,1 @@
+This folder is to keep documents, not application dependency.
