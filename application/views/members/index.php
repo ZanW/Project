@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Member</title>
 <style>
 table, th, td {
     border: 1px solid black;
@@ -17,6 +18,8 @@ th, td {
 
 
 <h2><?php echo $title; ?></h2>
+
+<p><a href='<?php echo base_url("index.php/members/create");?>'>Create</a></p>
 
 <table style="width:100%">
   <tr>
