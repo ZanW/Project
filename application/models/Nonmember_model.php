@@ -39,4 +39,11 @@ class Nonmember_model extends CI_Model
         return $this->db->replace('non_member', $data);
     }
 
+    public function delete_nonmember()
+    {
+        $data = array( 'id' => $this->input->post('id') );
+
+        return $this->db->delete('non_member', $data);
+    }
+
 }

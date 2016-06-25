@@ -28,6 +28,7 @@
         <th>Last Name</th>
         <th>Email</th>
         <th></th>
+        <th></th>
     </tr>
     <?php foreach ($nonmembers as $nonmember_item): ?>
         <tr>
@@ -36,6 +37,7 @@
             <td><?php echo $nonmember_item['last_name']; ?></td>
             <td> <?php echo $nonmember_item['email']; ?></td>
             <td> <a href='<?php echo base_url("index.php/nonmembers/update/".$nonmember_item['id']);?>'>Edit</a></td>
+            <td> <a href='<?php echo base_url("index.php/nonmembers/delete/".$nonmember_item['id']);?>'>Delete</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

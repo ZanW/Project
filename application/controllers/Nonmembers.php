@@ -8,11 +8,13 @@ class Nonmembers extends CI_Controller
         $this->load->helper('url_helper');
     }
 
+    // Display non-members list
     public function index()
     {
         $this->home();
     }
 
+    // Display non-members list
     public function home()
     {
         $data['nonmembers'] = $this->nonmember_model->get_nonmember();
@@ -23,6 +25,7 @@ class Nonmembers extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    // Create a non-member entry
     public function create()
     {
         $this->load->helper('form', 'url');
@@ -47,6 +50,7 @@ class Nonmembers extends CI_Controller
 
     }
 
+    // Edit and update a non-member entry
     public function update($id = 0)
     {
         $this->load->helper('form', 'url');
@@ -54,7 +58,7 @@ class Nonmembers extends CI_Controller
 
         $data['id'] = $id;
         $data['nonmembers'] = $this->nonmember_model->get_nonmember_by_id($id);
-        $data['title'] = 'Update a non-member';
+        $data['title'] = 'Update Non-Member';
 
         $this->form_validation->set_rules('first_name', 'First Name', 'required');
         $this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -72,4 +76,25 @@ class Nonmembers extends CI_Controller
         }
     }
 
+    // Delete a non-member entry
+    public function delete($id = 0)
+    {
+        $this->load->helper('form', 'url');
+
+        $data['id'] = $id;
+        $data['nonmembers'] = $this->nonmember_model->get_nonmember_by_id($id);
+        $data['title'] = 'Delete Non-Member';
+
+        if ($this->input->post('submit'))
+        {
+            $this->nonmember_model->delete_nonmember($id);
+            redirect('nonmembers/index');
+        }
+        else // not click button Delete to submit
+        {
+            $this->load->view('templates/header');
+            $this->load->view('nonmembers/delete', $data);
+            $this->load->view('templates/footer');
+        }
+    }
 }
