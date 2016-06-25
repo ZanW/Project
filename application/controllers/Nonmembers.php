@@ -53,6 +53,7 @@ class Nonmembers extends CI_Controller
         $this->load->library('form_validation');
 
         $data['id'] = $id;
+        $data['nonmembers'] = $this->nonmember_model->get_nonmember_by_id($id);
         $data['title'] = 'Update a non-member';
 
         $this->form_validation->set_rules('first_name', 'First Name', 'required');

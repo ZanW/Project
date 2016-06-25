@@ -12,6 +12,12 @@ class Nonmember_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_nonmember_by_id($id = 0)
+    {
+        $query = $this->db->get_where('non_member', array('id' => $id));
+        return $query->result_array();
+    }
+
     public function set_nonmember()
     {
         $data = array(
