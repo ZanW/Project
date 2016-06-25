@@ -20,7 +20,7 @@ CREATE TABLE non_member(
     email VARCHAR(50),
     PRIMARY KEY(id));
 
-INSERT INTO non_member(first_name, last_name, email) VALUES('Lay', 'Heng', 'lay@gmail.com');
-INSERT INTO non_member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmail.com');
-INSERT INTO non_member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
+INSERT INTO non_member(first_name, last_name, email) VALUES('Cat1', 'Cat', 'cat1@gmail.com');
+INSERT INTO non_member(first_name, last_name, email) VALUES('Bird1', 'Bird', 'bird1@gmail.com');
+INSERT INTO non_member(first_name, last_name, email) VALUES('Kinkon1', 'Kinkon', 'kinkon1@gmail.com');
 

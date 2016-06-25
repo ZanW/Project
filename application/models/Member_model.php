@@ -12,6 +12,12 @@ class Member_model extends CI_Model
 		return $query->result_array();
 	}
 
+	public function get_member_by_id($id = 0)
+	{
+		$query = $this->db->get_where('member', array('id' => $id));
+		return $query->result_array();
+	}
+
 	public function set_member()
 	{
 		$data = array(
@@ -20,6 +26,24 @@ class Member_model extends CI_Model
 			'email' => $this->input->post('email') );
 
 		return $this->db->insert('member', $data);
+	}
+
+	public function update_member()
+	{
+		$data = array(
+			'id' => $this->input->post('id'),
+			'first_name' => $this->input->post('first_name'),
+			'last_name' => $this->input->post('last_name'),
+			'email' => $this->input->post('email') );
+
+		return $this->db->replace('member', $data);
+	}
+
+	public function delete_member()
+	{
+		$data = array( 'id' => $this->input->post('id') );
+
+		return $this->db->delete('member', $data);
 	}
 
 }
