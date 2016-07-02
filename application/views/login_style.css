@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+.progress-bar {
+    color: #333;
+}
+
+.login_member {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+    font-size: 16px;
+    text-decoration: solid;
+    height: auto;
+    padding: 10px;
+}
+
+.button {
+
+}
+
+.login_member2 {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 16px;
+    text-decoration: solid;
+    height: auto;
+    padding: 10px;
+}
+
+.login_member {
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 50px;
+    position: relative;
+    width: 30%;
+    margin: 0 auto;
+    font-size: 16px;
+    text-decoration: solid;
+    height: auto;
+    padding: 10px;
+}
+
+form[role=login] {
+    color: #5d5d5d;
+    background: #4FC3F7;
+    padding: 26px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.form-details {
+    child-align: left;
+
+}
+
+.btn {
+    background-color: white;
+    border: none;
+    color: #4FC3F7;
+    border-radius: 12px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+h4 {
+    text-align: center;
+    font-family: Roboto;
+}
+
+.form-address {
+    text-align: center;
+    font-family: Roboto;
+    color: white;
+
+}
+
+form[role=login] input,
+form[role=login] button {
+    font-size: 14px;
+    margin: 16px 20px 0px;
+
+}
+
+form[role=login] > div {
+    text-align: center;
+}
+
+.form-links {
+    text-align: center;
+    font-family: Roboto;
+    margin-top: 2em;
+    margin-bottom: 50px;
+}
+
+.form-links a {
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 2em;
+}
+
+.checkbox {
+    color: #ffffff;
+    font-family: Roboto;
+
+}
+
+.side_nav {
+    line-height: 30px;
+    background-color: #eeeeee;
+    height: 500px;
+    width: 200px;
+    float: left;
+    padding: 5px;
+}
+
+.profile {
+    margin: auto;
+    position: relative;
+    padding: 20px;
+    margin-left: auto;
+
+}
