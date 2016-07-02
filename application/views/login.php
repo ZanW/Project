@@ -1,10 +1,4 @@
 <?php ?>
-/**
- * Created by PhpStorm.
- * User: jaya1
- * Date: 2016-06-20 * Time: 11:04 PM
- */
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +12,7 @@
 <body>
 
 <div class="container">
-    <div class="col-md-4" />
-
-    <div class="col-md-4">
+       <div class="col-md-4">
         <section class = "login_member">
             <h4>Welcome To POWON </h4>
             <form method="post" action="text" role="login">

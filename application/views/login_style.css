@@ -80,6 +80,15 @@ h4 {
     font-family: Roboto;
 }
 
+p{
+    text-align: left;
+    font-family: Roboto;
+    margin-top: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin: auto;
+  }
+
 .form-address {
     text-align: center;
     font-family: Roboto;
@@ -127,10 +136,11 @@ form[role=login] > div {
     padding: 5px;
 }
 
-.profile {
+.user_information {
     margin: auto;
     position: relative;
-    padding: 20px;
-    margin-left: auto;
+    text-align: center;
+    font-family: Roboto;
+
 
 }
