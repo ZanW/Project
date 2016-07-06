@@ -31,12 +31,13 @@ class Member_model extends CI_Model
 	public function update_member()
 	{
 		$data = array(
-			'id' => $this->input->post('id'),
 			'first_name' => $this->input->post('first_name'),
 			'last_name' => $this->input->post('last_name'),
 			'email' => $this->input->post('email') );
 
-		return $this->db->replace('member', $data);
+		$this->db->where('id', $this->input->post('id'));
+		
+		return $this->db->update('member', $data);
 	}
 
 	public function delete_member()

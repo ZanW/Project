@@ -24,6 +24,8 @@ INSERT INTO non_member(first_name, last_name, email) VALUES('Cat1', 'Cat', 'cat1
 INSERT INTO non_member(first_name, last_name, email) VALUES('Bird1', 'Bird', 'bird1@gmail.com');
 INSERT INTO non_member(first_name, last_name, email) VALUES('Kinkon1', 'Kinkon', 'kinkon1@gmail.com');
 
+-----------
+
 create table pog_db.group(
      group_id int AUTO_INCREMENT NOT NULL,
      name VARCHAR(50),
@@ -33,25 +35,20 @@ create table pog_db.group(
 
 
 INSERT INTO pog_db.group(name, owner_id) VALUES('Fishing', 1); 
-INSERT INTO pog_db.group(name, owner_id) VALUES('Sea Boat', 2); 
+INSERT INTO pog_db.group(name, owner_id) VALUES('Sea Boat', 2);
+
+-----------
+
 CREATE TABLE gmlist(
     gid int,
     mid int,
     PRIMARY KEY (gid, mid),
-    FOREIGN KEY (gid) REFERENCES pog_db.group(group_id),
-    FOREIGN KEY (mid) REFERENCES member(id) );
+    FOREIGN KEY (gid) REFERENCES pog_db.group(group_id) ON DELETE CASCADE,
+    FOREIGN KEY (mid) REFERENCES member(id) ON DELETE CASCADE
+    );
 
 INSERT INTO gmlist VALUES(1, 1);
 INSERT INTO gmlist VALUES(1, 4);
-
-
-
-CREATE TABLE gmlist(
-    gid int,
-    mid int,
-    PRIMARY KEY (gid, mid),
-    FOREIGN KEY (gid) REFERENCES pog_db.group(group_id),
-    FOREIGN KEY (mid) REFERENCES member(id) );
 
 
 

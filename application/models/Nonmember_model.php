@@ -31,12 +31,13 @@ class Nonmember_model extends CI_Model
     public function update_nonmember()
     {
         $data = array(
-            'id' => $this->input->post('id'),
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
             'email' => $this->input->post('email') );
 
-        return $this->db->replace('non_member', $data);
+        $this->db->where('id', $this->input->post('id'));
+
+        return $this->db->update('non_member', $data);
     }
 
     public function delete_nonmember()
