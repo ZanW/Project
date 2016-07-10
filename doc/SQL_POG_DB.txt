@@ -14,6 +14,7 @@ CREATE TABLE member(
 INSERT INTO member(first_name, last_name, email) VALUES('Lay', 'Heng', 'lay@gmail.com');
 INSERT INTO member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmail.com');
 INSERT INTO member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
+INSERT INTO member(first_name, last_name, email) VALUES('Charle', 'Johnson', 'charle@gmail.com');
 
 ----------
 

@@ -6,6 +6,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('member_model');
         $this->load->helper('url_helper');
     }
 
@@ -32,7 +33,6 @@ class Home extends CI_Controller
         $this->load->view('header_nonmember');
         $this->load->view('home/login', $data);
         $this->load->view('footer');
-
     }
 
 
