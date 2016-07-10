@@ -55,4 +55,25 @@ INSERT INTO gmlist VALUES(1, 1);
 INSERT INTO gmlist VALUES(1, 4);
 
 ------------
+CREATE TABLE pog_db.comment(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    text VARCHAR(200)
+    );
 
+INSERT INTO pog_db.comment VALUES(1, 'test');
+--------------
+
+CREATE TABLE content(
+    id INT AUTO_INCREMENT NOT NULL,
+    post_message VARCHAR(300),
+    dop DATE,
+    comment_id int,
+    mid int,
+    gid int,
+    PRIMARY KEY(id),
+    FOREIGN KEY (comment_id) REFERENCES pog_db.comment(id),
+    FOREIGN KEY (mid) REFERENCES member(id),
+    FOREIGN KEY (gid) REFERENCES pog_db.group(group_id)
+    );
+
+INSERT INTO `content`(`id`, `post_message`, `dop`, `comment_id`, `mid`, `gid`) VALUES (1,'test',20160710,1,1,1);
