@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <title>Member Update</title>
 </head>
-<body>
+
 <h2><?php echo $title; ?></h2>
 
 <?php echo validation_errors(); ?>
@@ -28,5 +27,3 @@
 <input type="submit" name="submit" value="Delele Member" />
 
 </form>
-</body>
-</html>

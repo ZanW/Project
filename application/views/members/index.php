@@ -1,27 +1,23 @@
 
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Member</title>
-<style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-</style>
+    <title>Member Info</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
 </head>
-<body>
-
 
 <h2><?php echo $title; ?></h2>
 
 <p><a href='<?php echo base_url("index.php/members/create");?>'>Create</a></p>
 
-<table style="width:100%">
+<table>
   <tr>
       <th>ID</th>
       <th>First Name</th>
@@ -41,9 +37,6 @@ th, td {
   </tr>	
 <?php endforeach; ?>
 </table>
-
-</body>
-</html>
 
 
 

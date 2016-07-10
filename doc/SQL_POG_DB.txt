@@ -2,6 +2,8 @@ CREATE DATABASE pog_db;
 
 USE pog_db;
 
+----------
+
 CREATE TABLE member(
     id INT AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(20),
@@ -12,6 +14,8 @@ CREATE TABLE member(
 INSERT INTO member(first_name, last_name, email) VALUES('Lay', 'Heng', 'lay@gmail.com');
 INSERT INTO member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmail.com');
 INSERT INTO member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
+
+----------
 
 CREATE TABLE non_member(
     id INT AUTO_INCREMENT NOT NULL,
@@ -50,5 +54,5 @@ CREATE TABLE gmlist(
 INSERT INTO gmlist VALUES(1, 1);
 INSERT INTO gmlist VALUES(1, 4);
 
-
+------------
 

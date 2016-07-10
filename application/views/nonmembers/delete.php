@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <title>Non-Member Update</title>
 </head>
-<body>
+
+
 <h2><?php echo $title; ?></h2>
 
 <?php echo validation_errors(); ?>
@@ -28,5 +28,4 @@
 <input type="submit" name="submit" value="Delele Non-Member" />
 
 </form>
-</body>
-</html>
+

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <title>Member Create</title>
 </head>
-<body>
+
 <h2><?php echo $title; ?></h2>
 
 <?php echo validation_errors(); ?>
@@ -21,6 +20,3 @@
     <input type="submit" name="submit" value="Create Member" />
 
 </form>
-
-</body>
-</html>

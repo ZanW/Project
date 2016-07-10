@@ -1,6 +1,4 @@
 
-<!DOCTYPE html>
-<html>
 <head>
     <title>Non Member</title>
     <style>
@@ -16,12 +14,11 @@
 </head>
 <body>
 
-
 <h2><?php echo $title; ?></h2>
 
 <p><a href='<?php echo base_url("index.php/nonmembers/create");?>'>Create</a></p>
 
-<table style="width:100%">
+<table>
     <tr>
         <th>ID</th>
         <th>First Name</th>
@@ -43,4 +40,3 @@
 </table>
 
 </body>
-</html>

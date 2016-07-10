@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
+
 <head>
     <title>Non-Member Create</title>
 </head>
-<body>
+
 <h2><?php echo $title; ?></h2>
 
 <?php echo validation_errors(); ?>
@@ -22,5 +21,3 @@ Email:<br>
 
 </form>
 
-</body>
-</html>
