@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>registration</title>
-    <link rel="stylesheet" type="text/css" href="login_style.css">
+    <link rel="stylesheet" type="text/css" href="home/login_style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
@@ -49,7 +49,7 @@
 
                 <div>
                     <div class="form-links">
-                        <a href="login.php">Already a Member </a> or <a href="#">Reset Password</a>
+                        <a href="home/login.php">Already a Member </a> or <a href="#">Reset Password</a>
                     </div>
 
                 </div>
