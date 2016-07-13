@@ -22,13 +22,15 @@ class Login_model extends CI_Model
                 $result = mysqli_query($link, $query) or die (mysqli_error('try again'));
                 $count = mysqli_num_rows($result);
 
+                echo "working";
 
                 if ($count == 1) {
                     $_SESSION['USER_NAME'] = $USERNAME;
                     $sql = ("SELECT id FROM warmup_project.persons WHERE  FirstName='" . $USERNAME . "'");
                     $result = mysqli_query($link, $sql) or die (mysqli_error('try again'));
 
-                    header("Location: member_profile.php");
+                    echo "working";
+//                    header("Location: member_profile.php");
                 } else {
                     header("Location: login.php");
                 }
