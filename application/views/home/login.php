@@ -22,7 +22,7 @@
                 <button id="login" type="submit" class="btn btn-primary btn-md" name="Login" >Login in</button>
                 <div>
                     <div class="form-links">
-                        <a href="../nonmember_register.php">Become a Member </a> or <a href="#">Reset Password</a>
+                        <a href="register.php">Become a Member </a> or <a href="forget_password.php">Reset Password</a>
                     </div>
 
                 </div>
@@ -31,11 +31,11 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<!---<script type="text/javascript">
     document.getElementById("login").onclick = function () {
-        location.href = "<?php echo base_url("index.php/members/index");?>";
+        location.href ="";
     };
-</script>
+</script>--!>
 
 </body>
 </html>
