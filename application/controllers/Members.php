@@ -97,5 +97,10 @@ class Members extends CI_Controller
 			$this->load->view('footer');
 		}
 	}
+	
+	public function forgetPassword()
+	{
+	    $this->load->view('home/forget_password');
+	}
 
 }

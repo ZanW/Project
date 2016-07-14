@@ -62,7 +62,7 @@
     document.getElementById("register").onclick = function () {
         location.href = "member_profile.php";
     };
-</script
+</script>
 
 </body>
 </html>

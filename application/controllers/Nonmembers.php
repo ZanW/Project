@@ -97,4 +97,9 @@ class Nonmembers extends CI_Controller
             $this->load->view('footer');
         }
     }
+    
+    public function openRegistrationPage()
+    {
+        $this->load->view('home/register');
+    }
 }
