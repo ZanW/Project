@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>registration</title>
-    <link rel="stylesheet" type="text/css" href="login_style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/login_style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <script>
@@ -57,7 +57,7 @@ session_start();
     <div class="col-md-4">
         <section class = "login_member2">
             <h4>Register To POWON </h4>
-            <form id="form1" method="post" action="#" role="login">
+            <form id="form1" method="post" action="" role="login">
                 <div class="name">
                 <input type="text" name="namefirst" placeholder="First Name" required class="form-control input-lg" />
                 <input type="text" name="namelast" placeholder="Last Name"  required class="form-control input-lg" /> </div>
@@ -91,7 +91,7 @@ session_start();
 
                 <div>
                     <div class="form-links">
-                        <a href="login.php">Already a Member </a> or <a href="forget_password.php">Reset Password</a>
+                        <a href="<?php echo site_url('home/login')?>">Already a Member </a> or <a href="<?php echo site_url('members/forgetpassword')?>">Reset Password</a>
                     </div>
 
                 </div>

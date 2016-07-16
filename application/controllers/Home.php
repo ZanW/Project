@@ -34,6 +34,4 @@ class Home extends CI_Controller
         $this->load->view('home/login', $data);
         $this->load->view('footer');
     }
-
-
 }
