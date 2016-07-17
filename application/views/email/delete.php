@@ -1,10 +1,11 @@
 <head>
-    <title>Member Update</title>
+    <title>Email Delete</title>
 </head>
 
 <h2><?php echo $title; ?></h2>
 
-<?php echo form_open('email/delete'); ?>
+<?php $attributes = array('id' => 'delete');
+   echo form_open('email/delete', $attributes ); ?>
 <?php foreach ($email as $email_item): ?>
 
     ID:
@@ -20,13 +21,15 @@
     <input type="input" name="dts" value="<?php echo $email_item['dts'];?>" readonly /><br>
 
     Subject:
-    <input type="input" name="subject" value="<?php echo $email_item['subject'];?>" readonly /><br>
+    <input type="input" name="subject" value="<?php echo $email_item['subject'];?>" readonly /><br><br>
 
-    Message:
-    <input type="input" name="email_content" value="<?php echo $email_item['email_content'];?>" readonly /><br>
+    <textarea readonly rows="10" cols="50" name="email_content" form="delete"><?php echo $email_item['email_content'];?></textarea>
+    <br><br>
 
 <?php endforeach; ?>
 
 <input type="submit" name="submit" value="Confirm Delele" />
 
 </form>
+
+
