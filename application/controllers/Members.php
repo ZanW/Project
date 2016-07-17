@@ -22,9 +22,9 @@ class Members extends CI_Controller
 		$data['members'] = $this->member_model->get_member();
 		$data['title'] = 'Membership Information';
 
-		$this->load->view('header');
+		$this->load->view('templates/header');
 		$this->load->view('members/index', $data);
-		$this->load->view('footer');
+		$this->load->view('templates/footer');
 	}
 
 	public function create()
@@ -39,9 +39,9 @@ class Members extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('header');
+			$this->load->view('templates/header');
 			$this->load->view('members/create', $data);
-			$this->load->view('footer');
+			$this->load->view('templates/footer');
 		}
 		else
 		{
@@ -65,9 +65,9 @@ class Members extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('header');
+			$this->load->view('templates/header');
 			$this->load->view('members/update', $data);
-			$this->load->view('footer');
+			$this->load->view('templates/footer');
 		}
 		else
 		{
@@ -92,9 +92,9 @@ class Members extends CI_Controller
 		}
 		else // not yet click button Delete to submit
 		{
-			$this->load->view('header');
+			$this->load->view('templates/header');
 			$this->load->view('members/delete', $data);
-			$this->load->view('footer');
+			$this->load->view('templates/footer');
 		}
 	}
 	

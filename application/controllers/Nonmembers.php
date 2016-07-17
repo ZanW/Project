@@ -20,9 +20,9 @@ class Nonmembers extends CI_Controller
         $data['nonmembers'] = $this->nonmember_model->get_nonmember();
         $data['title'] = 'Non-Membership Information';
 
-        $this->load->view('header');
+        $this->load->view('templates/header');
         $this->load->view('nonmembers/index', $data);
-        $this->load->view('footer');
+        $this->load->view('templates/footer');
     }
 
     // Create a non-member entry
@@ -38,9 +38,9 @@ class Nonmembers extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
         {
-            $this->load->view('header');
+            $this->load->view('templates/header');
             $this->load->view('nonmembers/create', $data);
-            $this->load->view('footer');
+            $this->load->view('templates/footer');
         }
         else
         {
@@ -65,9 +65,9 @@ class Nonmembers extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
         {
-            $this->load->view('header');
+            $this->load->view('templates/header');
             $this->load->view('nonmembers/update', $data);
-            $this->load->view('footer');
+            $this->load->view('templates/footer');
         }
         else
         {
@@ -92,9 +92,9 @@ class Nonmembers extends CI_Controller
         }
         else // not click button Delete to submit
         {
-            $this->load->view('header');
+            $this->load->view('templates/header');
             $this->load->view('nonmembers/delete', $data);
-            $this->load->view('footer');
+            $this->load->view('templates/footer');
         }
     }
     
