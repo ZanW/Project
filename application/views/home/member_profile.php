@@ -1,4 +1,4 @@
-<?php
+/* <?php
 
 include "header.php";
 include "member_profile_values.php";
@@ -11,7 +11,7 @@ if (isset($_SESSION['USER_NAME'])) {
 }
 
 
-?>
+?> */
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">

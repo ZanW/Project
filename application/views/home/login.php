@@ -18,10 +18,9 @@
         <div class="col-md-4">
             <section class="login_member">
                 <h4>Welcome To POWON</h4>
-                <form method="post" action="text" role="login">
-                    <input type="text" name="name" placeholder="User Name" required
-                        class="form-control input-lg" /> <input type="password"
-                        class="form-control input-lg" id="password" placeholder="Password" />
+                <form method="post" action="<?php echo site_url('members/validateMemberLogin')?>" role="login">
+                    <input type="text" name="name" placeholder="User Name" required class="form-control input-lg" /> 
+                    <input type="password" name="password" placeholder="Password" class="form-control input-lg"  />
                     <div class="pwstrength_viewport_progress"></div>
                     <button id="login" type="submit" class="btn btn-primary btn-md"
                         name="Login">Login in</button>

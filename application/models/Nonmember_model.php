@@ -3,7 +3,8 @@ class Nonmember_model extends CI_Model
 {
     public function __construct()
     {
-        $this->load->database();
+        //$this->load->database();
+        $this->load->database('warmup_project');
     }
 
     public function get_nonmember()
@@ -45,6 +46,17 @@ class Nonmember_model extends CI_Model
         $data = array( 'id' => $this->input->post('id') );
 
         return $this->db->delete('non_member', $data);
+    }
+    
+    /**
+     * This method creates a new member from registration page
+     * this funciton is applicalbe to database 'warmup_project'
+     */
+    public function createNewMember($data)
+    {
+        echo print_r ($data);
+        echo "Inserting data into the table";
+        return $this->db->insert('persons', $data);
     }
 
 }
