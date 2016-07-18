@@ -25,13 +25,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url("index.php/home/index");?>">Home</a></li>
-                <li><a href="<?php echo base_url("index.php/home/index");?>">Profile</a></li>
-                <li><a href="<?php echo base_url("index.php/members/index");?>">Members</a></li>
-                <li><a href="<?php echo base_url("index.php/home/index");?>">Groups</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
-                <li><a href="home/login.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="<?php echo base_url("index.php/home/login");?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
@@ -39,13 +35,6 @@
 
 
 <div class="container">
-    <div class="side_nav" >
-
-        <a href="#">Home</a></br>
-        <a href="#">Message</a></br>
-        <a href="#">Group Member</a></br>
-
-    </div>
 
 
 

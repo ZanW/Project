@@ -1,1 +1,9 @@
-<?php echo "<p>Footer part!</p>"; ?>
+
+
+</div> <!-- /container -->
+
+<hr>
+
+<footer>
+    <p>&copy; 2016 POG</p>
+</footer>

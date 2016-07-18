@@ -2,8 +2,6 @@ CREATE DATABASE pog_db;
 
 USE pog_db;
 
-----------
-
 CREATE TABLE member(
     id INT AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(20),
@@ -16,7 +14,7 @@ INSERT INTO member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmai
 INSERT INTO member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
 INSERT INTO member(first_name, last_name, email) VALUES('Charle', 'Johnson', 'charle@gmail.com');
 
-----------
+
 
 CREATE TABLE non_member(
     id INT AUTO_INCREMENT NOT NULL,
@@ -29,7 +27,6 @@ INSERT INTO non_member(first_name, last_name, email) VALUES('Cat1', 'Cat', 'cat1
 INSERT INTO non_member(first_name, last_name, email) VALUES('Bird1', 'Bird', 'bird1@gmail.com');
 INSERT INTO non_member(first_name, last_name, email) VALUES('Kinkon1', 'Kinkon', 'kinkon1@gmail.com');
 
------------
 
 create table pog_db.group(
      group_id int AUTO_INCREMENT NOT NULL,
@@ -42,7 +39,6 @@ create table pog_db.group(
 INSERT INTO pog_db.group(name, owner_id) VALUES('Fishing', 1); 
 INSERT INTO pog_db.group(name, owner_id) VALUES('Sea Boat', 2);
 
------------
 
 CREATE TABLE gmlist(
     gid int,
@@ -55,14 +51,14 @@ CREATE TABLE gmlist(
 INSERT INTO gmlist VALUES(1, 1);
 INSERT INTO gmlist VALUES(1, 4);
 
-------------
+
 CREATE TABLE pog_db.comment(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     text VARCHAR(200)
     );
 
 INSERT INTO pog_db.comment VALUES(1, 'test');
---------------
+
 
 CREATE TABLE content(
     id INT AUTO_INCREMENT NOT NULL,
@@ -78,3 +74,25 @@ CREATE TABLE content(
     );
 
 INSERT INTO `content`(`id`, `post_message`, `dop`, `comment_id`, `mid`, `gid`) VALUES (1,'test',20160710,1,1,1);
+
+
+CREATE TABLE email(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    sender_email VARCHAR(50) NOT NULL,
+    receiver_email VARCHAR(50) NOT NULL,
+    dts datetime,
+    subject VARCHAR(100),
+    email_content VARCHAR(1000)
+    );
+
+
+INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
+'john@gmail.com', 20160716, 'Test email 1', 'Hello, this a test email 1');
+INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
+'john@gmail.com', 20160717, 'Test email 2', 'Hello, this a test email 2');
+INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('charle@gmail.com', 
+'doris@gmail.com', 20160716, 'Test email 3', 'Hello, this a test email 3');
+INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('doris@gmail.com', 
+'me@gmail.com', 20160717, 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
+
+
