@@ -41,6 +41,29 @@ class Email extends CI_Controller
             $this->load->view('email/delete', $data);
             $this->load->view('templates/footer');
         }
+    } // end of delete()
+
+    public function create()
+    {
+        $this->load->helper('form', 'url');
+        $this->load->library('form_validation');
+
+        $data['title'] = 'Compose';
+
+        $this->form_validation->set_rules('receiver_email', 'Receiver Email', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('templates/header');
+            $this->load->view('email/create', $data);
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+            $this->email_model->create_email();
+            redirect('email/index');
+        }
+
     }
 
 }
