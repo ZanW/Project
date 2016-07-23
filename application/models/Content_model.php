@@ -29,7 +29,7 @@ class Content_model extends CI_Model
 	public function set_content()
 	{
 		$data = array(
-			'post_message' => $this->input->post('post_message'),);
+			'post_message' => $this->input->post('post_message'));
 
 		return $this->db->insert('content', $data);
 	}

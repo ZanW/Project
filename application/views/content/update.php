@@ -7,7 +7,7 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('content/update'); ?>
-<?php foreach ($content as $content_item): ?>
+<?php foreach ($records as $content_item): ?>
 
     ID:<br>
     <input type="input" name="id" value="<?php echo $id;?>" readonly /><br>

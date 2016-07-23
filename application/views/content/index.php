@@ -12,6 +12,8 @@
     </style>
 </head>
 
+<a href='<?php echo base_url("index.php/content/create/");?>'>Create</a>
+
 <table>
     <tr>
         <th>ID</th>
@@ -31,8 +33,8 @@
             <td><?php echo $record_item['comment_id']; ?></td>
             <td><?php echo $record_item['mid']; ?></td>
             <td><?php echo $record_item['gid']; ?></td>
-            <td><a href='<?php echo base_url("index.php/members/update/".$record_item['id']);?>'>Edit</a></td>
-            <td><a href='<?php echo base_url("index.php/members/delete/".$record_item['id']);?>'>Delete</a></td>
+            <td><a href='<?php echo base_url("index.php/content/update/".$record_item['id']);?>'>Edit</a></td>
+            <td><a href='<?php echo base_url("index.php/content/delete/".$record_item['id']);?>'>Delete</a></td>
 
         </tr>
     <?php endforeach; ?>
