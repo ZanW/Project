@@ -26,4 +26,19 @@ class Email_model extends CI_Model
 
         return $this->db->delete('email', $data);
     }
+
+    public function create_email()
+    {
+        $now = date("Y-m-d H:i:s");
+
+        $data = array(
+            'sender_email' => $this->input->post('sender_email'),
+            'receiver_email' => $this->input->post('receiver_email'),
+            'dts' => $now,
+            'subject' => $this->input->post('subject'),
+            'email_content' => $this->input->post('email_content'));
+
+        return $this->db->insert('email', $data);
+    }
+
 }
