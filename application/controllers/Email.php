@@ -7,6 +7,7 @@ class Email extends CI_Controller
     {
         parent::__construct();
         $this->load->model('email_model');
+        $this->load->model('member_model');
         $this->load->helper('url_helper');
     }
 
@@ -63,7 +64,31 @@ class Email extends CI_Controller
             $this->email_model->create_email();
             redirect('email/index');
         }
+    }
 
+    public function inbox_list()
+    {
+        $data ['members'] = $this->member_model->get_member();
+        $data ['title'] = 'Inbox List';
+
+        $this->load->view('templates/header');
+        $this->load->view('email/inbox_list', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function inbox($mid = 0)
+    {
+        // TODO
+        $email_address = 'lay@gmail.com';  //$this->member_model->get_email_address($mid);
+        $data['inbox'] = $this->email_model->get_email(); //$email_address); 
+
+        $data['owner_id'] = $mid;
+        $data['email_address'] = $email_address;
+        $data['title'] = 'My Inbox';
+
+        $this->load->view('templates/header');
+        $this->load->view('email/inbox', $data);
+        $this->load->view('templates/footer');
     }
 
 }

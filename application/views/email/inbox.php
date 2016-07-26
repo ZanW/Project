@@ -15,8 +15,6 @@
 
 <h2><?php echo $title; ?></h2>
 
-<p><a href='<?php echo base_url("index.php/email/inbox_list");?>'>Inbox List</a> </p>
-
 <p><a href='<?php echo base_url("index.php/email/create");?>'>Compose a new email</a> </p>
 
 <table>
@@ -29,7 +27,7 @@
         <th>Email Content</th>
         <th></th>
     </tr>
-    <?php foreach ($email as $email_item): ?>
+    <?php foreach ($inbox as $email_item): ?>
         <tr>
             <td><?php echo $email_item['id']; ?></td>
             <td><?php echo $email_item['sender_email']; ?></td>
