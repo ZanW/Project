@@ -1,17 +1,18 @@
-/* <?php
-
-include "header.php";
-include "member_profile_values.php";
-$id=session_id();
-echo $id;
-if (isset($_SESSION['USER_NAME'])) {
-    $id = $_SESSION['USER_NAME'];
+ <?php
+//include "../templates/header.php";
+//include "member_profile_values.php";
+ //$id=session_id();
+if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
+    $first_name = $_SESSION['FirstName'];
+    $email      = $_SESSION['Email'];
+    $id=          $_SESSION['ID']; 
 } else {
-    header("Location: login.php");
+    //header("Location: login.php");
+    echo "Session not set";
 }
 
 
-?> */
+?> 
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
@@ -19,7 +20,7 @@ if (isset($_SESSION['USER_NAME'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>member login</title>
-    <link rel="stylesheet" type="text/css" href="login_style.css">
+    <link rel="stylesheet" type="text/css" href="css/login_style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 </head>
@@ -30,7 +31,7 @@ if (isset($_SESSION['USER_NAME'])) {
         <div class="user_information">
             <img src="Picture1.jpg" class="img-circle" alt="Cinque Terre" width="90" height="90">
 
-            <h2 id="firstname" name="namefirst"><?php echo $firstName ?></h2>
+            <h2 id="firstname" name="namefirst"><?php echo $FirstName ?></h2>
 
             <h5 id="email" name="email"><?php echo $Email ?></h5>
             <div class="information" style="margin-top: 30px; margin-left:30px ">
@@ -44,7 +45,7 @@ if (isset($_SESSION['USER_NAME'])) {
                     <p id="address" name="aptno">
                         <?php echo $Apt_no ?>
                         <?php echo $Street ?>
-                        <?php echo $Postal_code ?>
+                        <?php echo $Postal_Code ?>
                         <?php echo $City ?>
                         <?php echo $Country ?></p><p id="editable"></p>
 

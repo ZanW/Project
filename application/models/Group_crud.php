@@ -18,7 +18,7 @@ class Group_crud extends CI_Model
 
     function view()
     {
-        $rows = $this->db->get ( 'group' ) ;
+        $rows = $this->db->get_where ( 'group', array('POWON_id'=>$_SESSION['ID']) );
         if ( $rows->num_rows () > 0 )
         {
             foreach ( $rows->result () as $data )

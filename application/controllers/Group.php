@@ -18,12 +18,14 @@ class Group extends CI_Controller
         parent::__construct () ;
         $this->load->model ( 'group_crud' ) ;
         $this->load->helper ( 'url_helper' ) ;
+        $this->load->library('session');
     }
 
     public function index()
     {
         $data['data_get'] = $this->group_crud->view () ;
         $this->load->view ( 'group/group_header', $data ) ;
+        $this->load->view ('templates/header.php');
         $this->load->view ( 'group/group_view', $data ) ;
         $this->load->view ( 'group/group_footer', $data ) ;
     

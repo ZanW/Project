@@ -31,7 +31,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
-                <li><a href="home/login.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="<?php echo site_url('home/login')?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>
@@ -43,7 +43,7 @@
 
         <a href="#">Home</a></br>
         <a href="#">Message</a></br>
-        <a href="#">Group Member</a></br>
+        <a href="<?php echo site_url("group/index");?>">My Groups</a></br>
 
     </div>
 
