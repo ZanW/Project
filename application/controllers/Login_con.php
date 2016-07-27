@@ -39,7 +39,7 @@ class Login_con extends CI_Controller
 
         if ($status) {
             $data['user_values'] = $status;
-            $this->load->view("header");
+            $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
 
 

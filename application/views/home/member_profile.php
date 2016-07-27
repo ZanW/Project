@@ -5,7 +5,7 @@ foreach ($user_values->result_array() as $value) {
     $Email = $value['Email'];
     $Apt_no = $value['Apt_no'];
     $Street = $value['Street'];
-    $Postal_code = $value['Postal_Code'];
+    $Postal_Code = $value['Postal_Code'];
     $City = $value['City'];
     $Country = $value['Country'];
     $Gender = $value['Gender'];
