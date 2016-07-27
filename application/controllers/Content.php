@@ -29,7 +29,7 @@ class Content extends CI_Controller
 
         $data['title'] = 'Create a content';
 
-        $this->form_validation->set_rules('postmessage', 'Postmessage', 'required');
+        $this->form_validation->set_rules('post_message', 'Postmessage', 'required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -54,7 +54,7 @@ class Content extends CI_Controller
         $data['records'] = $this->content_model->get_content_by_id($id);
         $data['title'] = 'Update Content';
 
-        $this->form_validation->set_rules('postmessage', 'Postmessage', 'required');
+        $this->form_validation->set_rules('post_message', 'Post message', 'required');
 
         if ($this->form_validation->run() == FALSE)
         {

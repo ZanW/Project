@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit ('No direct script access allowed');
+/*defined('BASEPATH') or exit ('No direct script access allowed');
 
 /*class Members extends CI_Controller
 {
@@ -91,10 +91,47 @@ defined('BASEPATH') or exit ('No direct script access allowed');
         }
     }
 
+<<<<<<< HEAD
     public function forgetPassword()
     {
         $this->load->view('home/forget_password');
     }
 
 
-}
+=======
+    public function validateMemberLogin() {
+        $data ['FirstName'] = ($_POST ["name"]);
+        $data ['Password'] = ($_POST ['password']);
+        // $data['Email'] = $_POST['email'];
+        // get the data for the specific user
+        $result = $this->login_model->login_query ( $data );
+        if ($result->num_rows () == 1) 
+        { 
+            // valid user/ login successful
+            $row = $result->row_array ();
+            $member_session_data = array (
+                    'FirstName' => $row ['FirstName'],
+                    'Email' => $row ['Email'],
+                    'ID' => $row ['ID'] 
+            );
+            /**
+             * creating/setting  the member session
+             */
+ /*           $this->session->set_userdata ( $member_session_data  );
+            $this->openMemberProfile ( $row );
+        } else
+            ///TODO wrong pass or user does not exist
+            redirect ( site_url ( 'home/login' ) );
+    }
+
+    public function openMemberProfile($member_info) {
+        echo "Member exist in DB and session has been created withs First name , email and ID ,TODO open his profile:";
+        echo "FirstName=" . $this->session->userdata ( 'FirstName' ) .  
+             " email=" . $this->session->userdata( 'Email' ) . " ID=" . $this->session->userdata( 'ID' );
+        echo "Read from Database=";
+        echo $member_info['FirstName'];
+        $this->load->view('templates/header.php');
+        $this->load->view('home/member_profile',$member_info);
+    }
+>>>>>>> b46804ab26f0f2989e9b7679a32f6b00dcdbb5d5
+}*/

@@ -5,8 +5,11 @@ class Login_model extends CI_Model
 
     public function __construct()
     {
+
         parent::__construct();
-        $this->load->database();
+
+        $this->load->database () ;
+
     }
 
     /**
@@ -76,7 +79,6 @@ VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET .
             $result = $this->db->query($query);
 
             return $result;
-
         }
 
     }
