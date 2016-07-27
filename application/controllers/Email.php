@@ -78,10 +78,12 @@ class Email extends CI_Controller
 
     public function inbox($mid = 0)
     {
-        // TODO
-        $email_address = 'lay@gmail.com';  //$this->member_model->get_email_address($mid);
-        $data['inbox'] = $this->email_model->get_email(); //$email_address); 
-
+        $members = $this->member_model->get_email_address($mid);
+        foreach ($members as $row)
+        {
+            $email_address = $row['email'];
+        }
+        $data['inbox'] = $this->email_model->get_inbox($email_address);
         $data['owner_id'] = $mid;
         $data['email_address'] = $email_address;
         $data['title'] = 'My Inbox';

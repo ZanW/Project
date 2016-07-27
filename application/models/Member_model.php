@@ -18,6 +18,12 @@ class Member_model extends CI_Model
 		return $query->result_array();
 	}
 
+	public function get_email_address($mid = 0)
+	{
+		$query = $this->db->get_where('member', array('id' => $mid));
+		return $query->result_array();
+	}
+
 	public function set_member()
 	{
 		$data = array(
