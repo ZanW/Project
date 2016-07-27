@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ session_start();
     <div class="col-md-4">
         <section class = "login_member2">
             <h4>Register To POWON </h4>
-            <form id="form1" method="post" action="<?=site_url('nonmembers/register_session');?>" role="login">
+            <form id="form1" action="<?php echo site_url('Login_con/new_registration')?>" method="post" role="login">
                 <div class="name">
                 <input type="text" name="namefirst" placeholder="First Name" required class="form-control input-lg" />
                 <input type="text" name="namelast" placeholder="Last Name"  required class="form-control input-lg" /> </div>
@@ -85,11 +85,10 @@ session_start();
                 <label for="male">Male</label>
                 <input type="radio"  name="gender" id="Female" placeholder="Female" class="regular-checkbox big-checkbox" value="Female" >
                 <label for="Female">Female </label></div>
-
                 <button type="submit" id="register" class="btn btn-primary btn-md" name="Login">Register</button>
                 <div>
                     <div class="form-links">
-                        <a href="<?php echo site_url('home/login')?>">Already a Member </a> or <a href="<?php echo site_url('members/forgetpassword')?>">Reset Password</a>
+                        <a href="<?php echo site_url('home/login')?>">Already a Member </a> or <a href="<?php echo site_url('')?>">Reset Password</a>
                     </div>
 
                 </div>
