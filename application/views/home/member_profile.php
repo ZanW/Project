@@ -44,8 +44,6 @@ if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
 
 </head>
 <body>
-
-<div class="container"
 <div class="col-md-8">
     <div class="user_information">
         <img src="/Picture1.jpg" class="img-circle" alt="Cinque Terre" width="90" height="90">
