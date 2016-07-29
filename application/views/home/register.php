@@ -10,44 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/login_style.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-    <script>
-        function checkemail()
-        {
 
-            var email=document.getElementById( "email" ).value;
-
-            if(email)
-            {
-                $.ajax({
-                    type: 'post',
-                    url: 'register_session.php',
-                    data: {
-                        user_email:email,
-                    },
-                    success: function (response) {
-                        $( '#email_status' ).html(response);
-                        if(response=="OK")
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                });
-
-
-            }
-            else
-            {
-                $( '#email_status' ).html("");
-                return false;
-            }
-
-        }
-
-    </script>
 </head>
 <body>
 

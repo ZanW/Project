@@ -1,4 +1,4 @@
-<!--<<<<<<< HEAD-->
+
 <?php
 foreach ($user_values->result_array() as $value) {
     $firstName = $value['FirstName'];
@@ -10,9 +10,9 @@ foreach ($user_values->result_array() as $value) {
     $Country = $value['Country'];
     $Gender = $value['Gender'];
     $DOB = $value['DOB'];
-
-
 }
+
+
 ?>
 <!--=======
  <?php
@@ -29,7 +29,7 @@ if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
 }
 
 
-*/?>
+*/ ?>
 //>>>>>>> b46804ab26f0f2989e9b7679a32f6b00dcdbb5d5-->
 
 <!DOCTYPE html>
@@ -54,18 +54,19 @@ if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
         <h5 id="email" name="email"><?php echo $Email ?></h5>
         <div class="information" style="margin-top: 30px; margin-left:30px ">
             <hr>
-            <button id="edit" class="glyphicon glyphicon-pencil"></button>
+            <a href= "<?php echo site_url('profile_update_con/edit_profile') ?>"><button id="edit" class="glyphicon glyphicon-pencil"></button></a>
 
             <h5> Address</h5><br/>
 
             <div class="user_info">
 
-                    <p id="address" name="aptno">
-                        <?php echo $Apt_no ?>
-                        <?php echo $Street ?>
-                        <?php echo $Postal_Code ?>
-                        <?php echo $City ?>
-                        <?php echo $Country ?></p><p id="editable"></p>
+                <p id="address" name="aptno">
+                    <?php echo $Apt_no ?>
+                    <?php echo $Street ?>
+                    <?php echo $Postal_Code ?>
+                    <?php echo $City ?>
+                    <?php echo $Country ?></p>
+                <p id="editable"></p>
 
             </div>
             <hr>
@@ -91,13 +92,7 @@ if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
 </div>
 
 <script>
-    var edit = document.getElementById('edit');
-    var address = document.getElementById('address');
-    edit.onclick = myFunction;
-    function myFunction() {
-        document.getElementById("address").contentEditable = true;
-        //address.setAttribute('contenteditable', 'true');
-    }
+
 </script>
 
 </body>
