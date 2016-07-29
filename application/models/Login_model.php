@@ -22,7 +22,7 @@ class Login_model extends CI_Model
             $USERNAME = $_POST['name'];
             $PASSWORD = $_POST['password'];
 
-            $query = "SELECT * FROM persons WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'";
+            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'";
             $result = $this->db->query($query);
             $row_cnt = $result->num_rows();
 
@@ -30,9 +30,9 @@ class Login_model extends CI_Model
 
                 return false;
             } else {
-                $this->session();
                 return $result;
             }
+
 //            return $result;
         }
     }
@@ -56,7 +56,11 @@ class Login_model extends CI_Model
     }
 
 
-    public function register_query()
+   
+
+    public
+    function register_query()
+
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

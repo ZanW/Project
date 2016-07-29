@@ -38,14 +38,16 @@ class Login_con extends CI_Controller
         $status = $this->Login_model->Login_query();
 
         if ($status) {
+            $this->createUserSession($status);
             $data['user_values'] = $status;
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
-
+            
 
         } else {
             $this->load->view("home/register", $data);
         }
+<<<<<<< HEAD
         return $status;
 //        if (($this->session->userdata('FirstName') != "")) {
 //          
@@ -55,6 +57,8 @@ class Login_con extends CI_Controller
 //            $this->load->view("home/register", $data);
 //        }
 //
+=======
+>>>>>>> ba7271b469d7d80c28b48ab4fa80d298451ebed1
 
     }
 
@@ -69,4 +73,18 @@ class Login_con extends CI_Controller
 
     }
 
+<<<<<<< HEAD
+=======
+    public function createUserSession($data)
+    {
+        $row = $data->row_array () ;
+                $member_session_data = array(
+                        'FirstName'=>$row['FirstName'], 
+                        'Email'=>$row['Email'], 
+                        'ID'=>$row['ID']) ;
+        - $this->session->set_userdata ( $member_session_data ) ;
+    }
+
+
+>>>>>>> ba7271b469d7d80c28b48ab4fa80d298451ebed1
 }

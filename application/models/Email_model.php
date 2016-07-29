@@ -13,6 +13,12 @@ class Email_model extends CI_Model
         return $query->result_array();
     }
 
+    public function get_inbox($email_dress = "")
+    {
+        $query = $this->db->get_where('email', array('receiver_email' => $email_dress));
+        return $query->result_array();
+    }
+
     // Get an email by id and return it in an array
     public function get_email_by_id($id = 0)
     {
