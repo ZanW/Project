@@ -8,7 +8,7 @@ class Login_model extends CI_Model
 
         parent::__construct();
 
-        $this->load->database () ;
+        $this->load->database();
 
     }
 
@@ -17,7 +17,7 @@ class Login_model extends CI_Model
      */
     public function Login_query()
     {
-       
+
         if (isset($_POST['name']) && isset($_POST['password'])) {
             $USERNAME = $_POST['name'];
             $PASSWORD = $_POST['password'];
@@ -27,7 +27,7 @@ class Login_model extends CI_Model
             $row_cnt = $result->num_rows();
 
             if ($row_cnt <= 0) {
-               
+
                 return false;
             } else {
                 $this->session();
@@ -37,26 +37,26 @@ class Login_model extends CI_Model
         }
     }
 
-    public
-    function session()
+
+    public function session()
     {
-      
-        $USERNAME = $_POST['name'];
-
-        $this->session->set_userdata(array(
-            $_SESSION['USER_NAME'] = $USERNAME));
-
-        $sql = ("SELECT id FROM warmup_project.persons WHERE  FirstName='" . $USERNAME . "'");
-        $result = $this->db->query($sql);
+        if (isset($_POST['name'])) {
+            $USERNAME = $_POST['name'];
 
 
-        return $result;
+            $this->session->set_userdata(array(
+                $_SESSION['USER_NAME'] = $USERNAME));
 
+            $sql = ("SELECT * FROM persons WHERE  FirstName='" . $USERNAME . "'");
+            $result = $this->db->query($sql);
+
+
+            return $result;
+        }
     }
 
 
-    public
-    function register_query()
+    public function register_query()
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

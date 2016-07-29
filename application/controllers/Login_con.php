@@ -46,7 +46,7 @@ class Login_con extends CI_Controller
         } else {
             $this->load->view("home/register", $data);
         }
-
+        return $status;
 //        if (($this->session->userdata('FirstName') != "")) {
 //          
 //            $this->load->view('home/member_profile');
@@ -65,10 +65,8 @@ class Login_con extends CI_Controller
         $FIRSTNAME = $LASTNAME = $PASSWORD = $EMAIL = $BDAY = $STREET = $APT = $CITY = $POSTAL = $COUNTRY = $GENDER = "";
         $this->Login_model->register_query();
         error_log('after register', 3, 'C:\Users\jaya1\xampp\htdocs\pog\error_log.txt');
-        $this->load->view('home/member_profile');
-
+        $this->load->view('home/login');
 
     }
-
 
 }
