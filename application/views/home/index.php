@@ -5,8 +5,6 @@
 
 <h2><?php echo $title; ?></h2>
 
-<h3><?php echo $mid; ?></h3>
-
 <p>This is a private online group. You need to login to use the service</p>
 
 
