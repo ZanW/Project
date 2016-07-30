@@ -8,19 +8,19 @@ class Member_model extends CI_Model
 
 	public function get_member()
 	{
-		$query = $this->db->get('member');
+		$query = $this->db->get('members');
 		return $query->result_array();
 	}
 
 	public function get_member_by_id($id = 0)
 	{
-		$query = $this->db->get_where('member', array('id' => $id));
+		$query = $this->db->get_where('members', array('id' => $id));
 		return $query->result_array();
 	}
 
 	public function get_email_address($mid = 0)
 	{
-		$query = $this->db->get_where('member', array('id' => $mid));
+		$query = $this->db->get_where('members', array('id' => $mid));
 		return $query->result_array();
 	}
 
@@ -31,7 +31,7 @@ class Member_model extends CI_Model
 			'last_name' => $this->input->post('last_name'),
 			'email' => $this->input->post('email') );
 
-		return $this->db->insert('member', $data);
+		return $this->db->insert('members', $data);
 	}
 
 	public function update_member()
@@ -43,14 +43,14 @@ class Member_model extends CI_Model
 
 		$this->db->where('id', $this->input->post('id'));
 		
-		return $this->db->update('member', $data);
+		return $this->db->update('members', $data);
 	}
 
 	public function delete_member()
 	{
 		$data = array( 'id' => $this->input->post('id') );
 
-		return $this->db->delete('member', $data);
+		return $this->db->delete('members', $data);
 	}
 
 }

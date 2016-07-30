@@ -9,7 +9,7 @@
 <?php $attributes = array('id' => 'create');
 echo form_open('email/create', $attributes ); ?>
 From:
-<input type="input" name="sender_email" /><br>
+<input type="input" name="sender_email" value="<?php echo $m_email;?>" readonly/><br>
 
 To:
 <input type="input" name="receiver_email" /><br>
