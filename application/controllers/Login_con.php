@@ -47,18 +47,6 @@ class Login_con extends CI_Controller
         } else {
             $this->load->view("home/register", $data);
         }
-<<<<<<< HEAD
-        return $status;
-//        if (($this->session->userdata('FirstName') != "")) {
-//          
-//            $this->load->view('home/member_profile');
-//        } else {
-//            $data['title'] = 'Home';
-//            $this->load->view("home/register", $data);
-//        }
-//
-=======
->>>>>>> ba7271b469d7d80c28b48ab4fa80d298451ebed1
 
     }
 
@@ -68,13 +56,10 @@ class Login_con extends CI_Controller
 
         $FIRSTNAME = $LASTNAME = $PASSWORD = $EMAIL = $BDAY = $STREET = $APT = $CITY = $POSTAL = $COUNTRY = $GENDER = "";
         $this->Login_model->register_query();
-        error_log('after register', 3, 'C:\Users\jaya1\xampp\htdocs\pog\error_log.txt');
         $this->load->view('home/login');
 
     }
 
-<<<<<<< HEAD
-=======
     public function createUserSession($data)
     {
         $row = $data->row_array () ;
@@ -82,9 +67,7 @@ class Login_con extends CI_Controller
                         'FirstName'=>$row['FirstName'], 
                         'Email'=>$row['Email'], 
                         'ID'=>$row['ID']) ;
-        - $this->session->set_userdata ( $member_session_data ) ;
+        $this->session->set_userdata ( $member_session_data ) ;
     }
 
-
->>>>>>> ba7271b469d7d80c28b48ab4fa80d298451ebed1
 }

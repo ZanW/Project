@@ -24,10 +24,10 @@ USE `warmup_project`;
 DROP TABLE IF EXISTS `add_member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `add_member` (
-  `owner_id` int(11) NOT NULL,
+CREATE TABLE `memberof` (
+  `POWON_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
-  PRIMARY KEY (`owner_id`,`group_id`)
+  PRIMARY KEY (`POWON_id`,`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

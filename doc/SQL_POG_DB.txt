@@ -2,18 +2,39 @@ CREATE DATABASE pog_db;
 
 USE pog_db;
 
-CREATE TABLE member(
-    id INT AUTO_INCREMENT NOT NULL,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    email VARCHAR(50),
-    PRIMARY KEY(id));
+CREATE TABLE `members` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LastName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `FirstName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Apt_no` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Street` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `City` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Postal_Code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(25) CHARACTER SET utf8 NOT NULL,
+  `DOB` date DEFAULT NULL,
+  `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
+  `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO member(first_name, last_name, email) VALUES('Lay', 'Heng', 'lay@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('Charle', 'Johnson', 'charle@gmail.com');
+INSERT INTO `members` VALUES (1,'walker','walker','1','rue','montreal','hhhh','canada','walker@gmail.com','12345',NULL,'Male',''),(40,'john','henry','1','startk','Montreal','H3','Canada','hen@gmail.com','12345',NULL,'Male',''),(41,'Gg','gggg','gg','gg','gg','gg','Guernsey','gg90@gmail.co','gggg',NULL,'Female',''),(42,'asdf','asdf','asd','asdf','asdf','asdfa','ff','amnivir@gmail.com','a',NULL,'Male',''),(43,'s','s','s','s','s','s','s','s@gmail.com','s','1234-12-12','Male',''),(44,'x','x','x','x','x','x','x','x@gmail.com','x','1234-12-12','Male',''),(45,'v','v','v','v','v','v','v','v@gmail.com','v','1234-12-12','Male',''),(46,'b','b','b','b','b','b','b','b@gmail.com','b','1234-12-12','Male',''),(47,'r','r','r','r','r','r','r','r@gmail.com','r','1234-12-12','Male',''),(48,'Nigam','Shivam','asd','asd','asd','asdfa','asd','shivam@gmail.com','sn','1234-12-12','Male',''),(49,'n','n','n','n','n','n','n','n@gmail.com','n','1234-12-12','Male',''),(50,'y','y','y','y','y','y','y','y@gmail.com','y','1234-12-12','Male','');
 
+CREATE TABLE `group` (
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(45) NOT NULL,
+  `POWON_id` int(11) NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+INSERT INTO `group` VALUES (15,'jumping',50),(16,'hockey',50),(17,'football',46);
+
+CREATE TABLE `memberof` (
+  `POWON_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`POWON_id`,`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE non_member(

@@ -76,7 +76,7 @@ class Login_model extends CI_Model
             $COUNTRY = $_POST['country'];
             $GENDER = $_POST['gender'];
 
-            $query = ("INSERT INTO `pog_db`.`persons` ( `LastName`, `FirstName`, 
+            $query = ("INSERT INTO `pog_db`.`members` ( `LastName`, `FirstName`, 
 `Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`) 
 VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "')");
 
