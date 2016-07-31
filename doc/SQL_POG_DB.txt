@@ -80,20 +80,32 @@ CREATE TABLE email(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     sender_email VARCHAR(50) NOT NULL,
     receiver_email VARCHAR(50) NOT NULL,
-    dts datetime,
+    dts datetime DEFAULT CURRENT_TIMESTAMP,
     subject VARCHAR(100),
-    email_content VARCHAR(1000),
+    email_content VARCHAR(500),
     unread TINYINT(1) DEFAULT 1
     );
 
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('lay@gmail.com',
+'zan@gmail.com', 'Test email 1', 'Hello, this a test email 1');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('lay@gmail.com',
+'xindi@gmail.com', 'Test email 2', 'Hello, this a test email 2');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('xindi@gmail.com',
+'lay@gmail.com', 'Test email 3', 'Hello, this a test email 3');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('zan@gmail.com',
+'xindi@gmail.com', 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
 
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
-'john@gmail.com', 20160716, 'Test email 1', 'Hello, this a test email 1');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
-'john@gmail.com', 20160717, 'Test email 2', 'Hello, this a test email 2');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('charle@gmail.com', 
-'doris@gmail.com', 20160716, 'Test email 3', 'Hello, this a test email 3');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('doris@gmail.com', 
-'me@gmail.com', 20160717, 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
 
+CREATE TABLE message(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    dts datetime DEFAULT CURRENT_TIMESTAMP,
+    message_content VARCHAR(300)
+    );
 
+INSERT INTO message(sender_id, receiver_id, message_content) values (1, 40, 'message test 1');
+INSERT INTO message(sender_id, receiver_id, message_content) values (1, 41, 'message test 2');
+INSERT INTO message(sender_id, receiver_id, message_content) values (40, 1, 'message test 3');
+INSERT INTO message(sender_id, receiver_id, message_content) values (41, 1, 'message test 4');
+INSERT INTO message(sender_id, receiver_id, message_content) values (43, 40, 'message test 5');
