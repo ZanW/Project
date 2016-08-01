@@ -14,13 +14,13 @@ class Member_model extends CI_Model
 
 	public function get_member_by_id($id = 0)
 	{
-		$query = $this->db->get_where('members', array('id' => $id));
+		$query = $this->db->get_where('members', array('ID' => $id));
 		return $query->result_array();
 	}
 
 	public function get_email_address($mid = 0)
 	{
-		$query = $this->db->get_where('members', array('id' => $mid));
+		$query = $this->db->get_where('members', array('ID' => $mid));
 		return $query->result_array();
 	}
 
