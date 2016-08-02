@@ -23,9 +23,9 @@
   </tr>
 <?php foreach ($members as $member_item): ?>
   <tr>
-      <td><?php echo $member_item['id']; ?></td>
-      <td><?php echo $member_item['email']; ?></td>
-      <td><a href='<?php echo base_url("index.php/email/inbox/".$member_item['id']);?>'>Inbox</a></td>
+      <td><?php echo $member_item['ID']; ?></td>
+      <td><?php echo $member_item['Email']; ?></td>
+      <td><a href='<?php echo base_url("index.php/email/inbox/".$member_item['ID']);?>'>Inbox</a></td>
   </tr>	
 <?php endforeach; ?>
 </table>

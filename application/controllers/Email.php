@@ -108,7 +108,7 @@ class Email extends CI_Controller
         $members = $this->member_model->get_email_address($mid);
         foreach ($members as $row)
         {
-            $email_address = $row['email'];
+            $email_address = $row['Email'];
         }
         $data['inbox'] = $this->email_model->get_inbox($email_address);
         $data['owner_id'] = $mid;

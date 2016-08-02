@@ -75,7 +75,6 @@ class Login_model extends CI_Model
             $POSTAL = $_POST['code'];
             $COUNTRY = $_POST['country'];
             $GENDER = $_POST['gender'];
-
             $query = ("INSERT INTO `members` ( `LastName`, `FirstName`, 
 `Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`) 
 VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "')");

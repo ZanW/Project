@@ -43,6 +43,7 @@
 
         <a href="#">Home</a></br>
         <a href="#">Message</a></br>
+        <a href='<?php echo base_url("index.php/email/inbox/".$_SESSION['ID']);?>'>My Inbox</a><br>
         <a href="<?php echo site_url("group/index");?>">My Groups</a></br>
 
     </div>
