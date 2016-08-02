@@ -2,6 +2,7 @@
   <div class="form-group">
     <label for="fn">Group Name</label>
     <input type="text" class="form-control" id="gn" name="gn" placeholder="New Group Name">
+    <div class="help-block with-errors"></div>
   </div>
   <input type="hidden" name="gid" value="<?php echo $gid; ?>" />
   <input type="submit" name="submit" class="btn btn-primary" value="Update">

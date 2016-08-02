@@ -13,8 +13,8 @@
 </head>
 
 <a href='<?php echo base_url("index.php/content/create/");?>'>Create</a>
-
-<table>
+<div class="table-responsive">
+<table class="table table-bordered table-hover table-striped">
     <tr>
         <th>ID</th>
         <th>Post Message</th>
@@ -31,7 +31,7 @@
             <td><?php echo $record_item['post_message']; ?></td>
             <td><?php echo $record_item['dop']; ?></td>
             <td><?php echo $record_item['comment_id']; ?></td>
-            <td><?php echo $record_item['mid']; ?></td>
+            <td><?php echo $record_item['POWON_id']; ?></td>
             <td><?php echo $record_item['gid']; ?></td>
             <td><a href='<?php echo base_url("index.php/content/update/".$record_item['id']);?>'>Edit</a></td>
             <td><a href='<?php echo base_url("index.php/content/delete/".$record_item['id']);?>'>Delete</a></td>
@@ -39,3 +39,4 @@
         </tr>
     <?php endforeach; ?>
 </table>
+</div>
