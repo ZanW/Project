@@ -21,7 +21,7 @@ th, td {
 <p><a href='<?php echo base_url("index.php/memberof_c/create_memberof/".$id);?>'>Add Member to This Group</a></p>
 
 
-<table style="width:100%">
+<table>
   <tr>
     <th>Group ID</th>   
     <th>Member ID</th>

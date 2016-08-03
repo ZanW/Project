@@ -18,7 +18,7 @@ th, td {
 
 <h2><?php echo $title; ?></h2>
 
-<table style="width:100%">
+<table>
   <tr>
     <th>Group ID</th>
     <th>Group Name</th>

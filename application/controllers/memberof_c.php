@@ -22,9 +22,9 @@ class memberof_c extends CI_Controller
 		$data['memberoflist'] = $this->memberof_m->get_memberoflist();
 		$data['title'] = 'Member Of';
 
-		$this->load->view('header');
+		$this->load->view('templates/header');
 		$this->load->view('memberof/memberof_v', $data);
-		$this->load->view('footer');
+		$this->load->view('templates/footer');
 	}
 	
 	/*public function member_profile($id = 0)
@@ -69,9 +69,9 @@ class memberof_c extends CI_Controller
 		$data['title2'] = 'Detail';
 		//$data['groupdetail'] = $this->memberof_m->get_groupdetail();
 
-		$this->load->view('header');
+		$this->load->view('templates/header');
 		$this->load->view('memberof/groupdetail_v', $data);
-		$this->load->view('footer');
+		$this->load->view('templates/footer');
 	}
  
    public function create_memberof($id = 0)
@@ -112,9 +112,9 @@ class memberof_c extends CI_Controller
             redirect ( 'memberof_c/index' );
         } else 
         {
-            $this->load->view ( 'header' );
+            $this->load->view ( 'templates/header' );
             $this->load->view ( 'memberof/delete_v', $data );
-            $this->load->view ( 'footer' );
+            $this->load->view ( 'templates/footer' );
         }
     }
 

@@ -41,9 +41,10 @@
 <div class="container">
     <div class="side_nav" >
 
-        <a href="#">Home</a></br>
-        <a href="#">Message</a></br>
-        <a href='<?php echo base_url("index.php/email/inbox/".$_SESSION['ID']);?>'>My Inbox</a><br>
+        <a href="">Home</a></br>
+        <a href="">Message</a></br>
+        <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
+                       else echo base_url("index.php/home/index");  ?>'>My Inbox</a><br>
         <a href="<?php echo site_url("group/index");?>">My Groups</a></br>
 
     </div>

@@ -34,14 +34,14 @@ CREATE TABLE gm_memberof(
     g_id int,
     m_id int,
     PRIMARY KEY (g_id, m_id),
-    FOREIGN KEY (g_id) REFERENCES pog.group(group_id) ON DELETE CASCADE,
+    FOREIGN KEY (g_id) REFERENCES pog_db.group(group_id) ON DELETE CASCADE,
     FOREIGN KEY (m_id) REFERENCES members(ID) ON DELETE CASCADE
     )ENGINE=InnoDB;
 
 CREATE VIEW gm_member_of AS
-SELECT pog.group.group_id, pog.group.group_name, members.ID, members.FirstName
-FROM pog.group, members
-WHERE pog.group.POWON_id = members.ID
+SELECT pog_db.group.group_id, pog_db.group.group_name, members.ID, members.FirstName
+FROM pog_db.group, members
+WHERE pog_db.group.POWON_id = members.ID
 ORDER BY group_id ASC;
 
 CREATE TABLE non_member(
