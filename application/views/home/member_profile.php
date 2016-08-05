@@ -1,4 +1,3 @@
-
 <?php
 foreach ($user_values->result_array() as $value) {
     $firstName = $value['FirstName'];
@@ -14,23 +13,8 @@ foreach ($user_values->result_array() as $value) {
 
 
 ?>
-<!--=======
- <?php
-/*//include "../templates/header.php";
-//include "member_profile_values.php";
- //$id=session_id();
-if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
-    $first_name = $_SESSION['FirstName'];
-    $email      = $_SESSION['Email'];
-    $id=          $_SESSION['ID'];
-} else {
-    //header("Location: login.php");
-    echo "Session not set";
-}
 
 
-*/ ?>
-//>>>>>>> b46804ab26f0f2989e9b7679a32f6b00dcdbb5d5-->
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
@@ -39,50 +23,49 @@ if (isset($_SESSION['FirstName']) && isset($_SESSION['Email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>member login</title>
     <link rel="stylesheet" type="text/css" href="css/login_style.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 
 </head>
 <body>
 <div class="col-md-8">
-    <div class="user_information">
-        <img src="/Picture1.jpg" class="img-circle" alt="Cinque Terre" width="90" height="90">
-        <h2 id="firstname" name="namefirst"><?php echo $firstName; ?></h2>
+    <div class="card" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+         transition: all 0.3s cubic-bezier(.25,.8,.25,1);">
+        <a href="<?php echo site_url('profile_update_con/edit_profile') ?>" style="">
+            <button id="edit" class="glyphicon glyphicon-pencil" style="float: right;margin-right: 20px;margin-top: 20px"></button>
+        </a>
 
-        <h5 id="email" name="email"><?php echo $Email ?></h5>
+        <h2 id="firstname" name="namefirst" style="margin-left: 20px"><?php echo $firstName; ?></h2>
+
+        <h5 id="email" name="email" style="margin-left: 20px"><?php echo $Email ?></h5>
         <div class="information" style="margin-top: 30px; margin-left:30px ">
             <hr>
-            <a href= "<?php echo site_url('profile_update_con/edit_profile') ?>"><button id="edit" class="glyphicon glyphicon-pencil"></button></a>
 
-            <h5> Address</h5><br/>
+            <h5 style="margin-left: 20px"> Address</h5 ><br/>
 
             <div class="user_info">
 
-                <p id="address" name="aptno">
+                <p id="address" name="aptno" style="margin-left: 20px">
                     <?php echo $Apt_no ?>
                     <?php echo $Street ?>
                     <?php echo $Postal_Code ?>
                     <?php echo $City ?>
                     <?php echo $Country ?></p>
-                <p id="editable"></p>
 
             </div>
             <hr>
             <h5 id="gender"> Gender</h5><br/>
 
-            <div class="user_info">
-                <p id="gender" name="gender" contenteditable="true"><?php echo $Gender ?></p>
+            <div class="user_info" style="margin-left: 20px">
+                <p id="gender" name="gender"><?php echo $Gender ?></p>
                 <hr>
             </div>
             <h5 id="dob"> Date of Birth</h5> <br/>
 
-            <div class="user_info">
-                <p id="dob" name="bday" contenteditable="true"></p><?php echo $DOB ?>
+            <div class="user_info"style="margin-left: 20px">
+                <p id="dob" name="bday"></p><?php echo $DOB ?>
                 <hr>
             </div>
 
-            <button id="update" class="btn btn-primary btn-xs" style="display:none; float: right"> Update</button>
-        </div>
     </div>
 
 </div>

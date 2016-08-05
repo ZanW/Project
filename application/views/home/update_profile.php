@@ -34,7 +34,7 @@ foreach ($user_info->result_array() as $value) {
 
     <div class="col-md-4">
         <section class="login_member2">
-            <h4>Register To POWON </h4>
+            <h4>Update Details </h4>
             <form id="form1" action="<?php echo site_url('profile_update_con/update_info') ?>" method="post" role="login">
                 <div class="name">
                     <input type="text" name="namefirst" value="<?php echo $firstName ?>"

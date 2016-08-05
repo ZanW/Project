@@ -2,9 +2,6 @@
 
 class profile_update_model extends CI_Model
 {
-
-
-
     public function __construct()
     {
 
@@ -18,7 +15,7 @@ class profile_update_model extends CI_Model
     {
 
         $userName = $_SESSION['USER_NAME'];
-
+      
         $sql = ("SELECT * FROM persons WHERE  FirstName='" . $userName . "'");
         $result = $this->db->query($sql);
         $row_cnt = $result->num_rows();
@@ -58,8 +55,7 @@ class profile_update_model extends CI_Model
 
         $sql = ("SELECT * FROM persons WHERE  FirstName='" . $userName . "'");
         $result = $this->db->query($sql);
-        $row_cnt = $result->num_rows();
-
+       
         return $result;
 
     }
