@@ -37,9 +37,9 @@ class Login_con extends CI_Controller
         $data ['Password'] = ($_POST ['password']);
 
         $status = $this->Login_model->Login_query();
-
+        
         if ($status) {
-//            $this->createUserSession($status);
+            $this->createUserSession($status);
             $data['user_values'] = $status;
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
@@ -48,17 +48,6 @@ class Login_con extends CI_Controller
         } else {
             $this->load->view("home/register", $data);
         }
-
-        return $status;
-//        if (($this->session->userdata('FirstName') != "")) {
-//          
-//            $this->load->view('home/member_profile');
-//        } else {
-//            $data['title'] = 'Home';
-//            $this->load->view("home/register", $data);
-//        }
-//
-
 
     }
 
@@ -72,7 +61,6 @@ class Login_con extends CI_Controller
 
     }
 
-
     public function createUserSession($data)
     {
         $row = $data->row_array();
@@ -80,7 +68,7 @@ class Login_con extends CI_Controller
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
             'ID' => $row['ID']);
-        -$this->session->set_userdata($member_session_data);
-    }
+        $this->session->set_userdata($member_session_data);
 
+    }
 }

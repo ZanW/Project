@@ -30,7 +30,7 @@ foreach ($user_info->result_array() as $value) {
 <body>
 
 <div class="container">
-    <div class="col-md-4"/>
+    <div class="col-md-4">
 
     <div class="col-md-4">
         <section class="login_member2">
@@ -53,7 +53,7 @@ foreach ($user_info->result_array() as $value) {
                 </div>
                 <div class="form-details">
                     <input type="email" method="get" name="email" value="<?php echo $Email; ?>" id="email"
-                           class="form-control input-lg" onkeyup="checkemail()"/>
+                           class="form-control input-lg" />
                     <span id="email_status"></span>
                     <input type="date" name="bday" <?php echo $DOB; ?>>
                 </div>
@@ -84,9 +84,6 @@ foreach ($user_info->result_array() as $value) {
                 </div>
             </form>
 
-            <!--            <a href="--><?php //echo site_url('Login_con/update_info') ?><!--">-->
-            <!--                <button type="submit" id="register" class="btn btn-primary btn-md" name="Login">Update</button>-->
-            <!--            </a>-->
 
         </section>
     </div>

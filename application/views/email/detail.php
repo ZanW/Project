@@ -1,11 +1,12 @@
 <head>
-    <title>Email Delete</title>
+    <title>Email Detail</title>
 </head>
 
 <h2><?php echo $title; ?></h2>
 
-<?php $attributes = array('id' => 'delete');
-   echo form_open('email/delete', $attributes ); ?>
+<?php $attributes = array('id' => 'detail');
+   echo form_open('email/detail', $attributes ); ?>
+
 <?php foreach ($email as $email_item): ?>
 
     <input type="hidden" name="id" value="<?php echo $id;?>" readonly /><br>
@@ -22,14 +23,14 @@
     Subject:
     <input type="input" name="subject" value="<?php echo $email_item['subject'];?>" readonly /><br><br>
 
-    <textarea readonly rows="10" cols="50" name="email_content" form="delete"><?php echo $email_item['email_content'];?></textarea><br>
+    <textarea readonly rows="10" cols="50" name="email_content" form="detail"><?php echo $email_item['email_content'];?></textarea> <br>
 
-    <!--<input disabled="disabled" type="checkbox" name="unread" />Unread<br> -->
+    <!-- <input type="checkbox" name="unread" />Unread<br> -->
     <br>
 
 <?php endforeach; ?>
 
-<input type="submit" name="submit" value="Confirm Delele" />
+<input type="submit" name="submit" value="Back" />
 
 </form>
 

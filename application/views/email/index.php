@@ -28,6 +28,7 @@
         <th>Subject</th>
         <th>Email Content</th>
         <th></th>
+        <th></th>
     </tr>
     <?php foreach ($email as $email_item): ?>
         <tr>
@@ -37,6 +38,7 @@
             <td><?php echo $email_item['dts']; ?></td>
             <td><?php echo $email_item['subject']; ?></td>
             <td><?php echo $email_item['email_content']; ?></td>
+            <td><a href='<?php echo base_url("index.php/email/detail/".$email_item['id']);?>'>Open</a></td>
             <td><a href='<?php echo base_url("index.php/email/delete/".$email_item['id']);?>'>Delete</a></td>
         </tr>
     <?php endforeach; ?>

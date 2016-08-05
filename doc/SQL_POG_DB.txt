@@ -2,19 +2,47 @@ CREATE DATABASE pog_db;
 
 USE pog_db;
 
-CREATE TABLE member(
-    id INT AUTO_INCREMENT NOT NULL,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    email VARCHAR(50),
-    PRIMARY KEY(id));
+CREATE TABLE `members` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LastName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `FirstName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Apt_no` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Street` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `City` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Postal_Code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(25) CHARACTER SET utf8 NOT NULL,
+  `DOB` date DEFAULT NULL,
+  `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
+  `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO member(first_name, last_name, email) VALUES('Lay', 'Heng', 'lay@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('Zan', 'Wang', 'zan@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('John', 'Johnson', 'john@gmail.com');
-INSERT INTO member(first_name, last_name, email) VALUES('Charle', 'Johnson', 'charle@gmail.com');
+INSERT INTO `members` VALUES (1,'walker','walker','1','rue','montreal','hhhh','canada','walker@gmail.com','12345',NULL,'Male',''),(40,'john','henry','1','startk','Montreal','H3','Canada','hen@gmail.com','12345',NULL,'Male',''),(41,'Gg','gggg','gg','gg','gg','gg','Guernsey','gg90@gmail.co','gggg',NULL,'Female',''),(42,'asdf','asdf','asd','asdf','asdf','asdfa','ff','amnivir@gmail.com','a',NULL,'Male',''),(43,'s','s','s','s','s','s','s','s@gmail.com','s','1234-12-12','Male',''),(44,'x','x','x','x','x','x','x','x@gmail.com','x','1234-12-12','Male',''),(45,'v','v','v','v','v','v','v','v@gmail.com','v','1234-12-12','Male',''),(46,'b','b','b','b','b','b','b','b@gmail.com','b','1234-12-12','Male',''),(47,'r','r','r','r','r','r','r','r@gmail.com','r','1234-12-12','Male',''),(48,'Nigam','Shivam','asd','asd','asd','asdfa','asd','shivam@gmail.com','sn','1234-12-12','Male',''),(49,'n','n','n','n','n','n','n','n@gmail.com','n','1234-12-12','Male',''),(50,'y','y','y','y','y','y','y','y@gmail.com','y','1234-12-12','Male','');
 
+CREATE TABLE `group` (
+  `group_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(45) NOT NULL,
+  `POWON_id` int(11) NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
+INSERT INTO `group` VALUES (15,'jumping',50),(16,'hockey',50),(17,'football',46);
+
+CREATE TABLE gm_memberof(
+    g_id int,
+    m_id int,
+    PRIMARY KEY (g_id, m_id),
+    FOREIGN KEY (g_id) REFERENCES pog_db.group(group_id) ON DELETE CASCADE,
+    FOREIGN KEY (m_id) REFERENCES members(ID) ON DELETE CASCADE
+    )ENGINE=InnoDB;
+
+CREATE VIEW gm_member_of AS
+SELECT pog_db.group.group_id, pog_db.group.group_name, members.ID, members.FirstName
+FROM pog_db.group, members
+WHERE pog_db.group.POWON_id = members.ID
+ORDER BY group_id ASC;
 
 CREATE TABLE non_member(
     id INT AUTO_INCREMENT NOT NULL,
@@ -80,19 +108,32 @@ CREATE TABLE email(
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     sender_email VARCHAR(50) NOT NULL,
     receiver_email VARCHAR(50) NOT NULL,
-    dts datetime,
+    dts datetime DEFAULT CURRENT_TIMESTAMP,
     subject VARCHAR(100),
-    email_content VARCHAR(1000)
+    email_content VARCHAR(500),
+    unread TINYINT(1) DEFAULT 1
     );
 
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('lay@gmail.com',
+'zan@gmail.com', 'Test email 1', 'Hello, this a test email 1');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('lay@gmail.com',
+'xindi@gmail.com', 'Test email 2', 'Hello, this a test email 2');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('xindi@gmail.com',
+'lay@gmail.com', 'Test email 3', 'Hello, this a test email 3');
+INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('zan@gmail.com',
+'xindi@gmail.com', 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
 
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
-'john@gmail.com', 20160716, 'Test email 1', 'Hello, this a test email 1');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('lay@gmail.com', 
-'john@gmail.com', 20160717, 'Test email 2', 'Hello, this a test email 2');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('charle@gmail.com', 
-'doris@gmail.com', 20160716, 'Test email 3', 'Hello, this a test email 3');
-INSERT INTO email(sender_email, receiver_email, dts, subject, email_content) VALUES ('doris@gmail.com', 
-'me@gmail.com', 20160717, 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
 
+CREATE TABLE message(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    dts datetime DEFAULT CURRENT_TIMESTAMP,
+    message_content VARCHAR(300)
+    );
 
+INSERT INTO message(sender_id, receiver_id, message_content) values (1, 40, 'message test 1');
+INSERT INTO message(sender_id, receiver_id, message_content) values (1, 41, 'message test 2');
+INSERT INTO message(sender_id, receiver_id, message_content) values (40, 1, 'message test 3');
+INSERT INTO message(sender_id, receiver_id, message_content) values (41, 1, 'message test 4');
+INSERT INTO message(sender_id, receiver_id, message_content) values (43, 40, 'message test 5');

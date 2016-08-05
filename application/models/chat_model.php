@@ -7,6 +7,7 @@ class chat_model extends CI_Model
         parent::__construct();
 
         $this->load->database();
+        $this->load->library('session');
 
     }
 
@@ -63,7 +64,7 @@ QUERY;
         $cMessage = $message;
 
         $query = <<<QUERY
-     INSERT INTO `pog_db`.`messages` (`Message`, `to_id`, `from_id`, `sent_on`) 
+     INSERT INTO `messages` (`Message`, `to_id`, `from_id`, `sent_on`) 
       VALUES ('$cMessage', 4, $cUserId, $chatTime)
 QUERY;
 
@@ -85,8 +86,8 @@ QUERY;
     {
 
         $resultArray = array();
-        $userName = $_SESSION['USER_NAME'];
-        $sql = ("SELECT DISTINCT group_id,`name` FROM pog_db.group, pog_db.members where Firstname='$userName' ;");
+        $userName = $_SESSION['FirstName'];
+        $sql = ("SELECT DISTINCT group_id,`name` FROM `group`, members where Firstname='$userName' ;");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {
@@ -107,7 +108,7 @@ QUERY;
     function member()
     {
         $resultArray = array();
-        $userName = $_SESSION['USER_NAME'];
+
         $sql = ("   SELECT `ID`,`FirstName` FROM members JOIN `gmlist` ON `gmlist`.`gid` = `members`.`ID`");
         $result = $this->db->query($sql);
 

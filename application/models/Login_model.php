@@ -22,7 +22,7 @@ class Login_model extends CI_Model
             $USERNAME = $_POST['name'];
             $PASSWORD = $_POST['password'];
 
-            $query = "SELECT * FROM persons WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'";
+            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'";
             $result = $this->db->query($query);
             $row_cnt = $result->num_rows();
 
@@ -30,15 +30,14 @@ class Login_model extends CI_Model
 
                 return false;
             } else {
-                $this->session();
-                return $result;
+               return $result;
             }
 //            return $result;
         }
     }
 
 
-    public function session()
+   /* public function session()
     {
         if (isset($_POST['name'])) {
             $USERNAME = $_POST['name'];
@@ -53,7 +52,7 @@ class Login_model extends CI_Model
 
             return $result;
         }
-    }
+    }*/
 
 
     public function register_query()
@@ -72,15 +71,17 @@ class Login_model extends CI_Model
             $COUNTRY = $_POST['country'];
             $GENDER = $_POST['gender'];
 
+
             if (($_POST['email'])) {
-                $queryemail = "SELECT `Email` FROM pog_db.persons WHERE Email='" . $EMAIL . "'";
+                $queryemail = "SELECT `Email` FROM members WHERE Email='" . $EMAIL . "'";
                 $result = $this->db->query($queryemail);
                 $row_cnt = $result->num_rows();
 
                 if ($row_cnt > 1) {
                     $errors["email"] = "Email not available.";
                 } else {
-                    $query = ("INSERT INTO `pog_db`.`persons` ( `LastName`, `FirstName`, 
+
+            $query = ("INSERT INTO `members` ( `LastName`, `FirstName`, 
 `Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`) 
 VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "')");
 

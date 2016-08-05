@@ -32,6 +32,21 @@ class Email_model extends CI_Model
 
         return $this->db->delete('email', $data);
     }
+    
+    public function update_email()
+    {
+        $data = array(
+            'sender_email' => $this->input->post('sender_email'),
+            'receiver_email' => $this->input->post('receiver_email'),
+            'dts' => $this->input->post('dts'),
+            'subject' => $this->input->post('subject'),
+            'email_content' => $this->input->post('email_content'),
+            'unread' => $this->input->post('unread')  );
+
+        $this->db->where('id', $this->input->post('id'));
+
+        return $this->db->update('email', $data);
+    }
 
     public function create_email()
     {

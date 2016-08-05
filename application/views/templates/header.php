@@ -42,8 +42,9 @@
     <div class="side_nav" style="background-color: white" >
         <div class="card"  style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);height: 400px;">
-
-        <a href="#" style="margin-left: 20px">Home</a></br>
+            <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
+                       else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Inbox</a><br>
+         <a href="#" style="margin-left: 20px">Home</a></br>
         <a href="<?php echo site_url("Chat/index");?>" style="margin-left: 20px">Message</a></br>
         <a href="<?php echo site_url("group/index");?>" style="margin-left: 20px">My Groups</a></br>
         </div>

@@ -19,6 +19,7 @@ class Home extends CI_Controller
 
     // Display non-members list
     public function home()
+
     {   $this->session->sess_destroy();
         $data['title'] = 'Welcome to POWON';
 
@@ -27,7 +28,7 @@ class Home extends CI_Controller
         $this->load->view('footer');
     }
 
-    public  function login()
+    public function login()
     {
         $data['title'] = 'Login to POWON';
 
@@ -35,4 +36,20 @@ class Home extends CI_Controller
         $this->load->view('home/login', $data);
         $this->load->view('footer');
     }
+
+    public function admin()
+    {
+        // TODO: check for administrator privilege, else skip
+        // if admin
+        
+        $data['title'] = 'Administrator';
+
+        $this->load->view('templates/header');
+        $this->load->view('home/admin', $data);
+        $this->load->view('templates/footer');
+        
+        //else 
+        // show page that unauthorized access
+    }
+
 }
