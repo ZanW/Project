@@ -4,7 +4,6 @@ class profile_update_con extends CI_Controller
 {
 
     public $profile_update_model;
-    public $MProfile_con;
 
     public function __construct()
     {

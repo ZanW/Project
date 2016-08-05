@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url("index.php/home/index");?>">Home</a></li>
-                <li><a href="<?php echo base_url("index.php/home/index");?>">Profile</a></li>
+                <li><a href="<?php echo base_url("index.php/home/member_profile");?>">Profile</a></li>
                 <li><a href="<?php echo base_url("index.php/members/index");?>">Members</a></li>
                 <li><a href="<?php echo base_url("index.php/home/index");?>">Groups</a></li>
             </ul>
@@ -39,14 +39,15 @@
 
 
 <div class="container">
-    <div class="side_nav" >
-
-        <a href="">Home</a></br>
-        <a href="">Message</a></br>
-        <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
-                       else echo base_url("index.php/home/index");  ?>'>My Inbox</a><br>
-        <a href="<?php echo site_url("group/index");?>">My Groups</a></br>
-
+    <div class="side_nav" style="background-color: white" >
+        <div class="card"  style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);height: 400px;">
+            <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
+                       else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Inbox</a><br>
+         <a href="#" style="margin-left: 20px">Home</a></br>
+        <a href="<?php echo site_url("Chat/index");?>" style="margin-left: 20px">Message</a></br>
+        <a href="<?php echo site_url("group/index");?>" style="margin-left: 20px">My Groups</a></br>
+        </div>
     </div>
 
 
