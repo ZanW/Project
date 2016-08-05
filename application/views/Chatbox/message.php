@@ -36,6 +36,7 @@
                     //                        $contents = fread($handle, filesize("log.json"));
                     //                        fclose($handle);
                     //
+                    
                     //                        echo $contents;
                     //                    }
                     //                    ?>
