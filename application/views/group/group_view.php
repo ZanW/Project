@@ -61,7 +61,7 @@
         {
             ?>
 
-				<tr class="table-row"data-href="<?php echo site_url('content/index') ?>">
+				<tr class="table-row"data-href="<?php echo site_url('content/index/'. $row->group_id )  ?>"> <!-- Pass the group ID here to open a specific group-->
 				<td><?php echo $row->group_name ?></td><td><?php echo $row->group_id ?></td>
 				</tr>
       <?php

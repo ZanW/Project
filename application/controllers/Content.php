@@ -8,15 +8,19 @@ class Content extends CI_Controller
         parent::__construct();
         $this->load->model('content_model');
         $this->load->helper('url_helper');
+        $this->load->library('session');
     }
 
 
-    public function index()
+    public function index($gid = 0)
     {
        // $data['members'] = $this->member_model->get_member();
-        $data['records'] = $this->content_model->get_contents();
+        //$data['records'] = $this->content_model->get_contents();get_contents_by_POWON_id       
+        $group_id = $this->uri->segment(3);
+        $gid = array('gid' => $group_id);
+        $data['records'] = $this->content_model->get_contents_by_group_id($gid);
         $data['title'] = 'Content Information';
-
+        $data['group_id'] = $group_id;
         $this->load->view('templates/header');
         $this->load->view('content/index', $data);
         $this->load->view('templates/footer');
@@ -24,24 +28,21 @@ class Content extends CI_Controller
 
     public function create()
     {
-        $this->load->helper('form', 'url');
-        $this->load->library('form_validation');
-
-        $data['title'] = 'Create a content';
-
-        $this->form_validation->set_rules('post_message', 'Postmessage', 'required');
-
-        if ($this->form_validation->run() == FALSE)
-        {
-            $this->load->view('templates/header');
-            $this->load->view('content/create', $data);
-            $this->load->view('templates/footer');
-        }
-        else
-        {
-            $this->member_model->set_content();
-            redirect('content/index');
-        }
+        $this->content_model->set_content() ;
+        redirect ( 'content/index/'.$this->input->post('gid') ) ;
+       
+    }
+    
+    public function openAddGroupMessageForm()
+    {
+        $this->load->helper ( 'form', 'url' ) ;
+        $this->load->library ( 'form_validation' ) ;
+        
+        $data['title'] = 'Create a content' ;
+        $data['group_id'] = $this->uri->segment ( 3 ) ;
+        $this->load->view ( 'templates/header' ) ;
+        $this->load->view ( 'content/create', $data ) ;
+        $this->load->view ( 'templates/footer' ) ;
     }
 
     // Edit and update the content
