@@ -11,7 +11,6 @@ foreach ($user_values->result_array() as $value) {
     $DOB = $value['DOB'];
 }
 
-
 ?>
 
 
