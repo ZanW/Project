@@ -29,6 +29,7 @@ class Login_con extends CI_Controller
         $this->load->view('home/register');
     }
 
+
     public function validateMemberLogin()
     {
 
@@ -36,13 +37,13 @@ class Login_con extends CI_Controller
         $data ['Password'] = ($_POST ['password']);
 
         $status = $this->Login_model->Login_query();
-
+        
         if ($status) {
             $this->createUserSession($status);
             $data['user_values'] = $status;
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
-            
+
 
         } else {
             $this->load->view("home/register", $data);
@@ -56,19 +57,18 @@ class Login_con extends CI_Controller
 
         $FIRSTNAME = $LASTNAME = $PASSWORD = $EMAIL = $BDAY = $STREET = $APT = $CITY = $POSTAL = $COUNTRY = $GENDER = "";
         $this->Login_model->register_query();
-        //error_log('after register', 3, 'C:\Users\jaya1\xampp\htdocs\pog\error_log.txt');
         $this->load->view('home/login');
 
     }
 
     public function createUserSession($data)
     {
-        $row = $data->row_array () ;
-                $member_session_data = array(
-                        'FirstName'=>$row['FirstName'], 
-                        'Email'=>$row['Email'], 
-                        'ID'=>$row['ID']) ;
-        $this->session->set_userdata ( $member_session_data ) ;
-    }
+        $row = $data->row_array();
+        $member_session_data = array(
+            'FirstName' => $row['FirstName'],
+            'Email' => $row['Email'],
+            'ID' => $row['ID']);
+        $this->session->set_userdata($member_session_data);
 
+    }
 }

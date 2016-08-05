@@ -30,15 +30,14 @@ class Login_model extends CI_Model
 
                 return false;
             } else {
-                return $result;
+               return $result;
             }
-
 //            return $result;
         }
     }
 
 
-    public function session()
+   /* public function session()
     {
         if (isset($_POST['name'])) {
             $USERNAME = $_POST['name'];
@@ -53,14 +52,10 @@ class Login_model extends CI_Model
 
             return $result;
         }
-    }
+    }*/
 
 
-   
-
-    public
-    function register_query()
-
+    public function register_query()
     {
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -75,15 +70,30 @@ class Login_model extends CI_Model
             $POSTAL = $_POST['code'];
             $COUNTRY = $_POST['country'];
             $GENDER = $_POST['gender'];
+
+
+            if (($_POST['email'])) {
+                $queryemail = "SELECT `Email` FROM members WHERE Email='" . $EMAIL . "'";
+                $result = $this->db->query($queryemail);
+                $row_cnt = $result->num_rows();
+
+                if ($row_cnt > 1) {
+                    $errors["email"] = "Email not available.";
+                } else {
+
             $query = ("INSERT INTO `members` ( `LastName`, `FirstName`, 
 `Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`) 
 VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "')");
 
-            $result = $this->db->query($query);
+                    $result = $this->db->query($query);
 
-            return $result;
+                    return $result;
+                }
+
+            }
+
+
         }
 
     }
-
 }
