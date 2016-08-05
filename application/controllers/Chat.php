@@ -19,7 +19,7 @@ class Chat extends CI_Controller
         $group = $this->chat_model->group();
         $data['groups'] = $group;
 
-        $member = $this->chat_model-> member();
+        $member = $this->chat_model->member();
         $data['members'] = $member;
 
         $this->load->view('templates/header');

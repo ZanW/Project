@@ -22,7 +22,8 @@ class Login_model extends CI_Model
             $USERNAME = $_POST['name'];
             $PASSWORD = $_POST['password'];
 
-            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'";
+            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'AND
+                      status = 0";
             $result = $this->db->query($query);
             $row_cnt = $result->num_rows();
 
