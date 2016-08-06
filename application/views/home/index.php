@@ -10,7 +10,7 @@
 <p>This is a private online group. You need to login to use the service</p>
 <br>
 
-<?php foreach ( array_reverse($public_info) as $info_item): ?>
+<?php foreach ( $public_info as $info_item): ?>
 
   <p> <?php echo $info_item['dop']; ?> </p>
 

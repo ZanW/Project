@@ -101,6 +101,8 @@ CREATE TABLE public_info(
 
 INSERT INTO public_info(post_message, post_media, mid) VALUES('text 1', NULL, 1);
 INSERT INTO public_info(post_message, post_media, mid) VALUES(NULL, LOAD_FILE("C:\\xampp\\htdocs\\pog\\Images\\Greenbean.jpg"), 1);
+INSERT INTO public_info(post_message, post_media, mid) VALUES('text 6', NULL, 1);
+ININSERT INTO public_info(post_message, post_media, mid) VALUES('Hello, This is the most recent post.', NULL, 1);
 
 
 CREATE TABLE email(
