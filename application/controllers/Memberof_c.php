@@ -1,6 +1,10 @@
 <?php
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' ) ;
+
 class memberof_c extends CI_Controller 
 {
+    
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,8 +16,8 @@ class memberof_c extends CI_Controller
 
 	public function index()
 	{
-		$this->home();
-
+	   echo "Reached memberc";
+	   $this->home();
 	}	
 
 // homepage
@@ -141,7 +145,5 @@ class memberof_c extends CI_Controller
             redirect ( 'members/index' );
         }
     }
-
-
-
+    
 }
