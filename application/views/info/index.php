@@ -31,7 +31,7 @@
         <tr>
             <td><?php echo $info_item['id']; ?></td>
             <td><?php echo $info_item['post_message']; ?></td>
-            <td><?php if ($info_item['post_media'])  echo '<img src="data:image/jpeg;base64,'.base64_encode($info_item['post_media']).'""/>' ?> </td>
+            <td><img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"></td>
             <td> <?php echo $info_item['dop']; ?></td>
             <td> <?php echo $info_item['mid']; ?></td>
             <td> <a href='<?php echo base_url("index.php/info/delete/".$info_item['id']);?>'>Delete</a></td>

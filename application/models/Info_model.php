@@ -5,7 +5,6 @@ class Info_model extends CI_Model
     public function __construct()
     {
         $this->load->database();
-        $this->load->library('upload');
         //$this->load->library('session');
     }
 
@@ -25,31 +24,34 @@ class Info_model extends CI_Model
 
     public function create_info()
     {
+        $config = array(
+            'upload_path'=>"./uploads/",
+            'allowed_types'=>"|gif|jpg|png|jpeg|pdf",
+            'overwrite'=>TRUE,
+            'max_size'=>"20480000",  // Can be set to particular file size , here it is 2 MB(2048 Kb)
+            'max_height'=>"768",
+            'max_width'=>"1024") ;
+        $this->load->library ( 'upload', $config ) ;
+        if ( $this->upload->do_upload () )
+        {
+            $upload_data = $this->upload->data () ;
+            // $this->load->view('upload_success', $file_details);
 
-        $config['upload_path'] = './images/'; //Use relative or absolute path
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '100';
-        $config['max_width'] = '1024';
-        $config['max_height'] = '768';
-
-        $this->upload->initialize($config);
-
-        //Upload file
-        if( ! $this->upload->do_upload("file")){
-
-            //echo the errors
-            echo $this->upload->display_errors();
         }
 
-        $file = $this->upload->file_name;
+        if ( $upload_data['file_name'] == null | $upload_data['file_name']==""  )
+        {
+            $file_path = "null" ;
+        }
+        else
+            $file_path = $upload_data['file_name'] ;
 
         $data = array(
-            'post_message' => $this->input->post('post_message'),
-            'post_media' =>  $file,
-            'mid' => $this->input->post('mid') );
+            'post_message'=>$this->input->post ( 'post_message' ),
+            'file_path'=>$upload_data['file_name'],
+            'mid'=>$this->input->post ( 'mid' ) );
 
         return $this->db->insert('public_info', $data);
-
     }
 
     public function get_info_by_id($id = 0)

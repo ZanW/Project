@@ -16,10 +16,12 @@ CREATE TABLE `members` (
   `DOB` date DEFAULT NULL,
   `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
   `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `priviledge` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `members` VALUES (1,'walker','walker','1','rue','montreal','hhhh','canada','walker@gmail.com','12345',NULL,'Male',''),(40,'john','henry','1','startk','Montreal','H3','Canada','hen@gmail.com','12345',NULL,'Male',''),(41,'Gg','gggg','gg','gg','gg','gg','Guernsey','gg90@gmail.co','gggg',NULL,'Female',''),(42,'asdf','asdf','asd','asdf','asdf','asdfa','ff','amnivir@gmail.com','a',NULL,'Male',''),(43,'s','s','s','s','s','s','s','s@gmail.com','s','1234-12-12','Male',''),(44,'x','x','x','x','x','x','x','x@gmail.com','x','1234-12-12','Male',''),(45,'v','v','v','v','v','v','v','v@gmail.com','v','1234-12-12','Male',''),(46,'b','b','b','b','b','b','b','b@gmail.com','b','1234-12-12','Male',''),(47,'r','r','r','r','r','r','r','r@gmail.com','r','1234-12-12','Male',''),(48,'Nigam','Shivam','asd','asd','asd','asdfa','asd','shivam@gmail.com','sn','1234-12-12','Male',''),(49,'n','n','n','n','n','n','n','n@gmail.com','n','1234-12-12','Male',''),(50,'y','y','y','y','y','y','y','y@gmail.com','y','1234-12-12','Male','');
+INSERT INTO `members` VALUES (1,'walker','walker','1','rue','montreal','hhhh','canada','walker@gmail.com','12345',NULL,'Male','', 0, 0),(40,'john','henry','1','startk','Montreal','H3','Canada','hen@gmail.com','12345',NULL,'Male',''),(41,'Gg','gggg','gg','gg','gg','gg','Guernsey','gg90@gmail.co','gggg',NULL,'Female',''),(42,'asdf','asdf','asd','asdf','asdf','asdfa','ff','amnivir@gmail.com','a',NULL,'Male',''),(43,'s','s','s','s','s','s','s','s@gmail.com','s','1234-12-12','Male',''),(44,'x','x','x','x','x','x','x','x@gmail.com','x','1234-12-12','Male',''),(45,'v','v','v','v','v','v','v','v@gmail.com','v','1234-12-12','Male',''),(46,'b','b','b','b','b','b','b','b@gmail.com','b','1234-12-12','Male',''),(47,'r','r','r','r','r','r','r','r@gmail.com','r','1234-12-12','Male',''),(48,'Nigam','Shivam','asd','asd','asd','asdfa','asd','shivam@gmail.com','sn','1234-12-12','Male',''),(49,'n','n','n','n','n','n','n','n@gmail.com','n','1234-12-12','Male',''),(50,'y','y','y','y','y','y','y','y@gmail.com','y','1234-12-12','Male','');
 
 
 CREATE TABLE `group` (
@@ -92,17 +94,17 @@ INSERT INTO `content`(`id`, `post_message`, `dop`, `comment_id`, `mid`, `gid`) V
 CREATE TABLE public_info(
     id INT AUTO_INCREMENT NOT NULL,
     post_message VARCHAR(300),
-    post_media LONGBLOB,
+    file_path VARCHAR(50),
     dop datetime DEFAULT CURRENT_TIMESTAMP,
     mid int,
     PRIMARY KEY(id),
     FOREIGN KEY(mid) REFERENCES members(ID)
     );
 
-INSERT INTO public_info(post_message, post_media, mid) VALUES('text 1', NULL, 1);
-INSERT INTO public_info(post_message, post_media, mid) VALUES(NULL, LOAD_FILE("C:\\xampp\\htdocs\\pog\\Images\\Greenbean.jpg"), 1);
-INSERT INTO public_info(post_message, post_media, mid) VALUES('text 6', NULL, 1);
-ININSERT INTO public_info(post_message, post_media, mid) VALUES('Hello, This is the most recent post.', NULL, 1);
+INSERT INTO public_info(post_message, file_path, mid) VALUES(NULL, 'C:\\xampp\\htdocs\\pog\\Images\\Greenbean.jpg', 1);
+#INSERT INTO public_info(post_message, post_media, mid) VALUES(NULL, LOAD_FILE("C:\\xampp\\htdocs\\pog\\Images\\Greenbean.jpg"), 1);
+#INSERT INTO public_info(post_message, post_media, mid) VALUES('text 6', NULL, 1);
+#ININSERT INTO public_info(post_message, post_media, mid) VALUES('Hello, This is the most recent post.', NULL, 1);
 
 
 CREATE TABLE email(

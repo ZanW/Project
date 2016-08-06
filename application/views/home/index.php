@@ -16,7 +16,8 @@
 
   <p> <?php if ($info_item['post_message'])  echo $info_item['post_message']; ?>  </p>
 
-  <p> <?php if ($info_item['post_media'])  echo '<img src="data:image/jpeg;base64,'.base64_encode($info_item['post_media']).'""/>' ?>  </p>
+    <p><img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"></p>
+
   <br>
 
 <?php endforeach; ?>

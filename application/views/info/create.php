@@ -12,7 +12,8 @@ Post Text Message:<br>
 <input type="input" name="post_message" /><br> <br>
 
 Or post a picture or video:<br>
-<input type="file" name="file" id="file"><br>
+<input type="file" name="userfile" size="20" id="userfile" value="null"/>
+<br /><br />
 
 Owner ID:<br>
 <input type="input" name="mid"/><br><br>
