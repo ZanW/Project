@@ -28,7 +28,7 @@
         <hr style="width: 100%">
         <div id="wrapper">
             <div id="menu">
-                <div id="user"></div>
+                <p id="user"></p>
                 <div id="chatbox" class="card-text" style="margin-left: 10px">
                     <!--                    --><?php
                     //                    if (file_exists("log.json") && filesize("log.json") > 0) {
@@ -36,7 +36,7 @@
                     //                        $contents = fread($handle, filesize("log.json"));
                     //                        fclose($handle);
                     //
-                    
+
                     //                        echo $contents;
                     //                    }
                     //                    ?>
@@ -66,12 +66,12 @@
 ";
             } ?>
 
-            <select id="multi" class="dropdown-menu" multiple onChange="OnSelectedIndexChange()">
-                <?php
-                foreach ($members as $ID => $FirstName) {
-                    echo "<option><a>" . $FirstName . "</a></option>";
-                }
-                ?>
+            <select id="multi" class="dropdown-menu" multiple ">
+            <?php
+            foreach ($members as $ID => $FirstName) {
+                echo "<option><a>" . $FirstName . "</a></option>";
+            }
+            ?>
 
         </div>
 
@@ -90,17 +90,12 @@
 
 <script>
 
-    $(document).ready(function() {
-        $('#multi').multiple;
-
-          });
-
-    function OnSelectedIndexChange()
-    {
-        if (document.getElementById('search').value == "3"){
-            location.href="search_results.htm";
-        }
+    function displayVals() {
+        var multipleValues = $("#multi").val() || [];
+        $("p").html("<b>To_id</b> " + multipleValues.join(", "));
     }
+    var to_user = $("select").change(displayVals);
+    displayVals();
 
     var $chatBox = $('#chatbox');
     var currentDate = new Date();
@@ -115,7 +110,11 @@
         timestamp = lastChatMessageTime;
         console.log('getMessage Fired');
         var msg = $("#usermsg").val();
-        var chatReq = $.get("<?php echo site_url('Chat/get_chats'); ?>", {text: msg, timestamp: timestamp});
+        var chatReq = $.get("<?php echo site_url('Chat/get_chats'); ?>", {
+            text: msg,
+            timestamp: timestamp,
+            to:to_user
+        });
         chatReq.done(function (data) {
             $.each(data, function (key, value) {
                 if (value != 'error') {
@@ -135,7 +134,7 @@
         var date = new Date();
         var time = date.getTime();
         var msg = $("#usermsg").val();
-        var chatReq = $.get("<?php echo site_url('Chat/send_chats'); ?>", {text: msg, userid: 1, timestamp: time});
+        var chatReq = $.get("<?php echo site_url('Chat/send_chats'); ?>", {text: msg, userid: 1, timestamp: time,});
         chatReq.done(function (data) {
             var newChatMessage = document.createElement('p');
             newChatMessage.innerText = msg;

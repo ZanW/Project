@@ -28,9 +28,9 @@
                 <li><a href="<?php echo base_url("index.php/home/member_profile");?>">Profile</a></li>
                 <li><a href="<?php echo base_url("index.php/members/index");?>">Members</a></li>
                 <li><a href="<?php echo base_url("index.php/home/index");?>">Groups</a></li>
-            </ul>
+                            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Settings</a></li>
+                <li><a href=<?php echo site_url("membership/pay_now");?>><span class="glyphicon glyphicon-random"></span>Pay Now</a></li>
                 <li><a href="<?php echo site_url('home/login')?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>

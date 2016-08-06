@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('member_model');
+        $this->load->model('info_model');
         $this->load->helper('url_helper');
         $this->load->library ( 'session' );
     }
@@ -14,18 +15,14 @@ class Home extends CI_Controller
     // Powon home page
     public function index()
     {
-        $this->home();
-    }
-
-    // Display non-members list
-    public function home()
-
-    {   $this->session->sess_destroy();
+        $this->session->sess_destroy();
+        
         $data['title'] = 'Welcome to POWON';
+        $data['public_info'] = $this->info_model->get_public_info_n(10);
 
-        $this->load->view('header_nonmember');
+        $this->load->view('templates/header_nonmember');
         $this->load->view('home/index', $data);
-        $this->load->view('footer');
+        $this->load->view('templates/footer');
     }
 
     public function login()
