@@ -9,6 +9,7 @@ class Content extends CI_Controller
         $this->load->model('content_model');
         $this->load->helper('url_helper');
         $this->load->library('session');
+        $this->load->helper(array('form', 'url'));
     }
 
 
@@ -17,6 +18,9 @@ class Content extends CI_Controller
        // $data['members'] = $this->member_model->get_member();
         //$data['records'] = $this->content_model->get_contents();get_contents_by_POWON_id       
         $group_id = $this->uri->segment(3);
+
+        $this->session->set_userdata("gid",$group_id);
+
         $gid = array('gid' => $group_id);
         $data['records'] = $this->content_model->get_contents_by_group_id($gid);
         $data['title'] = 'Content Information';
@@ -28,11 +32,14 @@ class Content extends CI_Controller
 
     public function create()
     {
+        /*
+         *upload the pictures in path upload inside following model
+         */
+
         $this->content_model->set_content() ;
         redirect ( 'content/index/'.$this->input->post('gid') ) ;
-       
     }
-    
+
     public function openAddGroupMessageForm()
     {
         $this->load->helper ( 'form', 'url' ) ;
@@ -73,22 +80,36 @@ class Content extends CI_Controller
     // Delete a content
     public function delete($id = 0)
     {
-        $this->load->helper('form', 'url');
 
-        $data['id'] = $id;
-        $data['records'] = $this->content_model->get_content_by_id($id);
-        $data['title'] = 'Delete Content';
+      //  $this->load->helper('form', 'url');
 
-        if ($this->input->post('submit'))
-        {
+        //$data['id'] = $id;
+        //$data['records'] = $this->content_model->get_content_by_id($id);
+        //$data['title'] = 'Delete Content';
+
+       // if ($this->input->post('submit'))
+
             $this->content_model->delete_content($id);
-            redirect('content/index');
-        }
-        else // not yet click button Delete to submit
-        {
-            $this->load->view('templates/header');
-            $this->load->view('content/delete', $data);
-            $this->load->view('templates/footer');
-        }
+            redirect('content/index/'.$_SESSION['gid']);
+    
+//         else // not yet click button Delete to submit
+//         {
+//             $this->load->view('templates/header');
+//             $this->load->view('content/delete', $data);
+//             $this->load->view('templates/footer');
+//         }
     }
+    
+    public function openCommentForm()
+    {
+        $data['title'] = 'Add a comment' ;
+        $data['content_id'] = $this->uri->segment ( 3 ) ;
+        echo "content id=" . $this->uri->segment ( 3 ) ;
+//         $this->load->view ( 'templates/header' ) ;
+//         $this->load->view ( 'content/create', $data ) ;
+//         $this->load->view ( 'templates/footer' ) ;
+        
+    }
+    
+    
 }

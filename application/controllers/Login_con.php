@@ -67,7 +67,9 @@ class Login_con extends CI_Controller
         $member_session_data = array(
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
-            'ID' => $row['ID']);
+            'ID' => $row['ID'],
+            'gid'=>0    
+        );
         $this->session->set_userdata($member_session_data);
 
     }

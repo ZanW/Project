@@ -12,7 +12,7 @@ class Group_crud extends CI_Model
 
     function add()
     {
-        $data = array('group_name'=>$this->input->post('gn'), 'POWON_id'=>$this->input->post('id')) ;
+        $data = array('group_name'=>$this->input->post('gn'), 'POWON_id'=>$_SESSION['ID']) ;
         $this->db->insert ( 'group', $data ) ;
     }
 
