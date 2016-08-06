@@ -82,11 +82,25 @@ CREATE TABLE content(
     gid int,
     PRIMARY KEY(id),
     FOREIGN KEY (comment_id) REFERENCES pog_db.comment(id),
-    FOREIGN KEY (mid) REFERENCES member(id),
+    FOREIGN KEY (mid) REFERENCES members(ID),
     FOREIGN KEY (gid) REFERENCES pog_db.group(group_id)
     );
 
 INSERT INTO `content`(`id`, `post_message`, `dop`, `comment_id`, `mid`, `gid`) VALUES (1,'test',20160710,1,1,1);
+
+
+CREATE TABLE public_info(
+    id INT AUTO_INCREMENT NOT NULL,
+    post_message VARCHAR(300),
+    post_media LONGBLOB,
+    dop datetime DEFAULT CURRENT_TIMESTAMP,
+    mid int,
+    PRIMARY KEY(id),
+    FOREIGN KEY(mid) REFERENCES members(ID)
+    );
+
+INSERT INTO public_info(post_message, post_media, mid) VALUES('text 1', NULL, 1);
+INSERT INTO public_info(post_message, post_media, mid) VALUES(NULL, LOAD_FILE("C:\\xampp\\htdocs\\pog\\Images\\Greenbean.jpg"), 1);
 
 
 CREATE TABLE email(
