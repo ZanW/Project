@@ -15,10 +15,11 @@
 </head>
 
 <h2><?php echo $title; ?></h2>
+<br>
 
 <table>
     <tr>
-        <th>Features</th>
+        <th>Manage Features</th>
     </tr>
     <tr>
         <td> <a href='<?php echo base_url("index.php/members/index");?>'>Members</a></td>
@@ -27,7 +28,13 @@
         <td> <a href='<?php echo base_url("index.php/group/index");?>'>Group</a></td>
     </tr>
     <tr>
-        <td> <a href='<?php echo base_url("index.php/content/index");?>'>Cotent</a></td>
+        <td> <a href='<?php echo base_url("index.php/memberof_c/");?>'>Members of Group</a></td>
+    </tr>
+    <tr>
+        <td> <a href='<?php echo base_url("index.php/content/index");?>'>Private Content</a></td>
+    </tr>
+    <tr>
+        <td> <a href='<?php echo base_url("index.php/info");?>'>Public Content</a></td>
     </tr>
     <tr>
         <td> <a href='<?php echo base_url("index.php/email/inbox_list");?>'>Email</a></td>

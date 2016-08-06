@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-session_start();
-
 class Email extends CI_Controller
 {
     public function __construct()
@@ -11,6 +9,7 @@ class Email extends CI_Controller
         $this->load->model('email_model');
         $this->load->model('member_model');
         $this->load->helper('url_helper');
+        $this->load->library('session');
     }
 
     // Display all email list

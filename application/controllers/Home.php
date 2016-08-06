@@ -16,8 +16,9 @@ class Home extends CI_Controller
     public function index()
     {
         $this->session->sess_destroy();
+        
         $data['title'] = 'Welcome to POWON';
-        $data['public_info'] = $this->info_model->get_public_info();
+        $data['public_info'] = $this->info_model->get_public_info_n(10);
 
         $this->load->view('templates/header_nonmember');
         $this->load->view('home/index', $data);
