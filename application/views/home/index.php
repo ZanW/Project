@@ -14,11 +14,13 @@
 
   <p> <?php echo $info_item['dop']; ?> </p>
 
-  <p> <?php if ($info_item['post_message'])  echo $info_item['post_message']; ?>  </p>
+   <?php if ($info_item['post_message'])  echo $info_item['post_message']; ?>
 
+    <?php if ($info_item['file_path']) { ?>
     <p><img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"></p>
+    <?php } ?>
 
-  <br>
+     <br><br>
 
 <?php endforeach; ?>
 

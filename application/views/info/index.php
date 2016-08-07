@@ -31,7 +31,11 @@
         <tr>
             <td><?php echo $info_item['id']; ?></td>
             <td><?php echo $info_item['post_message']; ?></td>
-            <td><img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"></td>
+            <?php if ($info_item['file_path']) { ?>
+                <td><img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"></td>
+            <?php } else { ?>
+                <td></td>
+            <?php } ?>
             <td> <?php echo $info_item['dop']; ?></td>
             <td> <?php echo $info_item['mid']; ?></td>
             <td> <a href='<?php echo base_url("index.php/info/delete/".$info_item['id']);?>'>Delete</a></td>
