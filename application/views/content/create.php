@@ -1,11 +1,11 @@
 <?php echo form_open_multipart('content/create')?>
 	<div class="form-group">
 		<label for="post_message">Group Message</label> <input type="text"
-			class="form-control" id="post_message" name="post_message"
+			 id="post_message" name="post_message"
 			data-error="Message cannot be empty" 
 			placeholder="Type Message">
 		<label for="auto_delete">Auto Delete</label> <input type="text"
-			class="form-control" id="auto_delete" name="auto_delete"
+			 id="auto_delete" name="auto_delete"
 			data-error="Boolean cannot be empty" 
 			placeholder="0 (false)or 1 (true)">
 			
