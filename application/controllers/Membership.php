@@ -12,17 +12,25 @@ class Membership extends CI_Controller
      * $this->load->model('groupcrud') ;
      * }
      */
-
+public $Pay_model;
     public function __construct()
     {
         parent::__construct () ;
-        $this->load->model ( 'pay_model' ) ;
+        $this->load->model ( 'Pay_model' ) ;
         $this->load->helper ( 'url_helper' ) ;
         $this->load->library('session');
     }
 
     public function pay_now()
     {
-        echo "PAYED";
+       $pay = $this->Pay_model->paynow();
+
+        if ($pay=true){
+            $this->load->view('home/login');
+        }else{
+            $this->load->view('home/register');
+
+        }
+
     }
 }

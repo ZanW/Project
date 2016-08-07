@@ -7,45 +7,49 @@ class chat_model extends CI_Model
         parent::__construct();
 
         $this->load->database();
-        $this->load->library('session');
 
     }
 
-    public function get_Messages($timestamp)
+    public function get_Messages($userID, $groupID)
     {
-        $query = <<<QUERY
-          SELECT 
-          message,ID,MID,sent_on
-                 FROM members
-        JOIN `messages`
-          ON `messages`.`to_id` = `members`.`ID`;
- 
-QUERY;
+        /*
+         * Retrieves previous messages of chat receiver
+         */
+        $query = 'SELECT `message` FROM `chat` WHERE `to_user_id` = ' . $userID;
 
-        // Execute the query
-        $resultObj = $this->db->query($query);
-        // Get messages from query result
-        $chat_messages = array();
-        foreach ($resultObj->result_array() as $value) {
-            if ($value['sent_on'] > $timestamp) {
-                $chat_messages[$value['MID']] = array(
-                    "message" => $value['message'],
-//                    "id" => $value['MID'],
-                    "timestamp" => $value['sent_on']
-                );
-//                $message_id = $value['MID'];
-//                $chat_messages["$message_id"] = $value['message'];
+        $result = $this->db->query($query);
+        $row = $result->result_array();
+        $chatDeserialized = unserialize($row[0]['message']);
+
+        /*
+         * Removes chat data from message field in database
+         */
+        $chatJson = array();
+        $chatMessageSerialized = serialize($chatJson);
+        $query = "UPDATE `chat` SET `message`= '$chatMessageSerialized' WHERE `to_user_id`= $userID";
+        $this->db->query($query);
+
+        /*
+         * Loop through received messages to get user id, message and group id
+         * Create array to be later returned as json
+         */
+        $response = array();
+        foreach ($chatDeserialized as $item => $value) {
+            if ($value['item']['group_id'] == $groupID) {
+                $tempArray['item'] = array('user_id' => $value['item']['user_id'],
+                    'message' => $value['item']['message'], 'group_id' => $value['item']['group_id']);
+                array_push($response, $tempArray);
             }
         }
 
-        return $chat_messages;
+        return $response;
     }
 
     public function session()
     {
         if (isset($_POST['name'])) {
 
-            $userId = (int)$_SESSION['USER_NAME'];
+            $userId = (int)$_SESSION['ID'];
             // Escape the message string
             $msg = htmlentities($_POST['msg'], ENT_NOQUOTES);
             $result = $this->addMessage($userId, $msg);
@@ -53,32 +57,35 @@ QUERY;
         }
     }
 
-    public function addMessage($userId, $message, $chatTime)
+    public function addMessage($chatMessage, $userID, $memberID, $groupID)
     {
-        $addResult = false;
+        foreach ($memberID as $member) {
+            /*
+             * Retrieves previous messages of chat receiver
+             */
+            $query = 'SELECT `message` FROM `chat` WHERE `to_user_id` = ' . $member;
+            $result = $this->db->query($query);
+            $row = $result->result_array();
+            $chatDeserialized = unserialize($row[0]['message']);
 
-        $cUserId = (int)$userId;
+            /*
+             * Pushes new chat message to existing message array
+             */
+            $newChatDeserialized['item'] = array('user_id' => $userID, 'message' => $chatMessage,
+                'group_id' => $groupID);
+            array_push($chatDeserialized, $newChatDeserialized);
+            $chatSerialized = serialize($chatDeserialized);
 
-        // Escape the message with mysqli real escape
-//        $cMessage = $this->db->real_escape_string($message);
-        $cMessage = $message;
-
-        $query = <<<QUERY
-     INSERT INTO `messages` (`Message`, `to_id`, `from_id`, `sent_on`) 
-      VALUES ('$cMessage', 4, $cUserId, $chatTime)
-QUERY;
-
-        $result = $this->db->query($query);
-
-        if ($result !== false) {
-            // Get the last inserted row id.
-//            $addResult = $this->db->insert_id;
-            $addResult = true;
-        } else {
-            echo $this->db->error;
+            /*
+             * Updates message field of receiver
+             */
+            $query = "UPDATE `chat` SET `message`='" . $chatSerialized . "' WHERE `to_user_id`=" . $member;
+            $this->db->query($query);
         }
 
-        return $addResult;
+        $data = array('message' => 'success');
+
+        return $data;
     }
 
 
@@ -98,7 +105,6 @@ QUERY;
 
             return false;
         } else {
-            $this->session();
             return $resultArray;
         }
 //            return $result;
@@ -109,7 +115,7 @@ QUERY;
     {
         $resultArray = array();
 
-        $sql = ("   SELECT `ID`,`FirstName` FROM members JOIN `gmlist` ON `gmlist`.`gid` = `members`.`ID`");
+        $sql = (" SELECT `ID`,`FirstName` FROM members JOIN `gmlist` ON `gmlist`.`mid` = `members`.`ID` ");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {
@@ -120,7 +126,6 @@ QUERY;
 
             return false;
         } else {
-            $this->session();
             return $resultArray;
         }
 //            return $result;

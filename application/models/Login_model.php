@@ -22,8 +22,7 @@ class Login_model extends CI_Model
             $USERNAME = $_POST['name'];
             $PASSWORD = $_POST['password'];
 
-            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'AND
-                      status = 0";
+            $query = "SELECT * FROM members WHERE  FirstName='" . $USERNAME . "' AND Password='" . $PASSWORD . "'AND status = 0";
             $result = $this->db->query($query);
             $row_cnt = $result->num_rows();
 
@@ -31,34 +30,33 @@ class Login_model extends CI_Model
 
                 return false;
             } else {
-               return $result;
+                return $result;
             }
-//            return $result;
+//
         }
     }
 
 
-   /* public function session()
-    {
-        if (isset($_POST['name'])) {
-            $USERNAME = $_POST['name'];
+    /* public function session()
+     {
+         if (isset($_POST['name'])) {
+             $USERNAME = $_POST['name'];
 
 
-            $this->session->set_userdata(array(
-                $_SESSION['USER_NAME'] = $USERNAME));
+             $this->session->set_userdata(array(
+                 $_SESSION['USER_NAME'] = $USERNAME));
 
-            $sql = ("SELECT * FROM persons WHERE  FirstName='" . $USERNAME . "'");
-            $result = $this->db->query($sql);
+             $sql = ("SELECT * FROM persons WHERE  FirstName='" . $USERNAME . "'");
+             $result = $this->db->query($sql);
 
 
-            return $result;
-        }
-    }*/
+             return $result;
+         }
+     }*/
 
 
     public function register_query()
     {
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $FIRSTNAME = ($_POST["namefirst"]);
             $LASTNAME = $_POST['namelast'];
@@ -82,11 +80,20 @@ class Login_model extends CI_Model
                     $errors["email"] = "Email not available.";
                 } else {
 
-            $query = ("INSERT INTO `members` ( `LastName`, `FirstName`, 
-`Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`) 
-VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "')");
+                    $query = ("INSERT INTO `members` ( `LastName`, `FirstName`, 
+`Apt_no`, `Street`, `City`, `Postal_Code`, `Country`, `Gender`,`Email`, `Password`,`Register_date`) 
+VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET . "','" . $CITY . "', '" . $POSTAL . "', '" . $COUNTRY . "', '" . $GENDER . "', '" . $EMAIL . "', '" . $PASSWORD . "',NOW())");
 
                     $result = $this->db->query($query);
+                    $memberID = $this->db->insert_id();
+
+                    /*
+                     * Execute this when creating user the first time.
+                     */
+                    $chatJson = array();
+                    $chatMessageSerialized = serialize($chatJson);
+                    $queryChat = "INSERT INTO `chat` (`to_user_id`, `groups_id`, `message`) VALUES ('" . $memberID . "', '1', '$chatMessageSerialized')";
+                    $this->db->query($queryChat);
 
                     return $result;
                 }
@@ -97,4 +104,6 @@ VALUES ('" . $LASTNAME . "', '" . $FIRSTNAME . "','" . $APT . "', '" . $STREET .
         }
 
     }
+
+
 }

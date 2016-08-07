@@ -28,64 +28,34 @@ class Chat extends CI_Controller
 
     public function get_chats()
     {
-        $timestamp = $_GET['timestamp'];
-        $messages = $this->chat_model->get_Messages($timestamp);
-//        $message_chat = array();
+        $userID = $_GET['userid'];
+        $groupID = $_GET['groupid'];
 
-        if ($messages) {
-//            $message_chat[] = '<table>';
-//            foreach ($messages as $message) {
-//                $msg = htmlentities($message['message'], ENT_NOQUOTES);
-//                $sent = date('F j, Y, g:i a', $message['sent_on']);
-//                $fp = fopen("log.json", 'a');
-//                $message_chat = fwrite($fp, "<div class='msgln'>(" . $sent . ") <b>" . $_SESSION['USER_NAME'] . "</b>: " . stripslashes(htmlspecialchars($msg)) . "<br><hr></div>");
-//                           }
-//            $message_chat[] = '</table>';
-            $this->output
-                ->set_status_header(200)
-                ->set_content_type('application/json', 'utf-8')
-                ->set_output(json_encode($messages, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-                ->_display();
-            exit;
-        } else {
-            $response = array('status_message' => 'error');
-            $this->output
-                ->set_status_header(200)
-                ->set_content_type('application/json', 'utf-8')
-                ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-                ->_display();
-            exit;
-        }
+        $response = $this->chat_model->get_Messages($userID, $groupID);
 
-//        echo implode('', $message_chat);
+        /*
+         * Returns header response as successful
+         */
+        header('Content-Type: application/json');
 
+        echo json_encode($response);
     }
 
     public function send_chats()
     {
-        $user_id = $_GET['userid'];
-        $chat_message = $_GET['text'];
-        $chat_time = $_GET['timestamp'];
-        $messages = $this->chat_model->addMessage($user_id, $chat_message, $chat_time);
-        $response = array();
+        $chatMessage = $_GET['message'];
+        $userID = $_GET['userid'];
+        $memberID = $_GET['membersids'];
+        $groupID = $_GET['groupid'];
 
-        if ($messages) {
-            $response = array('status_message' => 'success');
-            $this->output
-                ->set_status_header(200)
-                ->set_content_type('application/json', 'utf-8')
-                ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-                ->_display();
-            exit;
-        } else {
-            $response = array('status_message' => 'error');
-            $this->output
-                ->set_status_header(200)
-                ->set_content_type('application/json', 'utf-8')
-                ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-                ->_display();
-            exit;
-        }
+        $response = $this->chat_model->addMessage($chatMessage, $userID, $memberID, $groupID);
+
+        /*
+         * Returns header response as successful
+         */
+        header('Content-Type: application/json');
+
+        echo json_encode($response);
     }
 
 
@@ -93,8 +63,6 @@ class Chat extends CI_Controller
     {
 
         $group = $this->chat_model->group();
-
-
         if ($group) {
             $data['groups'] = $group;
             $this->load->view("templates/header");
@@ -114,7 +82,6 @@ class Chat extends CI_Controller
     {
 
         $member = $this->chat_model->member();
-
 
         if ($member) {
             $data['members'] = $member;

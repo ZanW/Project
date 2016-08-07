@@ -1,4 +1,5 @@
 <?php
+
 class pay_model extends CI_Model
 {
     public function __construct()
@@ -6,19 +7,17 @@ class pay_model extends CI_Model
         $this->load->database();
     }
 
-    // Get all message and return in an array
-    public function createAccount()
+    public function paynow()
     {
-        //$query = $this->db->get('message');
+        $date = date('Y-m-d', strtotime("+1year"));
 
-        $query ="INSERT INTO `pog_db`.`membership_fee`(`transaction_id`, `amount`, `mid`, `payment_type`, `expiration_date`, `payment_date`) VALUES ('1', '1', '1', '1', '20120618', GETDATE())";
+        $ID = $_SESSION['ID'];
+
+        $query = "INSERT INTO `pog_db`.`membership_fee`( `amount`, `mid`, `payment_type`, `expiration_date`, `payment_date`) VALUES ( '400', '$ID', '1', '$date', NOW())";
 
         $result = $this->db->query($query);
 
         return $result;
 
-        return $query->result_array();
     }
-
-
 }

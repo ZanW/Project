@@ -1,3 +1,4 @@
+<?php $user_id = $_SESSION['ID'] ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,159 +10,132 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 </head>
-<style>
-    .btn-default {
-
-        margin-left: 25px;
-        margin-bottom: 20px;
-
-    }
-
-</style>
-
 <body>
 
-<div class="card" id="card-message-send" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);width: 400px; margin-left: 50px;float: left">
-    <div class="card-block">
-        <h4 class="card-title">Your Messages</h4>
-        <hr style="width: 100%">
-        <div id="wrapper">
-            <div id="menu">
-                <p id="user"></p>
-                <div id="chatbox" class="card-text" style="margin-left: 10px">
-                    <!--                    --><?php
-                    //                    if (file_exists("log.json") && filesize("log.json") > 0) {
-                    //                        $handle = fopen("log.json", "r");
-                    //                        $contents = fread($handle, filesize("log.json"));
-                    //                        fclose($handle);
-                    //
-
-                    //                        echo $contents;
-                    //                    }
-                    //                    ?>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="chatbox"></div>
-
-        <form name="message">
-            <input name="usermsg" class="form-control" type="text" id="usermsg" size="63"
-                   style="width: 300px;margin-left: 30px"/>
-            <input name="submitmsg" class="btn btn-info" type="button" id="submitmsg" value="Send"
-                   style="margin-top: 30px;margin-bottom: 10px;margin-left: 20px"/>
-        </form>
-    </div>
-</div>
-<div class="card" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+<div id="group-card" class="card" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);width: 200px;float: right;margin-right: 250px">
     <div class="card-block">
-        <h4 class="card-title">Add People</h4>
+        <h4 class="card-title">Select Group</h4>
         <hr style="width: 100%">
-        <div class="dropdown" style="margin-left: 10px;margin-bottom: 30px">
+        <div class="groups">
+
             <?php foreach ($groups as $group_id => $name) {
-                echo "<button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\"> $name <span class=\"caret\"></span></button>
-";
+                echo "<a  id='link'><li id='groups_name' style='list-style-type: none' data-id='$group_id' data-name='$name' onclick='showDiv(this)'>  $name </li></a>";
             } ?>
 
-            <select id="multi" class="dropdown-menu" multiple ">
+        </div>
+    </div>
+</div>
+
+<div class="card" id="card-message-send" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);width: 400px; margin-left: 50px;float: left" hidden="hidden">
+    <div class="card-block">
+        <div id="group-member-box">
+            <h4 id="title_group" class="card-title">Select Members</h4>
+            <hr width="100%">
+
             <?php
             foreach ($members as $ID => $FirstName) {
-                echo "<option><a>" . $FirstName . "</a></option>";
+                if ($ID != $user_id) {
+                    echo '<label class="checkbox-inline">';
+                    echo '<input type="checkbox" id="inlineCheckbox1" value=' . $ID . '>' . $FirstName;
+                    echo '</label>';
+                }
             }
             ?>
-
+            <button class="btn btn-info" id="start-chat-button">Start Chat</button>
         </div>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-        </ul>
+        <div id="chat-box" hidden="hidden">
+            <div id="chat-messages">
+            </div>
+            <input id="message" class="form-control" type="text" title="send">
+            <button class="btn btn-info" id="send">Send Message</button>
+        </div>
     </div>
+</div>
 
-</div>
-</div>
 </body>
 
 <script>
 
-    function displayVals() {
-        var multipleValues = $("#multi").val() || [];
-        $("p").html("<b>To_id</b> " + multipleValues.join(", "));
-    }
-    var to_user = $("select").change(displayVals);
-    displayVals();
+    var chatMessage = document.getElementById('message');
+    var sendMessage = document.getElementById('send');
+    var messageBlock = document.getElementById('chat-messages');
+    var chatBox = document.getElementById('chat-box');
+    var startChatButton = document.getElementById('start-chat-button');
+    var groupMemberBox = document.getElementById('group-member-box');
+    var selectedMembersID = [];
+    var selectedGroupID = '';
+    var userID = <?php echo $user_id; ?>;
 
-    var $chatBox = $('#chatbox');
-    var currentDate = new Date();
-    var currentTime = currentDate.getTime();
-    var lastChatMessageTime = currentTime;
+    sendMessage.addEventListener('click', sendChatMessage);
+    startChatButton.addEventListener('click', openChatBox);
 
-    setInterval(getChats, 5000);
-    //    date = new Date(time);
-    //    console.log(time);
+    function sendChatMessage() {
+        var message = chatMessage.value;
+        messageBlock.innerHTML += '<p>' + message + '</p>';
 
-    function getChats() {
-        timestamp = lastChatMessageTime;
-        console.log('getMessage Fired');
-        var msg = $("#usermsg").val();
-        var chatReq = $.get("<?php echo site_url('Chat/get_chats'); ?>", {
-            text: msg,
-            timestamp: timestamp,
-            to:to_user
-        });
-        chatReq.done(function (data) {
-            $.each(data, function (key, value) {
-                if (value != 'error') {
-                    if (value.timestamp > timestamp) {
-                        var newChatMessage = document.createElement('p');
-                        newChatMessage.innerText = value.message;
-                        newChatMessage.setAttribute('class', 'card-text');
-                        $chatBox.append(newChatMessage);
-                    }
-                }
-            });
-        });
-    }
-
-    //If user submits the form
-    $("#submitmsg").click(function () {
-        var date = new Date();
-        var time = date.getTime();
-        var msg = $("#usermsg").val();
-        var chatReq = $.get("<?php echo site_url('Chat/send_chats'); ?>", {text: msg, userid: 1, timestamp: time,});
-        chatReq.done(function (data) {
-            var newChatMessage = document.createElement('p');
-            newChatMessage.innerText = msg;
-            newChatMessage.setAttribute('class', 'card-text');
-            $chatBox.append(newChatMessage);
-            console.log(data.status_message);
-            lastChatMessageTime = time;
-        });
-        $("#usermsg").attr("value", "");
-        return false;
-    });
-
-    function loadLog() {
-        var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
         $.ajax({
-            url: "log.json",
-            cache: false,
-            success: function (json) {
-                $("#chatbox").json(json); //insert in div
-
-                //Auto-scroll
-                var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
-                if (newscrollHeight > oldscrollHeight) {
-                    $("#chatbox").animate({scrollTop: newscrollHeight}, 'normal'); //Autoscroll to bottom of div
-                }
-            },
+            method: "GET",
+            url: "<?php echo site_url('Chat/send_chats') ?>",
+            data: {message: message, userid: userID, membersids: selectedMembersID, groupid: selectedGroupID}
+        }).done(function (data) {
+            console.log(data);
+        }).fail(function () {
+            console.log('Unable to send message');
         });
     }
+
+    function getChatMessages() {
+        $.ajax({
+            method: "GET",
+            url: "<?php echo site_url('Chat/get_chats') ?>",
+            data: {userid: userID, groupid: selectedGroupID}
+        }).done(function (data) {
+            var newChatsCount = data.length;
+            if (newChatsCount > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    messageBlock.innerHTML += '<p>' + data[i]['item']['message'] + '</p>';
+                    console.log(data[i]['item']['message']);
+                }
+            } else {
+                console.log('No new messages');
+            }
+        });
+    }
+
+//    function getgroup() {
+//        $.ajax({
+//            method: "GET",
+//            url: "<?php //echo site_url('Chat/index') ?>//",
+//            data: {groupid: selectedGroupID}
+//        }).done(function (data) {
+//            console.log("data")
+//                            }
+//            } else {
+//                console.log('No new messages');
+//            }
+//        });
+//    }
+
+    function openChatBox() {
+        groupMemberBox.setAttribute('hidden', 'hidden');
+        selectedMembersID = [];
+        $(":checkbox").each(function () {
+            if (this.checked) {
+                selectedMembersID.push(this.value);
+            }
+        });
+        chatBox.removeAttribute('hidden');
+        setInterval(getChatMessages, 5000);
+    }
+
+    function showDiv(event) {
+        document.getElementById('group-card').setAttribute('hidden', 'hidden');
+        var group_names = event.getAttribute('data-name').toString();
+        selectedGroupID = event.getAttribute('data-id').toString();
+        document.getElementById('card-message-send').removeAttribute('hidden');
+    }
+
 </script>
 </html>
