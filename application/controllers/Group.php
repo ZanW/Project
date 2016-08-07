@@ -44,13 +44,15 @@ class Group extends CI_Controller
     public function edit()
     {   $gid = $this->input->post('gid');
         $this->group_crud->update ($gid) ;
-        $this->index () ;
+      //  $this->index () ;
+        redirect("group/index/".$_SESSION["ID"]);
     }
 
     public function delete($g_id)
     {
         $this->group_crud->delete ( $g_id ) ;
-        $this->index () ;
+        //$this->index () ;
+        redirect("group/index/".$_SESSION["ID"]);
     }
     
     // TODO memberID
@@ -58,7 +60,8 @@ class Group extends CI_Controller
     
     {
         $this->group_crud->add () ;
-        $this->index () ;
+       // $this->index () ;
+        redirect("group/index/".$_SESSION["ID"]);
     }
 
     public function openGroupForm()

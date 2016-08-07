@@ -24,7 +24,7 @@ class memberof_c extends CI_Controller
 	public function home()
 	{
 		$data['memberoflist'] = $this->memberof_m->get_memberoflist();
-		$data['title'] = 'Member Of';
+		$data['title'] = 'Group Members';
 
 		$this->load->view('templates/header');
 		$this->load->view('memberof/memberof_v', $data);
