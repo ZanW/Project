@@ -17,6 +17,7 @@ CREATE TABLE `members` (
   `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
   `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) DEFAULT 0,
+   `Register_date` date NOT NULL,
   `priviledge` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`ID`)
 );
@@ -131,3 +132,26 @@ from gm_memberof
 where (gm_memberof.g_id) in
 (select gm.g_id from gm_memberof as gm where gm.m_id=10)
 ;
+
+
+CREATE TABLE `chat` (
+  `idchat` int(11) NOT NULL AUTO_INCREMENT,
+  `to_user_id` int(11) DEFAULT NULL,
+  `groups_id` int(11) DEFAULT NULL,
+  `message` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idchat`),
+  KEY `id_idx` (`to_user_id`),
+  CONSTRAINT `id` FOREIGN KEY (`to_user_id`) REFERENCES `members` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `membership_fee` (
+  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) NOT NULL,
+  `mid` int(11) NOT NULL,
+  `payment_type` varchar(45) DEFAULT NULL,
+  `expiration_date` date DEFAULT NULL,
+  `payment_date` date DEFAULT NULL,
+  PRIMARY KEY (`transaction_id`),
+  KEY `POWON_id_idx` (`mid`),
+  CONSTRAINT `POWON_id` FOREIGN KEY (`mid`) REFERENCES `members` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='	';
