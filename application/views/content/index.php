@@ -14,7 +14,7 @@ th, td {
 </head>
 
 
-<div class="table-responsive">
+<div class="table-responsive" style="overflow-x:auto;">
 	<table class="table table-bordered table-hover table-striped">
 		<tr>
 			<th>Post Message</th>
@@ -35,7 +35,14 @@ th, td {
 			<td><?php echo $record_item['dop']; ?></td>
 			<td><?php echo $record_item['FirstName']; ?></td>
 			<td><?php echo $record_item['group_name']; ?></td>
-			<td><?php echo "comments"; ?></td>
+			<td><?php 
+				foreach ( $records_comments as $comments ):
+				if($comments['content_id'] == $record_item['id'] ) :
+    				    echo $comments['com_message'] . " by ";
+                        echo $comments['first_name'] ."\r\n";
+                    endif;
+                endforeach;
+            ?></td>
 			<td><a
 				href='<?php echo base_url("index.php/content/openCommentForm/".$record_item['id']);?>'>Add Comment</a></td>
 			<td>
