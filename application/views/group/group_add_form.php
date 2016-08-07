@@ -3,7 +3,7 @@
 	role="form" data-toggle="validator">
 	<div class="form-group">
 		<label for="gn">Group Name</label> <input type="text"
-			class="form-control" id="gn" name="gn"
+			id="gn" name="gn"
 			data-error="Group Name cannot be empty" required>
 		<div class="help-block with-errors"></div>
 	</div>

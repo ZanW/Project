@@ -43,7 +43,7 @@ class Login_con extends CI_Controller
             $data['user_values'] = $status;
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
-
+            $this->load->view("templates/footer");
 
         } else {
             $this->load->view("home/register", $data);
@@ -67,7 +67,9 @@ class Login_con extends CI_Controller
         $member_session_data = array(
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
-            'ID' => $row['ID']);
+            'ID' => $row['ID'],
+            'gid'=>0    
+        );
         $this->session->set_userdata($member_session_data);
 
     }

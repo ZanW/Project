@@ -16,10 +16,34 @@ CREATE TABLE `members` (
   `DOB` date DEFAULT NULL,
   `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
   `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `status` tinyint(1) DEFAULT 0,
+  `priviledge` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+);
 
-INSERT INTO `members` VALUES (1,'walker','walker','1','rue','montreal','hhhh','canada','walker@gmail.com','12345',NULL,'Male',''),(40,'john','henry','1','startk','Montreal','H3','Canada','hen@gmail.com','12345',NULL,'Male',''),(41,'Gg','gggg','gg','gg','gg','gg','Guernsey','gg90@gmail.co','gggg',NULL,'Female',''),(42,'asdf','asdf','asd','asdf','asdf','asdfa','ff','amnivir@gmail.com','a',NULL,'Male',''),(43,'s','s','s','s','s','s','s','s@gmail.com','s','1234-12-12','Male',''),(44,'x','x','x','x','x','x','x','x@gmail.com','x','1234-12-12','Male',''),(45,'v','v','v','v','v','v','v','v@gmail.com','v','1234-12-12','Male',''),(46,'b','b','b','b','b','b','b','b@gmail.com','b','1234-12-12','Male',''),(47,'r','r','r','r','r','r','r','r@gmail.com','r','1234-12-12','Male',''),(48,'Nigam','Shivam','asd','asd','asd','asdfa','asd','shivam@gmail.com','sn','1234-12-12','Male',''),(49,'n','n','n','n','n','n','n','n@gmail.com','n','1234-12-12','Male',''),(50,'y','y','y','y','y','y','y','y@gmail.com','y','1234-12-12','Male','');
+INSERT INTO `members` VALUES (1,'admin','admin','1','rue','montreal','hhhh','canada','admin@gmail.com','admin',NULL,'Male','', 0, 1);
+INSERT INTO `members` VALUES (2,'lay','lay','1','rue','montreal','hhhh','canada','lay@gmail.com','lay',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (3,'zan','zan','1','rue','montreal','hhhh','canada','zan@gmail.com','zan',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (4,'shivam','shivam','1','rue','montreal','hhhh','canada','shivam@gmail.com','shivam',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','lay@gmail.com','jaya',NULL,'Female','',0,0);
+INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','lay@gmail.com','xindi',NULL,'Female','',0,0);
+INSERT INTO `members` VALUES (7,'charle','lay','1','rue','montreal','hhhh','canada','charle@gmail.com','lay',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (8,'john','john','1','rue','montreal','hhhh','canada','john@gmail.com','john',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (9,'nice','nice','1','rue','montreal','hhhh','canada','nice@gmail.com','nice',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (10,'paris','paris','1','rue','montreal','hhhh','canada','paris@gmail.com','paris',NULL,'Male','',0,0);
+
+
+CREATE TABLE public_info(
+    id INT AUTO_INCREMENT NOT NULL,
+    post_message VARCHAR(300),
+    file_path VARCHAR(50),
+    dop datetime DEFAULT CURRENT_TIMESTAMP,
+    mid int,
+    PRIMARY KEY(id),
+    FOREIGN KEY(mid) REFERENCES members(ID) ON DELETE CASCADE
+    );
+
+INSERT INTO public_info(post_message, file_path, mid) VALUES('First public information', NULL, 1);
 
 
 CREATE TABLE `group` (
@@ -27,10 +51,39 @@ CREATE TABLE `group` (
   `group_name` varchar(45) NOT NULL,
   `POWON_id` int(11) NOT NULL,
    PRIMARY KEY (`group_id`),
-   FOREIGN KEY (POWON_id) REFERENCES members(ID)
+   FOREIGN KEY (POWON_id) REFERENCES members(ID) ON DELETE CASCADE
 );
 
-INSERT INTO `group` VALUES (15,'jumping',50),(16,'hockey',50),(17,'football',46);
+INSERT INTO `group`(group_name, POWON_id) VALUES ('jumping',5),('hockey',5),('football',6);
+
+
+CREATE TABLE pog_db.comment(
+    id INT AUTO_INCREMENT NOT NULL,
+    text VARCHAR(200),
+	dop datetime DEFAULT CURRENT_TIMESTAMP,
+	mid int,
+    PRIMARY KEY(id),
+    FOREIGN KEY(mid) REFERENCES members(ID) ON DELETE CASCADE
+    );
+
+INSERT INTO pog_db.comment VALUES(1, 'test', 20160807, 5);
+
+
+CREATE TABLE `content` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_message` varchar(300) DEFAULT NULL,
+  `dop` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `comment_id` int(11) NOT NULL,
+  `POWON_id` int(11) NOT NULL,
+  `gid` int(11) NOT NULL,
+  `auto_delete` binary(1) NOT NULL DEFAULT '0',
+  `file_path` varchar(40) DEFAULT NULL,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (comment_id) REFERENCES pog_db.comment(id) ON DELETE CASCADE,
+   FOREIGN KEY (POWON_id) REFERENCES members(ID) ON DELETE CASCADE,
+   FOREIGN KEY (gid) REFERENCES pog_db.group(group_id) ON DELETE CASCADE
+);
+
 
 CREATE TABLE gm_memberof(
     g_id int,
@@ -40,19 +93,20 @@ CREATE TABLE gm_memberof(
     FOREIGN KEY (m_id) REFERENCES members(ID) ON DELETE CASCADE
     );
 
-INSERT INTO gm_memberof VALUES(15, 1);
-INSERT INTO gm_memberof VALUES(15, 50);
-INSERT INTO gm_memberof VALUES(15, 47);
-INSERT INTO gm_memberof VALUES(15, 49);
-INSERT INTO gm_memberof VALUES(15, 50);
-INSERT INTO gm_memberof VALUES(16, 1);
-INSERT INTO gm_memberof VALUES(16, 50);
+INSERT INTO gm_memberof VALUES(1, 2);
+INSERT INTO gm_memberof VALUES(1, 3);
+INSERT INTO gm_memberof VALUES(1, 4);
+INSERT INTO gm_memberof VALUES(1, 10);
+INSERT INTO gm_memberof VALUES(2, 7);
+INSERT INTO gm_memberof VALUES(2, 8);
+INSERT INTO gm_memberof VALUES(2, 9);
 
 CREATE VIEW gm_member_of AS
 SELECT pog_db.group.group_id, pog_db.group.group_name, members.ID, members.FirstName
 FROM pog_db.group, members
 WHERE pog_db.group.POWON_id = members.ID
 ORDER BY group_id ASC;
+
 
 CREATE TABLE non_member(
     id INT AUTO_INCREMENT NOT NULL,
@@ -64,29 +118,6 @@ CREATE TABLE non_member(
 INSERT INTO non_member(first_name, last_name, email) VALUES('Cat1', 'Cat', 'cat1@gmail.com');
 INSERT INTO non_member(first_name, last_name, email) VALUES('Bird1', 'Bird', 'bird1@gmail.com');
 INSERT INTO non_member(first_name, last_name, email) VALUES('Kinkon1', 'Kinkon', 'kinkon1@gmail.com');
-
-CREATE TABLE pog_db.comment(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    text VARCHAR(200)
-    );
-
-INSERT INTO pog_db.comment VALUES(1, 'test');
-
-
-CREATE TABLE content(
-    id INT AUTO_INCREMENT NOT NULL,
-    post_message VARCHAR(300),
-    dop DATE,
-    comment_id int,
-    mid int,
-    gid int,
-    PRIMARY KEY(id),
-    FOREIGN KEY (comment_id) REFERENCES pog_db.comment(id),
-    FOREIGN KEY (mid) REFERENCES member(id),
-    FOREIGN KEY (gid) REFERENCES pog_db.group(group_id)
-    );
-
-INSERT INTO `content`(`id`, `post_message`, `dop`, `comment_id`, `mid`, `gid`) VALUES (1,'test',20160710,1,1,1);
 
 
 CREATE TABLE email(
@@ -107,21 +138,6 @@ INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES (
 'lay@gmail.com', 'Test email 3', 'Hello, this a test email 3');
 INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES ('zan@gmail.com',
 'xindi@gmail.com', 'Test email 4', 'Hello, this a test email 4. multi-lines text\n test multiple lines \n');
-
-
-CREATE TABLE message(
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    sender_id INT NOT NULL,
-    receiver_id INT NOT NULL,
-    dts datetime DEFAULT CURRENT_TIMESTAMP,
-    message_content VARCHAR(300)
-    );
-
-INSERT INTO message(sender_id, receiver_id, message_content) values (1, 40, 'message test 1');
-INSERT INTO message(sender_id, receiver_id, message_content) values (1, 41, 'message test 2');
-INSERT INTO message(sender_id, receiver_id, message_content) values (40, 1, 'message test 3');
-INSERT INTO message(sender_id, receiver_id, message_content) values (41, 1, 'message test 4');
-INSERT INTO message(sender_id, receiver_id, message_content) values (43, 40, 'message test 5');
 
 select *
 from gm_memberof

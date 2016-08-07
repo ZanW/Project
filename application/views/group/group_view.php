@@ -50,19 +50,18 @@
 		</tr>
 		
       <?php
-    if ( $data_get == NULL )
+    if ( $data_get_all == NULL )
     {
         ?>
   <?php
     }
     else
     {
-        foreach ( $data_get as $row )
+        foreach ( $data_get_all as $row )
         {
             ?>
-
-				<tr class="table-row"data-href="<?php echo site_url('content/index/'. $row->group_id )  ?>"> <!-- Pass the group ID here to open a specific group-->
-				<td><?php echo $row->group_name ?></td><td><?php echo $row->group_id ?></td>
+				<tr class="table-row"data-href="<?php echo site_url('content/index/'. $row['group_id'] )  ?>"> <!-- Pass the group ID here to open a specific group-->
+				<td><?php echo $row['group_name'] ?></td><td><?php echo $row['group_id'] ?></td>
 				</tr>
       <?php
         }
