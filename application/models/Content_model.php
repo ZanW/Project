@@ -76,7 +76,7 @@ class Content_model extends CI_Model
                 'auto_delete'=>$this->input->post ( 'auto_delete' ), 
                 'gid'=>$this->input->post ( 'gid' ), 
                 'POWON_id'=>$_SESSION['ID'], 
-                'comment_id'=>1, 
+               // 'comment_id'=>1,
                 'file_path'=>$upload_data['file_name']) ;
         
         return $this->db->insert ( 'content', $data ) ;

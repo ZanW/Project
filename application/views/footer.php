@@ -5,5 +5,5 @@
 <hr>
 
 <footer>
-    <p>&copy; 2016 POG</p>
+    <p>&copy; 2016 POWON</p>
 </footer>

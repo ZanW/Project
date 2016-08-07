@@ -21,11 +21,11 @@ class Group extends CI_Controller
         $this->load->library('session');
     }
 
-    public function index()
+    public function index($mid)
     {
-        $data['data_get'] =     $this->group_crud->view () ;
-        $data['data_get_all'] = $this->group_crud->viewAllGroupsOfMember();
-        $data_get_all = $this->group_crud->viewAllGroupsOfMember();
+        $data['data_get'] =     $this->group_crud->view ($mid) ;
+        $data['data_get_all'] = $this->group_crud->viewAllGroupsOfMember($mid);
+     //   $data_get_all = $this->group_crud->viewAllGroupsOfMember();
         $this->load->view ( 'group/group_header', $data ) ;
         $this->load->view ('templates/header.php');
         $this->load->view ( 'group/group_view', $data ) ;

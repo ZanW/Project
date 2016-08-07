@@ -1,6 +1,6 @@
-CREATE DATABASE pog_db;
+CREATE DATABASE ioc55311;
 
-USE pog_db;
+USE ioc55311;
 
 CREATE TABLE `members` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -25,9 +25,9 @@ INSERT INTO `members` VALUES (1,'admin','admin','1','rue','montreal','hhhh','can
 INSERT INTO `members` VALUES (2,'lay','lay','1','rue','montreal','hhhh','canada','lay@gmail.com','lay',NULL,'Male','',0,0);
 INSERT INTO `members` VALUES (3,'zan','zan','1','rue','montreal','hhhh','canada','zan@gmail.com','zan',NULL,'Male','',0,0);
 INSERT INTO `members` VALUES (4,'shivam','shivam','1','rue','montreal','hhhh','canada','shivam@gmail.com','shivam',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','lay@gmail.com','jaya',NULL,'Female','',0,0);
-INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','lay@gmail.com','xindi',NULL,'Female','',0,0);
-INSERT INTO `members` VALUES (7,'charle','lay','1','rue','montreal','hhhh','canada','charle@gmail.com','lay',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','jaya@gmail.com','jaya',NULL,'Female','',0,0);
+INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','jaya@gmail.com','xindi',NULL,'Female','',0,0);
+INSERT INTO `members` VALUES (7,'charle','charle','1','rue','montreal','hhhh','canada','charle@gmail.com','lay',NULL,'Male','',0,0);
 INSERT INTO `members` VALUES (8,'john','john','1','rue','montreal','hhhh','canada','john@gmail.com','john',NULL,'Male','',0,0);
 INSERT INTO `members` VALUES (9,'nice','nice','1','rue','montreal','hhhh','canada','nice@gmail.com','nice',NULL,'Male','',0,0);
 INSERT INTO `members` VALUES (10,'paris','paris','1','rue','montreal','hhhh','canada','paris@gmail.com','paris',NULL,'Male','',0,0);
@@ -57,31 +57,29 @@ CREATE TABLE `group` (
 INSERT INTO `group`(group_name, POWON_id) VALUES ('jumping',5),('hockey',5),('football',6);
 
 
-CREATE TABLE pog_db.comment(
-    id INT AUTO_INCREMENT NOT NULL,
-    text VARCHAR(200),
-	dop datetime DEFAULT CURRENT_TIMESTAMP,
-	mid int,
-    PRIMARY KEY(id),
-    FOREIGN KEY(mid) REFERENCES members(ID) ON DELETE CASCADE
-    );
-
-INSERT INTO pog_db.comment VALUES(1, 'test', 20160807, 5);
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `content_id` int(11) NOT NULL,
+  `com_message` varchar(300) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`comment_id`),
+  FOREIGN KEY(content_id) REFERENCES content(id) ON DELETE CASCADE,
+  FOREIGN KEY(group_id) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE
+)
 
 
 CREATE TABLE `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_message` varchar(300) DEFAULT NULL,
   `dop` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment_id` int(11) NOT NULL,
   `POWON_id` int(11) NOT NULL,
   `gid` int(11) NOT NULL,
   `auto_delete` binary(1) NOT NULL DEFAULT '0',
   `file_path` varchar(40) DEFAULT NULL,
    PRIMARY KEY (`id`),
-   FOREIGN KEY (comment_id) REFERENCES pog_db.comment(id) ON DELETE CASCADE,
    FOREIGN KEY (POWON_id) REFERENCES members(ID) ON DELETE CASCADE,
-   FOREIGN KEY (gid) REFERENCES pog_db.group(group_id) ON DELETE CASCADE
+   FOREIGN KEY (gid) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE
 );
 
 
@@ -89,7 +87,7 @@ CREATE TABLE gm_memberof(
     g_id int,
     m_id int,
     PRIMARY KEY (g_id, m_id),
-    FOREIGN KEY (g_id) REFERENCES pog_db.group(group_id) ON DELETE CASCADE,
+    FOREIGN KEY (g_id) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE,
     FOREIGN KEY (m_id) REFERENCES members(ID) ON DELETE CASCADE
     );
 
@@ -100,24 +98,13 @@ INSERT INTO gm_memberof VALUES(1, 10);
 INSERT INTO gm_memberof VALUES(2, 7);
 INSERT INTO gm_memberof VALUES(2, 8);
 INSERT INTO gm_memberof VALUES(2, 9);
+INSERT INTO gm_memberof VALUES(2, 10);
 
 CREATE VIEW gm_member_of AS
-SELECT pog_db.group.group_id, pog_db.group.group_name, members.ID, members.FirstName
-FROM pog_db.group, members
-WHERE pog_db.group.POWON_id = members.ID
+SELECT ioc55311.group.group_id, ioc55311.group.group_name, members.ID, members.FirstName
+FROM ioc55311.group, members
+WHERE ioc55311.group.POWON_id = members.ID
 ORDER BY group_id ASC;
-
-
-CREATE TABLE non_member(
-    id INT AUTO_INCREMENT NOT NULL,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    email VARCHAR(50),
-    PRIMARY KEY(id));
-
-INSERT INTO non_member(first_name, last_name, email) VALUES('Cat1', 'Cat', 'cat1@gmail.com');
-INSERT INTO non_member(first_name, last_name, email) VALUES('Bird1', 'Bird', 'bird1@gmail.com');
-INSERT INTO non_member(first_name, last_name, email) VALUES('Kinkon1', 'Kinkon', 'kinkon1@gmail.com');
 
 
 CREATE TABLE email(
@@ -142,5 +129,5 @@ INSERT INTO email(sender_email, receiver_email, subject, email_content) VALUES (
 select *
 from gm_memberof
 where (gm_memberof.g_id) in
-(select gm.g_id from gm_memberof as gm where gm.m_id=47)
+(select gm.g_id from gm_memberof as gm where gm.m_id=10)
 ;

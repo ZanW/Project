@@ -19,9 +19,9 @@ class Group_crud extends CI_Model
     /**
      * return groups that logger in user is the owner of
      */
-    function view()
+    function view($mid = 0)
     {
-        $rows = $this->db->get_where ( 'group', array('POWON_id'=>$_SESSION['ID']) );
+        $rows = $this->db->get_where ( 'group', array('POWON_id'=>$mid) );
         if ( $rows->num_rows () > 0 )
         {
             foreach ( $rows->result () as $data )
@@ -35,11 +35,11 @@ class Group_crud extends CI_Model
     /**
      * return groups that logged in user is the owner as well as member of the groups
      */
-    function viewAllGroupsOfMember()
+    function viewAllGroupsOfMember($mid)
     {
         $this->db->select ( '*' ) ;
         $this->db->from ( 'gm_memberof AS gm' ) ;
-        $this->db->where ( array('gm.m_id'=>$_SESSION['ID']) ) ;
+        $this->db->where ( array('gm.m_id'=>$mid) ) ;
         $this->db->join ( 'group as g', 'g.group_id=gm.g_id', 'inner' ) ;
         $querie = $this->db->get () ;
         return $querie->result_array () ;
