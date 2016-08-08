@@ -93,8 +93,8 @@ class chat_model extends CI_Model
     {
 
         $resultArray = array();
-        $userName = $_SESSION['FirstName'];
-        $sql = ("SELECT DISTINCT group_id,`group_name` FROM `group`, members where Firstname='$userName' ;");
+        $ID = $_SESSION['ID'];
+        $sql = ("SELECT group_id,group_name FROM gm_memberof AS gm,`group` AS g WHERE m_id=$ID AND g.group_id=gm.g_id ");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {

@@ -97,6 +97,21 @@
         });
     }
 
+
+    function getGroups() {
+        $.ajax({
+            method: "GET",
+            url: "<?php echo site_url('Chat/mygroups') ?>",
+            data: {groupid: selectedGroupID}
+        }).done(function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data);
+                }
+            }
+        );
+    }
+
+
     function getGroupMembers() {
         var groupMembers = document.getElementById('members_relevant');
         $.ajax({
