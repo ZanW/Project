@@ -24,7 +24,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="<?php echo site_url("login_con/displayHomePage");?>">Home</a></li>
                 <li><a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>'>Groups</a></li>
                 <li><a href='<?php echo base_url("index.php/memberof_c/");?>'>Group Members</a> </li>

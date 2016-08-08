@@ -7,6 +7,7 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('member_model');
+        $this->load->model('content_model');
         $this->load->model('info_model');
         $this->load->helper('url_helper');
         $this->load->library ( 'session' );

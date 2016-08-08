@@ -29,6 +29,19 @@ class Content_model extends CI_Model
         $querie = $this->db->get () ;
         return $querie->result_array () ;
     }
+    
+    public function get_contents_by_member_id()
+    {
+        $this->db->select ( '*' ) ;
+        $this->db->from ( 'gm_memberof AS gm' ) ;
+        $this->db->where ( array('gm.m_id'=>$_SESSION['ID'] )) ;
+        $this->db->join ( 'content as c', 'c.gid=gm.g_id', 'inner' ) ;
+        $this->db->join ( 'group AS g', 'c.$gid=g.group_id', 'inner' ) ;
+        $this->db->join('members as m','c.POWON_id=m.ID');
+        // $querie = $this->db->get_where('content',array('gid'=>$gid['gid']));
+        $querie = $this->db->get () ;
+        return $querie->result_array () ;
+    }
 
     public function get_contents()
     {
