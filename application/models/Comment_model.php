@@ -36,9 +36,6 @@ class Comment_model extends CI_Model
     
     public function addComment()
     {
-        echo "FirstName=".$this->input->post('content_id');
-        echo "ContentID=".$this->input->post('com_message');
-        echo "ContentMessage=".$this->input->post('name');
         $data = array(
                 'first_name'=>$this->input->post ( 'name' ),
                 'content_id'=>$this->input->post ( 'content_id' ),
