@@ -27,6 +27,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>'>Groups</a></li>
+                <li><a href='<?php echo base_url("index.php/memberof_c/");?>'>Group Members</a> </li>
                 <li><a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>'>Inbox</a></li>
                 <li><a href="<?php echo site_url("Chat/index");?>">Message</a></li>
@@ -46,7 +47,9 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);height: 400px;">
             <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Group</a><br>
-            
+
+            <a href='<?php echo base_url("index.php/memberof_c/");?>'>Group Members</a> <br>
+
             <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
                        else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Inbox</a><br>
 

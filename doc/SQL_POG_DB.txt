@@ -17,21 +17,21 @@ CREATE TABLE `members` (
   `Gender` enum('Male','Female') CHARACTER SET utf8 NOT NULL,
   `personscol` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `status` tinyint(1) DEFAULT 0,
-   `Register_date` date NOT NULL,
+  `Register_date` date NOT NULL,
   `priviledge` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`ID`)
 );
 
-INSERT INTO `members` VALUES (1,'admin','admin','1','rue','montreal','hhhh','canada','admin@gmail.com','admin',NULL,'Male','', 0, 1);
-INSERT INTO `members` VALUES (2,'lay','lay','1','rue','montreal','hhhh','canada','lay@gmail.com','lay',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (1,'admin','admin','1','rue','montreal','hhhh','canada','admin@gmail.com','admin',NULL,'Male','', 0,0, 1);
+INSERT INTO `members` VALUES (2,'lay','lay','1','rue','montreal','hhhh','canada','lay@gmail.com','lay',NULL,'Male','',0,0,0);
 INSERT INTO `members` VALUES (3,'zan','zan','1','rue','montreal','hhhh','canada','zan@gmail.com','zan',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (4,'shivam','shivam','1','rue','montreal','hhhh','canada','shivam@gmail.com','shivam',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','jaya@gmail.com','jaya',NULL,'Female','',0,0);
-INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','jaya@gmail.com','xindi',NULL,'Female','',0,0);
-INSERT INTO `members` VALUES (7,'charle','charle','1','rue','montreal','hhhh','canada','charle@gmail.com','lay',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (8,'john','john','1','rue','montreal','hhhh','canada','john@gmail.com','john',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (9,'nice','nice','1','rue','montreal','hhhh','canada','nice@gmail.com','nice',NULL,'Male','',0,0);
-INSERT INTO `members` VALUES (10,'paris','paris','1','rue','montreal','hhhh','canada','paris@gmail.com','paris',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (4,'shivam','shivam','1','rue','montreal','hhhh','canada','shivam@gmail.com','shivam',NULL,'Male','',0,0,0);
+INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','jaya@gmail.com','jaya',NULL,'Female','',0,0,0);
+INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','jaya@gmail.com','xindi',NULL,'Female','',0,0,0);
+INSERT INTO `members` VALUES (7,'charle','charle','1','rue','montreal','hhhh','canada','charle@gmail.com','lay',NULL,'Male','',0,0,0);
+INSERT INTO `members` VALUES (8,'john','john','1','rue','montreal','hhhh','canada','john@gmail.com','john',NULL,'Male','',0,0,0);
+INSERT INTO `members` VALUES (9,'nice','nice','1','rue','montreal','hhhh','canada','nice@gmail.com','nice',NULL,'Male','',0,0,0);
+INSERT INTO `members` VALUES (10,'paris','paris','1','rue','montreal','hhhh','canada','paris@gmail.com','paris',NULL,'Male','',0,0,0);
 
 
 CREATE TABLE public_info(
@@ -58,18 +58,6 @@ CREATE TABLE `group` (
 INSERT INTO `group`(group_name, POWON_id) VALUES ('jumping',5),('hockey',5),('football',6);
 
 
-CREATE TABLE `comment` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) NOT NULL,
-  `content_id` int(11) NOT NULL,
-  `com_message` varchar(300) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  FOREIGN KEY(content_id) REFERENCES content(id) ON DELETE CASCADE,
-  FOREIGN KEY(group_id) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE
-)
-
-
 CREATE TABLE `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `post_message` varchar(300) DEFAULT NULL,
@@ -82,6 +70,16 @@ CREATE TABLE `content` (
    FOREIGN KEY (POWON_id) REFERENCES members(ID) ON DELETE CASCADE,
    FOREIGN KEY (gid) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE
 );
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `content_id` int(11) NOT NULL,
+  `com_message` varchar(300) NOT NULL,
+  PRIMARY KEY (`comment_id`),
+  FOREIGN KEY(content_id) REFERENCES content(id) ON DELETE CASCADE
+);
+
 
 
 CREATE TABLE gm_memberof(
