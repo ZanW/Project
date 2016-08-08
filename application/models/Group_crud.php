@@ -14,6 +14,13 @@ class Group_crud extends CI_Model
     {
         $data = array('group_name'=>$this->input->post('gn'), 'POWON_id'=>$_SESSION['ID']) ;
         $this->db->insert ( 'group', $data ) ;
+        /*
+         *Insert into groupmember of also  
+         */
+        $group_array = $this->db->get_where ( 'group', array('group_name'=>$this->input->post('gn')) ) ;
+        $group_result = $group_array->row_array () ;
+        $group_data = array('g_id'=>$group_result['group_id'], 'm_id'=>$_SESSION['ID']) ;
+        $this->db->insert ('gm_memberof',$group_data);
     }
 
     /**

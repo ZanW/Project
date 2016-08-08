@@ -1,12 +1,12 @@
  <?php
 
 echo "Current time is " . date("h:i:sa") . "\r\n";
-echo "Checking if any messages needs to DELETEDE" . "\r\n";
+echo "Checking if any messages needs to DELETED" . "\r\n";
 
-$servername = "localhost";
-$username = "shivam";
-$password = "pass";
-$dbname = "warmup_project";
+$servername = "ioc55311.encs.concordia.ca";
+$username = "ioc55311";
+$password = "group2hw";
+$dbname = "ioc55311";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

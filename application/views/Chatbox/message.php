@@ -105,6 +105,7 @@
             data: {groupid: selectedGroupID}
         }).done(function (data) {
                 for (var i = 0; i < data.length; i++) {
+                    console.log(data);
                     if (data[i]['item']['member_id'] != userID) {
                         var newLabel = document.createElement('label');
                         newLabel.setAttribute('class', 'checkbox-inline');
