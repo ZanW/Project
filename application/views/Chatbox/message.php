@@ -58,7 +58,7 @@
     var startChatButton = document.getElementById('start-chat-button');
     var groupMemberBox = document.getElementById('group-member-box');
     var selectedMembersID = [];
-    var selectedGroupID = '';
+    var selectedGroupID = <?php echo $group_id; ?>;
     var userID = <?php echo $user_id; ?>;
 
     sendMessage.addEventListener('click', sendChatMessage);
@@ -102,7 +102,7 @@
         $.ajax({
             method: "GET",
             url: "<?php echo site_url('Chat/get_group_members') ?>",
-            data: {groupid: 4}
+            data: {groupid: selectedGroupID}
         }).done(function (data) {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i]['item']['member_id'] != userID) {
