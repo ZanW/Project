@@ -14,9 +14,9 @@ class profile_update_model extends CI_Model
     public function after_update()
     {
 
-        $userName = $_SESSION['FirstName'];
+        $userName = $_SESSION['ID'];
 
-        $sql = ("SELECT * FROM members WHERE  FirstName='" . $userName . "'");
+        $sql = ("SELECT * FROM members WHERE  ID='" . $userName . "'");
         $result = $this->db->query($sql);
         $row_cnt = $result->num_rows();
 
@@ -50,7 +50,7 @@ class profile_update_model extends CI_Model
 
     public function get_profile()
     {
-        $userName = $_SESSION['FirstName'];
+        $userName = $_SESSION['ID'];
 
         $sql = ("SELECT * FROM members WHERE  FirstName='" . $userName . "'");
         $result = $this->db->query($sql);
@@ -62,6 +62,9 @@ class profile_update_model extends CI_Model
 
     public function update_query()
     {
+
+        $ID = $_SESSION['ID'];
+        
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $FIRSTNAME = ($_POST["namefirst"]);
             $LASTNAME = $_POST['namelast'];
@@ -76,7 +79,8 @@ class profile_update_model extends CI_Model
             $GENDER = $_POST['gender'];
 
             $query = "UPDATE `members` SET `LastName`='" . $LASTNAME . "', `FirstName`='" . $FIRSTNAME . "',
-                `Apt_no`='" . $APT . "', `Street`='" . $STREET . "', `City`='" . $CITY . "', `Postal_Code`='" . $POSTAL . "',`Country`='" . $COUNTRY . "', `Gender`='" . $GENDER . "',`Email`='" . $EMAIL . "', `Password`='" . $PASSWORD . "'";
+                `Apt_no`='" . $APT . "', `Street`='" . $STREET . "', `City`='" . $CITY . "', `Postal_Code`='" . $POSTAL . "',`Country`='" . $COUNTRY . "', `Gender`='" . $GENDER . "',`Email`='" . $EMAIL . "', `Password`='" . $PASSWORD . "' 
+                Where ID=$ID " ;
             $result = $this->db->query($query);
 
             return $result;

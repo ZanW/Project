@@ -94,11 +94,11 @@ class chat_model extends CI_Model
 
         $resultArray = array();
         $userName = $_SESSION['FirstName'];
-        $sql = ("SELECT DISTINCT group_id,`name` FROM `group`, members where Firstname='$userName' ;");
+        $sql = ("SELECT DISTINCT group_id,`group_name` FROM `group`, members where Firstname='$userName' ;");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {
-            $resultArray[$row->group_id] = $row->name;
+            $resultArray[$row->group_id] = $row->group_name;
         }
         $row_cnt = $result->num_rows();
         if ($row_cnt <= 0) {
@@ -110,12 +110,11 @@ class chat_model extends CI_Model
 //            return $result;
     }
 
-    public
-    function member()
+    public function member()
     {
         $resultArray = array();
 
-        $sql = (" SELECT `ID`,`FirstName` FROM members JOIN `gmlist` ON `gmlist`.`mid` = `members`.`ID` ");
+        $sql = (" SELECT `ID`,`FirstName` FROM members JOIN `gm_memberof` ON `gm_memberof`.`m_id` = `members`.`ID` ");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {
@@ -124,12 +123,34 @@ class chat_model extends CI_Model
         $row_cnt = $result->num_rows();
         if ($row_cnt <= 0) {
 
-            return false;
+            return $resultArray;
         } else {
             return $resultArray;
         }
 //            return $result;
     }
 
+    public function group_members($groupID)
+    {
+        $resultArray = array();
+
+        $sql = (" SELECT ID, FirstName from members Join (SELECT * FROM gm_memberof WHERE `gm_memberof`.`g_id`=$groupID) as gm ON gm.m_id=ID;");
+        $result = $this->db->query($sql);
+
+        foreach ($result->result() as $row) {
+            $tempArray['item'] = array('member_id' => $row->ID, 'first_name' => $row->FirstName);
+            array_push($resultArray, $tempArray);
+        }
+        
+        return $resultArray;
+
+//        $row_cnt = $result->num_rows();
+//        if ($row_cnt <= 0) {
+//
+//            return $resultArray;
+//        } else {
+//            return $resultArray;
+//        }
+    }
 
 }
