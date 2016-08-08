@@ -47,6 +47,7 @@ class Chat extends CI_Controller
         $userID = $_GET['userid'];
         $memberID = $_GET['membersids'];
         $groupID = $_GET['groupid'];
+        
 
         $response = $this->chat_model->addMessage($chatMessage, $userID, $memberID, $groupID);
 
@@ -62,7 +63,10 @@ class Chat extends CI_Controller
     public function get_groupmember()
     {
 
-        $group = $this->chat_model->group();
+        $groupID = $_GET['groupid'];
+
+        $group= $this->chat_model->group($groupID);
+       
         if ($group) {
             $data['groups'] = $group;
             $this->load->view("templates/header");
@@ -98,5 +102,18 @@ class Chat extends CI_Controller
 
     }
 
+    public function get_group_members()
+    {
+        $groupID = $_GET['groupid'];
+        
+        $members = $this->chat_model->group_members($groupID);
+        
+        /*
+         * Returns header response as successful
+         */
+        header('Content-Type: application/json');
+
+        echo json_encode($members);
+    }
 
 }
