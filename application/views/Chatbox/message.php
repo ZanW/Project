@@ -33,16 +33,9 @@
         <div id="group-member-box">
             <h4 id="title_group" class="card-title">Select Members</h4>
             <hr width="100%">
+            <div id="members_relevant">
 
-            <?php
-            foreach ($members as $ID => $FirstName) {
-                if ($ID != $user_id) {
-                    echo '<label class="checkbox-inline">';
-                    echo '<input type="checkbox" id="inlineCheckbox1" value=' . $ID . '>' . $FirstName;
-                    echo '</label>';
-                }
-            }
-            ?>
+            </div>
             <button class="btn btn-info" id="start-chat-button">Start Chat</button>
         </div>
         <div id="chat-box" hidden="hidden">
@@ -104,19 +97,30 @@
         });
     }
 
-//    function getgroup() {
-//        $.ajax({
-//            method: "GET",
-//            url: "<?php //echo site_url('Chat/index') ?>//",
-//            data: {groupid: selectedGroupID}
-//        }).done(function (data) {
-//            console.log("data")
-//                            }
-//            } else {
-//                console.log('No new messages');
-//            }
-//        });
-//    }
+    function getGroupMembers() {
+        var groupMembers = document.getElementById('members_relevant');
+        $.ajax({
+            method: "GET",
+            url: "<?php echo site_url('Chat/get_group_members') ?>",
+            data: {groupid: 4}
+        }).done(function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]['item']['member_id'] != userID) {
+                        var newLabel = document.createElement('label');
+                        newLabel.setAttribute('class', 'checkbox-inline');
+                        var newInput = document.createElement('input');
+                        newInput.setAttribute('type', 'checkbox');
+                        newInput.setAttribute('value', data[i]['item']['member_id']);
+                        newLabel.appendChild(newInput);
+                        var newPTag = document.createElement('p');
+                        newPTag.innerText = data[i]['item']['first_name'];
+                        newLabel.appendChild(newPTag);
+                        groupMembers.appendChild(newLabel);
+                    }
+                }
+            }
+        );
+    }
 
     function openChatBox() {
         groupMemberBox.setAttribute('hidden', 'hidden');
@@ -131,6 +135,7 @@
     }
 
     function showDiv(event) {
+        getGroupMembers();
         document.getElementById('group-card').setAttribute('hidden', 'hidden');
         var group_names = event.getAttribute('data-name').toString();
         selectedGroupID = event.getAttribute('data-id').toString();
