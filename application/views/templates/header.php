@@ -27,7 +27,7 @@
                 <li><a href="<?php echo site_url("login_con/displayHomePage");?>">Home</a></li>
                 <li><a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>'>Groups</a></li>
-                <li><a href='<?php echo base_url("index.php/memberof_c/");?>'>Group Members</a> </li>
+                <li><a href='<?php echo base_url("index.php/memberof_c/");?>'>Group List</a> </li>
                 <li><a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>'>Inbox</a></li>
                 <li><a href="<?php echo site_url("Chat/index");?>">Message</a></li>
@@ -45,15 +45,22 @@
     <div class="side_nav" style="background-color: white" >
         <div class="card"  style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);height: 400px;">
+            <?php if ( isset($_SESSION['privilege']) && $_SESSION['privilege'] == 1) { ?>
+                <a href="<?php echo base_url("index.php/home/admin");?>" style="margin-left: 20px">Administrator</a></br>
+            <?php } ?>
+
             <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
                     else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Group</a><br>
 
-            <a href='<?php echo base_url("index.php/memberof_c/");?>'>Group Members</a> <br>
+            <a href='<?php echo base_url("index.php/memberof_c/");?>' style="margin-left: 20px">Group List</a> <br>
 
             <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/email/inbox/".$_SESSION['ID']);
                        else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Inbox</a><br>
 
-            <a href="<?php echo site_url("Chat/index");?>" style="margin-left: 20px">Message</a></br>
+            <a href="<?php echo base_url("index.php/Chat/index");?>" style="margin-left: 20px">Message</a></br>
+
+
+
         </div>
     </div>
 

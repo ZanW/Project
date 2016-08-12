@@ -94,8 +94,9 @@ class Login_con extends CI_Controller
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
             'ID' => $row['ID'],
-             'Password'=>$row['Password'],
-            'gid'=>0    
+            'Password'=>$row['Password'],
+            'gid'=>0,
+            'privilege' => $row['priviledge']
         );
         $this->session->set_userdata($member_session_data);
 

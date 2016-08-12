@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'ioc55311.encs.concordia.ca',
-	'username' => 'ioc55311',
-	'password' => 'group2hw',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => 'ioc55311',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
