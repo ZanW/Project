@@ -14,7 +14,6 @@ foreach ($user_values->result_array() as $value) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -29,8 +28,14 @@ foreach ($user_values->result_array() as $value) {
 <div class="col-md-8">
     <div class="card" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
          transition: all 0.3s cubic-bezier(.25,.8,.25,1);">
+
+        <a href="<?php echo site_url('profile_update_con/inactive_account') ?>" style="">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
+                  style="float: right;margin-right: 20px;margin-top: 20px""></span></a>
+
         <a href="<?php echo site_url('profile_update_con/edit_profile') ?>" style="">
-            <button id="edit" class="glyphicon glyphicon-pencil" style="float: right;margin-right: 20px;margin-top: 20px"></button>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"
+                              style="float: right;margin-right: 20px;margin-top: 20px""></span></a>
         </a>
 
         <h2 id="firstname" name="namefirst" style="margin-left: 20px"><?php echo $firstName; ?></h2>
@@ -39,7 +44,7 @@ foreach ($user_values->result_array() as $value) {
         <div class="information" style="margin-top: 30px; margin-left:30px ">
             <hr>
 
-            <h5 style="margin-left: 20px"> Address</h5 ><br/>
+            <h5 style="margin-left: 20px"> Address</h5><br/>
 
             <div class="user_info">
 
@@ -60,7 +65,7 @@ foreach ($user_values->result_array() as $value) {
             </div>
             <h5 id="dob"> Date of Birth</h5> <br/>
 
-            <div class="user_info"style="margin-left: 20px">
+            <div class="user_info" style="margin-left: 20px">
                 <p id="dob" name="bday"></p><?php echo $DOB ?>
                 <hr>
             </div>
@@ -76,10 +81,10 @@ foreach ($user_values->result_array() as $value) {
                 <hr>
             </div>
 
-    </div>
+        </div>
 
-</div>
-</a>
+    </div>
+    </a>
 </div>
 
 <script>

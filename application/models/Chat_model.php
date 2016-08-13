@@ -114,7 +114,7 @@ class chat_model extends CI_Model
     {
         $resultArray = array();
 
-        $sql = (" SELECT `ID`,`FirstName` FROM members JOIN `gm_memberof` ON `gm_memberof`.`m_id` = `members`.`ID` ");
+        $sql = (" SELECT `ID`,`FirstName` FROM members  JOIN `gm_memberof` ON `gm_memberof`.`m_id` = `members`.`ID`");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {
@@ -134,7 +134,7 @@ class chat_model extends CI_Model
     {
         $resultArray = array();
 
-        $sql = (" SELECT ID, FirstName from members Join (SELECT * FROM gm_memberof WHERE `gm_memberof`.`g_id`=$groupID) as gm ON gm.m_id=ID;");
+        $sql = (" SELECT ID, FirstName from members Join (SELECT * FROM gm_memberof WHERE `gm_memberof`.`g_id`=$groupID) as gm ON gm.m_id=ID where members.`status`=0;");
         $result = $this->db->query($sql);
 
         foreach ($result->result() as $row) {

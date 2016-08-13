@@ -36,6 +36,14 @@ class profile_update_con extends CI_Controller
         $this->new_profile();
     }
 
+    public function inactive_account()
+    {
+        $this->profile_update_model->account_status();
+
+        $this->load->view("home/register");
+        ;
+    }
+
     public function new_profile(){
 
         $status = $this->profile_update_model->after_update();
