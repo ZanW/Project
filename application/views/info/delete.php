@@ -17,14 +17,15 @@
     <p> <?php echo $info_item['dop']; ?> </p>
 
     <p> <?php if ($info_item['post_message'])  echo $info_item['post_message']; ?>  </p>
-
     <p>
-     <img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive"> </p>
-    <br>
+    <?php if ($info_item['file_path']) { ?>
+        <img src="<?php echo base_url().'uploads/'.$info_item['file_path'] ?>" class="img-responsive">
+    <?php } ?>
+    </p><br>
 
 <?php endforeach; ?>
 
-<input type="submit" name="submit" value="Delele Info" />
+<input type="submit" name="submit" value="Delele Info" class="btn btn-success"/>
 
 </form>
 

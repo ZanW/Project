@@ -9,16 +9,14 @@
 
 <?php echo form_open_multipart('info/create'); ?>
 Post Text Message:<br>
-<input type="input" name="post_message" /><br> <br>
+<input type="text" name="post_message" size="50" /><br> <br>
 
-Or post a picture or video:<br>
-<input type="file" name="userfile" size="20" id="userfile" value="null"/>
-<br /><br />
+or post a picture or video: 
+<input type="file" name="userfile" size="20" id="userfile" value="null" />
 
-Owner ID:<br>
-<input type="input" name="mid"/><br><br>
+<input type="hidden" name="mid" value="<?php echo $mid; ?>" /><br><br>
 
-<input type="submit" name="submit" value="Add Public Info" />
+<input type="submit" name="submit" value="Add Public Info" class="btn btn-success"/>
 
 </form>
 

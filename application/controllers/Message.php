@@ -11,6 +11,7 @@ class Message extends CI_Controller
         $this->load->model('message_model');
         $this->load->model('member_model');
         $this->load->helper('url_helper');
+        $this->load->library('session');
     }
 
     // Display all message list

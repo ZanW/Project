@@ -12,6 +12,7 @@ class memberof_c extends CI_Controller
 		$this->load->model('member_model');
 		$this->load->helper('url_helper');
 		$this->load->helper('form');
+        $this->load->library('session');
 	}
 
 	public function index()

@@ -16,7 +16,8 @@
 
 <h2><?php echo $title; ?></h2>
 
-<p><a href='<?php echo base_url("index.php/info/create");?>'>Create</a></p>
+<p><a href="<?php if (isset($_SESSION['ID'])) echo base_url("index.php/info/create/".$_SESSION['ID']);
+    else echo base_url("index.php/info/create/1");?>">Create</a></p>
 
 <table>
     <tr>
@@ -25,6 +26,7 @@
         <th>Post Media</th>
         <th>Date of Posted</th>
         <th>Owner ID</th>
+        <th></th>
         <th></th>
     </tr>
     <?php foreach ($public_info as $info_item): ?>
@@ -38,6 +40,7 @@
             <?php } ?>
             <td> <?php echo $info_item['dop']; ?></td>
             <td> <?php echo $info_item['mid']; ?></td>
+            <td> <a href='<?php echo base_url("index.php/info/update/".$info_item['id']);?>'>Edit</a></td>
             <td> <a href='<?php echo base_url("index.php/info/delete/".$info_item['id']);?>'>Delete</a></td>
         </tr>
     <?php endforeach; ?>
