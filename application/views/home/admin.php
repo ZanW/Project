@@ -25,10 +25,10 @@
         <td> <a href='<?php echo base_url("index.php/members/index");?>'>Members</a></td>
     </tr>
     <tr>
-        <td> <a href='<?php echo base_url("index.php/group/");?>'>Group</a></td>
+        <td> <a href='<?php echo base_url("index.php/group/");?>'>Groups</a></td>
     </tr>
     <tr>
-        <td> <a href='<?php echo base_url("index.php/memberof_c/");?>'>Members of Group</a></td>
+        <td> <a href='<?php echo base_url("index.php/memberof_c/");?>'>Group List</a></td>
     </tr>
     <tr>
         <td> <a href='<?php echo base_url("index.php/content/");?>'>Private Post Content</a></td>

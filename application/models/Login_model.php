@@ -35,6 +35,16 @@ class Login_model extends CI_Model
 //
         }
     }
+    
+    /**
+     * TODO this function needs to refactored
+     */
+    public function user_info_query()
+    {
+        $query = "SELECT * FROM members WHERE  FirstName='" . $_SESSION['FirstName'] . "' AND Password='" . $_SESSION['Password'] . "'AND status = 0";
+        $result = $this->db->query($query);
+        return $result;
+    }
 
 
     /* public function session()

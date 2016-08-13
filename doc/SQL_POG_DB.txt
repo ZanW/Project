@@ -24,7 +24,7 @@ CREATE TABLE `members` (
 
 INSERT INTO `members` VALUES (1,'admin','admin','1','rue','montreal','hhhh','canada','admin@gmail.com','admin',NULL,'Male','', 0,0, 1);
 INSERT INTO `members` VALUES (2,'lay','lay','1','rue','montreal','hhhh','canada','lay@gmail.com','lay',NULL,'Male','',0,0,0);
-INSERT INTO `members` VALUES (3,'zan','zan','1','rue','montreal','hhhh','canada','zan@gmail.com','zan',NULL,'Male','',0,0);
+INSERT INTO `members` VALUES (3,'zan','zan','1','rue','montreal','hhhh','canada','zan@gmail.com','zan',NULL,'Male','',0,0,0);
 INSERT INTO `members` VALUES (4,'shivam','shivam','1','rue','montreal','hhhh','canada','shivam@gmail.com','shivam',NULL,'Male','',0,0,0);
 INSERT INTO `members` VALUES (5,'jaya','jaya','1','rue','montreal','hhhh','canada','jaya@gmail.com','jaya',NULL,'Female','',0,0,0);
 INSERT INTO `members` VALUES (6,'xindi','xindi','1','rue','montreal','hhhh','canada','jaya@gmail.com','xindi',NULL,'Female','',0,0,0);
@@ -66,6 +66,7 @@ CREATE TABLE `content` (
   `gid` int(11) NOT NULL,
   `auto_delete` binary(1) NOT NULL DEFAULT '0',
   `file_path` varchar(40) DEFAULT NULL,
+   permission int DEFAULT 0,
    PRIMARY KEY (`id`),
    FOREIGN KEY (POWON_id) REFERENCES members(ID) ON DELETE CASCADE,
    FOREIGN KEY (gid) REFERENCES ioc55311.group(group_id) ON DELETE CASCADE

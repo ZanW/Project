@@ -10,6 +10,7 @@ class Login_con extends CI_Controller
 
         parent::__construct();
         $this->load->model("Login_model");
+        $this->load->model("content_model");
         $this->load->helper('url_helper');
         $this->load->helper('form');
         $this->load->database();
@@ -41,6 +42,13 @@ class Login_con extends CI_Controller
         if ($status) {
             $this->createUserSession($status);
             $data['user_values'] = $status;
+            
+            /*
+             * send the contents of the group that he belong to his homepage
+             */
+            //
+            $data['content_data'] = $this->content_model->get_contents_by_member_id();
+            
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
             $this->load->view("templates/footer");
@@ -49,6 +57,24 @@ class Login_con extends CI_Controller
             $this->load->view("home/register", $data);
         }
 
+    }
+
+    /**
+     * TODO THis function needs to be refactored
+     */
+    public function displayHomePage()
+    {
+        $status = $this->Login_model->user_info_query() ;
+        $data['user_values'] = $status ;
+        /*
+         * send the contents of the group that he belong to his homepage
+         */
+        //
+        $data['content_data'] = $this->content_model->get_contents_by_member_id () ;
+        
+        $this->load->view ( "templates/header" ) ;
+        $this->load->view ( 'home/member_profile', $data ) ;
+        $this->load->view ( "templates/footer" ) ;
     }
 
 
@@ -68,7 +94,9 @@ class Login_con extends CI_Controller
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
             'ID' => $row['ID'],
-            'gid'=>0    
+            'Password'=>$row['Password'],
+            'gid'=>0,
+            'privilege' => $row['priviledge']
         );
         $this->session->set_userdata($member_session_data);
 
