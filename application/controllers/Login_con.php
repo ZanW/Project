@@ -3,7 +3,7 @@
 class Login_con extends CI_Controller
 {
     public $Login_model;
-    public $MProfile_con;
+    public $Content_model;
 
     public function __construct()
     {
@@ -47,8 +47,8 @@ class Login_con extends CI_Controller
              * send the contents of the group that he belong to his homepage
              */
             //
-            $data['content_data'] = $this->content_model->get_contents_by_member_id();
-            
+//            $data['content_data'] = $this->Content_model->get_contents_by_member_id();
+
             $this->load->view("templates/header");
             $this->load->view('home/member_profile', $data);
             $this->load->view("templates/footer");
