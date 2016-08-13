@@ -8,7 +8,7 @@ class Info extends CI_Controller
         parent::__construct();
         $this->load->model('info_model');
         $this->load->helper('url_helper');
-//        $this->load->library('session');
+        $this->load->library('session');
     }
 
     // Display all email list
@@ -29,7 +29,7 @@ class Info extends CI_Controller
 
         $data['id'] = $id;
         $data['public_info'] = $this->info_model->get_info_by_id($id);
-        $data['title'] = 'Delete info';
+        $data['title'] = 'Delete a public post';
 
         if ($this->input->post('submit'))
         {
@@ -44,12 +44,35 @@ class Info extends CI_Controller
         }
     } // end of delete()
 
-    public function create()
+    // Delete an info
+    public function update($id = 0)
+    {
+        $this->load->helper('form', 'url');
+
+        $data['id'] = $id;
+        $data['public_info'] = $this->info_model->get_info_by_id($id);
+        $data['title'] = 'Update a public post';
+
+        if ($this->input->post('submit'))
+        {
+            $this->info_model->update_info($id);
+            redirect("info/index");
+        }
+        else // not yet click button Delete to submit
+        {
+            $this->load->view('templates/header');
+            $this->load->view('info/update', $data);
+            $this->load->view('templates/footer');
+        }
+    } // end of delete()
+
+    public function create($mid = 0)
     {
         $this->load->helper('form', 'url');
         $this->load->library('form_validation');
 
-        $data['title'] = 'Post a New Public Information';
+        $data['title'] = 'Post a new public information';
+        $data['mid'] = $mid;
 
         $this->form_validation->set_rules('mid', 'Owner ID', 'required');
 
