@@ -59,6 +59,18 @@ class profile_update_model extends CI_Model
 
     }
 
+    public function account_status()
+    {
+        $ID = $_SESSION['ID'];
+
+        $sql = ("UPDATE `members` SET `status`='1'  WHERE  `ID`='" . $ID . "'");
+        $result = $this->db->query($sql);
+
+        return $result;
+
+    }
+
+
 
     public function update_query()
     {
