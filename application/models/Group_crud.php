@@ -47,7 +47,6 @@ class Group_crud extends CI_Model
         $this->db->select ( '*' ) ;
         $this->db->from ( 'gm_memberof AS gm' ) ;
         $this->db->where ( array('gm.m_id'=>$mid) ) ;
-        $this->db->where ( array('members.status'=>0) ) ;
         $this->db->join ( 'group as g', 'g.group_id=gm.g_id', 'inner' ) ;
         $querie = $this->db->get () ;
         return $querie->result_array () ;
