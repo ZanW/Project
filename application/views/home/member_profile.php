@@ -72,11 +72,13 @@ foreach ($user_values->result_array() as $value) {
             <h2>Recent Activity in your group</h2> <br/>
             <div class="user_info"style="margin-left: 20px">
             <?php foreach ($content_data as $content): ?>
-        	<?php echo $content['post_message']; ?><br/>
-			<img src="<?php echo base_url().'uploads/'.$content['file_path'] ?>" class="img-responsive"><br/>
+        	<?php if ($content['post_message']) echo $content['post_message']; ?><br/>
+            <?php if ($content['file_path']) { ?>
+			    <img src="<?php echo base_url().'uploads/'.$content['file_path'] ?>" class="img-responsive"><br/>
+            <?php }?>
 			<?php echo "posted by  " . $content['FirstName']; ?><br/>
 			<?php echo "on  ". $content['dop']; ?><br/>
-			<?php echo "in group " . $content['group_name']; ?><br/>		
+			<?php echo "in group " . $content['group_name']; ?><br/><br>
         	<?php endforeach; ?>
                 <hr>
             </div>
