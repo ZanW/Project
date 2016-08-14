@@ -17,9 +17,11 @@
 <h2><?php echo $title; ?></h2>
 <br>
 
-<p>The administrator has a privilege to create, delete, edit all services, including change status of any members.</p>
+<p>Change status of any members can be done through manage Members.</p>
 
-<p>The administrator or group owner can manage groups and content permission through My Group on the left hand side panel.</p>
+<p>Content permission can be done through My Group on the left hand side panel.</p>
+
+<p>The administrator also has a privilege to create, delete, edit all services.</p>
 
 <p>Please select a service below to manage.</p><br>
 
