@@ -57,6 +57,7 @@ class Content_model extends CI_Model
 
     public function set_content()
     {
+        $upload_data = array( "file_name" => NULL);
         $config = array(
                 'upload_path'=>"./uploads/", 
                 'allowed_types'=>"|gif|jpg|png|jpeg|pdf", 
@@ -92,11 +93,12 @@ class Content_model extends CI_Model
 
     public function update_content()
     {
-        $data = array('post_message'=>$this->input->post ( 'post_message' )) ;
-        
+        $data = array('post_message'=>$this->input->post ( 'post_message' ),
+                      'permission'=>$this->input->post ( 'permission' ),
+                       'auto_delete'=>$this->input->post ( 'auto_delete' )
+                        ) ;
         $this->db->where ( 'id', $this->input->post ( 'id' ) ) ;
-        
-        return $this->db->update ( 'content', $data ) ;
+        $this->db->update ( 'content', $data ) ;
     }
 
     public function delete_content($cid)

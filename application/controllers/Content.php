@@ -57,27 +57,18 @@ class Content extends CI_Controller
     // Edit and update the content
     public function update($id = 0)
     {
-        $this->load->helper ( 'form', 'url' ) ;
-        $this->load->library ( 'form_validation' ) ;
-        
-        $data['id'] = $id ;
-        $data['records'] = $this->content_model->get_content_by_id ( $id ) ;
-        $data['title'] = 'Update Content' ;
-        
-        $this->form_validation->set_rules ( 'post_message', 'Post message', 'required' ) ;
-        
-        if ( $this->form_validation->run () == FALSE )
-        {
-            $this->load->view ( 'templates/header' ) ;
-            $this->load->view ( 'content/update', $data ) ;
-            $this->load->view ( 'templates/footer' ) ;
-        }
-        else
-        {
             $this->content_model->update_content () ;
-            redirect ( 'content/index' ) ;
-        }
+            redirect ( 'content/index/'. $_SESSION['gid'] ) ;
     }
+    
+    public function openEditMessage($id = 0)
+    {
+        $data['id'] = $id;
+        $this->load->view ( 'templates/header' ) ;
+        $this->load->view ( 'content/update',$data ) ;
+        $this->load->view ( 'templates/footer' ) ;
+    }
+    
     
     // Delete a content
     public function delete($id = 0)

@@ -49,7 +49,7 @@ th, td {
 			<!-- ACTIONS only availabel to content owner -->
             <?php if($_SESSION['ID'] == $record_item['POWON_id'] || $record_item['permission'] == 0 ) : ?>
                 <td><a
-				href='<?php echo base_url("index.php/content/update/".$record_item['id']);?>'>Edit</a></td>
+				href='<?php echo base_url("index.php/content/openEditMessage/".$record_item['id']);?>'>Edit</a></td>
 			<td><a
 				href='<?php echo base_url("index.php/content/delete/".$record_item['id']);?>'>Delete</a></td>
 			<?php endif; ?>
