@@ -50,7 +50,7 @@
             <?php } ?>
 
             <a href='<?php if (isset($_SESSION['ID'])) echo base_url("index.php/group/index/".$_SESSION['ID']);
-                    else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Group</a><br>
+                    else echo base_url("index.php/home/index");  ?>' style="margin-left: 20px">My Groups</a><br>
 
             <a href='<?php echo base_url("index.php/memberof_c/");?>' style="margin-left: 20px">Group List</a> <br>
 

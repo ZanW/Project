@@ -14,8 +14,9 @@
 </head>
 
 <h2><?php echo $title; ?></h2>
+<br>
 
-<p><a href='<?php echo base_url("index.php/members/create");?>'>Create</a></p>
+<p>Select <span class="label label-info">Edit</span> on the right column to change a member's status</p><br>
 
 <table>
   <tr>
@@ -23,18 +24,18 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
-      <th></th>
+      <th>Status</th>
       <th></th>
   </tr>
 <?php foreach ($members as $member_item): ?>
   <tr>
-      <td><?php echo $member_item['id']; ?></td>
-      <td><?php echo $member_item['first_name']; ?></td>
-      <td><?php echo $member_item['last_name']; ?></td>
-      <td><?php echo $member_item['email']; ?></td>
-      <td><a href='<?php echo base_url("index.php/members/update/".$member_item['id']);?>'>Edit</a></td>
-      <td><a href='<?php echo base_url("index.php/members/delete/".$member_item['id']);?>'>Delete</a></td>
-  </tr>	
+      <td><?php echo $member_item['ID']; ?></td>
+      <td><?php echo $member_item['FirstName']; ?></td>
+      <td><?php echo $member_item['LastName']; ?></td>
+      <td><?php echo $member_item['Email']; ?></td>
+      <td><?php if ($member_item['status'] == 0)  echo "Active"; elseif ($member_item['status'] == 1) echo "Inactive"; else echo "Suspended"; ?></td>
+      <td><a href='<?php echo base_url("index.php/members/update/".$member_item['ID']);?>'><button type="button" class="btn btn-success">Edit</button></a></td>
+  </tr>
 <?php endforeach; ?>
 </table>
 

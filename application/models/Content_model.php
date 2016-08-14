@@ -73,7 +73,7 @@ class Content_model extends CI_Model
         
         }
              
-        if ( $upload_data['file_name'] == null | $upload_data['file_name']==""  )
+        if ( $upload_data['file_name'] == NULL | $upload_data['file_name']==""  )
         {
             $file_path = "null" ;
         }

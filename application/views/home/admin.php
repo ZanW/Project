@@ -17,6 +17,10 @@
 <h2><?php echo $title; ?></h2>
 <br>
 
+<p>Administrator has a privilege to create, delete, edit all services, including change status of any members </p> <br>
+
+<p>Please select a service below to manage.</p><br>
+
 <table>
     <tr>
         <th>Manage Features</th>
