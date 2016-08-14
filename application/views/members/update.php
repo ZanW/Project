@@ -10,20 +10,25 @@
 <?php echo form_open('members/update'); ?>
 <?php foreach ($members as $member_item): ?>
 
-    ID:<br>
-    <input type="input" name="id" value="<?php echo $id;?>" readonly /><br>
+    <input type="hidden" name="id" value="<?php echo $member_item['ID'];?>" />
 
-    First name:<br>
-    <input type="input" name="first_name" value="<?php echo $member_item['first_name'];?>" /><br>
+    ID: <?php echo $id;?><br><br>
 
-    Last name:<br>
-    <input type="input" name="last_name" value="<?php echo $member_item['last_name'];?>" /><br>
+    First Name: <?php echo $member_item['FirstName'];?><br><br>
 
-    Email:<br>
-    <input type="input" name="email" value="<?php echo $member_item['email'];?>" /><br><br>
+    Last Name: <?php echo $member_item['LastName'];?><br><br>
+
+    Email: <?php echo $member_item['Email'];?><br><br>
+
+    Status:
+    <select name = 'status' >
+       <option value="0">Active</option>
+       <option value="1">Inactive</option>
+       <option value="2">Suspended</option>
+    </select><br><br>
 
 <?php endforeach; ?>
 
-<input type="submit" name="submit" value="Update Member" />
+<input type="submit" name="submit" value="Update Member" class="btn btn-success"/>
 
 </form>
