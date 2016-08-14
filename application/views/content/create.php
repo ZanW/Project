@@ -7,7 +7,11 @@
 		<label for="auto_delete">Auto Delete</label> <input type="text"
 			 id="auto_delete" name="auto_delete"
 			data-error="Boolean cannot be empty" 
-			placeholder="0 (false)or 1 (true)">
+			placeholder=" 0 (false)or 1 (true)">
+		<label for="permisson">Permisson</label> <input type="text"
+			 id="permisson" name="permisson"
+			data-error="permisson cannot be empty" 
+			placeholder=" 0 (view/delete)or 1 (view only)">
 			
 		<label class="control-label">Select Picture to upload</label>
 		

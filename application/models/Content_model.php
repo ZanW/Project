@@ -20,11 +20,11 @@ class Content_model extends CI_Model
      */
     public function get_contents_by_group_id($gid = 0)
     {
-        $this->db->select ( '*' ) ;
+        $this->db->select ( 'c.id , c.post_message, c.dop,m.FirstName,g.group_name,c.file_path,c.POWON_id, c.permission' ) ;
         $this->db->from ( 'content AS c' ) ;
         $this->db->where ( array('c.gid'=>$gid['gid']) ) ;
-        $this->db->join ( 'members AS m', 'c.POWON_id=m.ID', 'inner' ) ;
         $this->db->join ( 'group AS g', 'c.$gid=g.group_id', 'inner' ) ;
+        $this->db->join ( 'members AS m', 'c.POWON_id=m.ID', 'inner' ) ;
         // $querie = $this->db->get_where('content',array('gid'=>$gid['gid']));
         $querie = $this->db->get () ;
         return $querie->result_array () ;
@@ -57,11 +57,6 @@ class Content_model extends CI_Model
 
     public function set_content()
     {
-        // $data['post_message'] = $this->input->post('post_message');
-        // $data['auto_delete'] = $this->input->post('auto_delete');
-        // $data['gid'] = $this->input->post('gid');
-        // echo $this->input->post('userfile');
-        
         $config = array(
                 'upload_path'=>"./uploads/", 
                 'allowed_types'=>"|gif|jpg|png|jpeg|pdf", 
@@ -89,7 +84,7 @@ class Content_model extends CI_Model
                 'auto_delete'=>$this->input->post ( 'auto_delete' ), 
                 'gid'=>$this->input->post ( 'gid' ), 
                 'POWON_id'=>$_SESSION['ID'], 
-               // 'comment_id'=>1,
+                'permission'=>$this->input->post( 'permisson'),
                 'file_path'=>$upload_data['file_name']) ;
         
         return $this->db->insert ( 'content', $data ) ;
