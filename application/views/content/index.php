@@ -47,7 +47,7 @@ th, td {
 				href='<?php echo base_url("index.php/content/openCommentForm/".$record_item['id']);?>'>Add Comment</a></td>
 			<td>
 			<!-- ACTIONS only availabel to content owner -->
-            <?php if($_SESSION['ID'] == $record_item['POWON_id'] ) : ?>
+            <?php if($_SESSION['ID'] == $record_item['POWON_id'] || $record_item['permission'] == 0 ) : ?>
                 <td><a
 				href='<?php echo base_url("index.php/content/update/".$record_item['id']);?>'>Edit</a></td>
 			<td><a
