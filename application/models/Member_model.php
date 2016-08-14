@@ -37,9 +37,7 @@ class Member_model extends CI_Model
 	public function update_member()
 	{
 		$data = array(
-			'first_name' => $this->input->post('first_name'),
-			'last_name' => $this->input->post('last_name'),
-			'email' => $this->input->post('email') );
+			'status' => $this->input->post('status') );
 
 		$this->db->where('id', $this->input->post('id'));
 		
