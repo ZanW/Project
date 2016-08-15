@@ -68,26 +68,36 @@ foreach ($user_values->result_array() as $value) {
                 <p id="dob" name="bday"></p><?php echo $DOB ?>
                 <hr>
             </div>
+			<h2>My Interests</h2><br/>
+            <div class="user_info" style="margin-left: 20px">
+                        <?php foreach ($interest as $interest_item): ?>
+                   		<?php echo $interest_item['interest_member']; ?><br /> 
+         		       <?php endforeach; ?>
 
+				</div>
+            
+            
             <div class="user_info" style="margin-left: 20px">
                 <a id="link" href="<?php echo site_url('Member_report_con/index') ?>">Add Interest</a>
-<!--                <p>--><?php //echo $inte; ?><!--</p>-->
-                <hr>
-            </div>
-            <!--            <h2>Recent Activity in your group</h2> <br/>-->
-            <!--            <div class="user_info"style="margin-left: 20px">-->
-            <!--            --><?php //foreach ($content_data as $content): ?>
-            <!--        	--><?php //echo $content['post_message']; ?><!--<br/>-->
-            <!--			<img src="-->
-            <?php //echo base_url().'uploads/'.$content['file_path'] ?><!--" class="img-responsive"><br/>-->
-            <!--			--><?php //echo "posted by  " . $content['FirstName']; ?><!--<br/>-->
-            <!--			--><?php //echo "on  ". $content['dop']; ?><!--<br/>-->
-            <!--			--><?php //echo "in group " . $content['group_name']; ?><!--<br/>		-->
-            <!--        	--><?php //endforeach; ?>
-            <hr>
-        </div>
+                </div>
+                
 
-    </div>
+            </div>
+				<h2>Recent Activity in your group</h2>
+				<br />
+				<div class="user_info" style="margin-left: 20px">
+                        <?php foreach ($content_data as $content): ?>
+                   		<?php echo $content['post_message']; ?><br /> 
+                   		<img src="<?php echo base_url().'uploads/'.$content['file_path'] ?>"
+						class="img-responsive"><br />
+            <?php echo "posted by  " . $content['FirstName']; ?><br />
+            <?php echo "on  ". $content['dop']; ?><br />
+								<?php echo "in group " . $content['group_name']; ?><br />
+                              <?php endforeach; ?>
+            <hr>
+				</div>
+
+			</div>
 
 </div>
 

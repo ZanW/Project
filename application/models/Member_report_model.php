@@ -20,14 +20,34 @@ class Member_report_model extends CI_Model
     {
         $ID = $_SESSION['ID'];
         $keyword = $body;
-        $query = "INSERT INTO `ioc55311`.`interest_member` (`interest_member`) VALUES ('" . $keyword . "');";
-        $result = $this->db->query($query);
-
-        $sql = "INSERT INTO `ioc55311`.`relation_interest` (`i_id`, `member_id`) VALUES ((select int_id from ioc55311.interest_member where interest_member ='" . $keyword . "'), '$ID');";
-        $row = $this->db->query($sql);
-
-
-        return $result;
+        
+        //$sql = "select * from ioc55311.interest_member where `interest_member` =" . `"`"$keyword"`"`;
+        $query = $this->db->get_where('ioc55311.interest_member', array('interest_member' => $keyword));
+        //$result = $this->db->query($sql);
+        $rowCount = $query->num_rows();
+        $int_id = $query->row_array();
+         /*
+         *Insert a new interest only if there is no interest by the same name
+         */
+        if ( $rowCount == 0 )
+        {
+            $query = "INSERT INTO `ioc55311`.`interest_member` (`interest_member`) VALUES ('" . $keyword . "');" ;
+            $result = $this->db->query ( $query ) ;
+        }
+        
+        /*
+         * Do not repeat an interest for a member
+         */
+        $query = $this->db->get_where('relation_interest', array('i_id' => $int_id['int_id'],'member_id'=>$_SESSION['ID'] ));
+        $rowCount = $query->num_rows () ;
+        
+        if ( $rowCount == 0 )
+        {
+            $sql = "INSERT INTO `ioc55311`.`relation_interest` (`i_id`, `member_id`) VALUES ((select int_id from ioc55311.interest_member where interest_member ='" . $keyword . "'), '$ID');" ;
+            $row = $this->db->query ( $sql ) ;
+        }
+        
+        return $result ;
 //        $keyword = explode(",", $body);
 //        $keywordSerialized = serialize($keyword);
 
@@ -51,7 +71,7 @@ class Member_report_model extends CI_Model
 
         $ID = $_SESSION['ID'];
 
-        $sql = "SELECT `interest_member` FROM `ioc55311`.`interest_member`,ioc55311.relation_interest WHERE member_id=$ID AND int_id=i_id";
+        $sql = "SELECT * FROM `ioc55311`.`interest_member`,ioc55311.relation_interest WHERE member_id=$ID AND int_id=i_id";
 
         $querie = $this->db->query($sql);
         $result = $querie->result_array();
