@@ -136,12 +136,19 @@ where (gm_memberof.g_id) in
 CREATE TABLE `chat` (
   `idchat` int(11) NOT NULL AUTO_INCREMENT,
   `to_user_id` int(11) DEFAULT NULL,
-  `groups_id` int(11) DEFAULT NULL,
   `message` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`idchat`),
   KEY `id_idx` (`to_user_id`),
   CONSTRAINT `id` FOREIGN KEY (`to_user_id`) REFERENCES `members` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `ioc55311`.`chat` (`idchat`, `to_user_id`, `message`) VALUES ('1', '2', 'a:0:{}');
+INSERT INTO `ioc55311`.`chat` (`idchat`, `to_user_id`, `message`) VALUES ('2', '3', 'a:0:{}');
+INSERT INTO `ioc55311`.`chat` (`idchat`, `to_user_id`, `message`) VALUES ('3', '4', 'a:0:{}');
+INSERT INTO `ioc55311`.`chat` (`idchat`, `to_user_id`, `message`) VALUES ('4', '5', 'a:0:{}');
+
+
 
 CREATE TABLE `membership_fee` (
   `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
