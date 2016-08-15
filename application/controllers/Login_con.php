@@ -4,6 +4,7 @@ class Login_con extends CI_Controller
 {
     public $Login_model;
     public $Content_model;
+    public $Member_report_model;
 
     public function __construct()
     {
@@ -11,6 +12,7 @@ class Login_con extends CI_Controller
         parent::__construct();
         $this->load->model("Login_model");
         $this->load->model("content_model");
+        $this->load->model("Member_report_model");
         $this->load->helper('url_helper');
         $this->load->helper('form');
         $this->load->database();
@@ -38,11 +40,22 @@ class Login_con extends CI_Controller
         $data ['Password'] = ($_POST ['password']);
 
         $status = $this->Login_model->Login_query();
-        
+
         if ($status) {
             $this->createUserSession($status);
             $data['user_values'] = $status;
-            
+
+            $interest = $this->Member_report_model->read_interest();
+          
+            /**
+             * Checks if returned interests are NULL
+             */
+            if ($interest == null) {
+                $data['interest'] = array();
+            } else {
+                $data['interest'] = $interest;
+            }
+
             /*
              * send the contents of the group that he belong to his homepage
              */
@@ -64,17 +77,20 @@ class Login_con extends CI_Controller
      */
     public function displayHomePage()
     {
-        $status = $this->Login_model->user_info_query() ;
-        $data['user_values'] = $status ;
+        $status = $this->Login_model->user_info_query();
+        $data['user_values'] = $status;
+
+        $interest = $this->Member_report_model->read_interest();
+        $data['interest'] = $interest;
         /*
          * send the contents of the group that he belong to his homepage
          */
         //
-        $data['content_data'] = $this->content_model->get_contents_by_member_id () ;
-        
-        $this->load->view ( "templates/header" ) ;
-        $this->load->view ( 'home/member_profile', $data ) ;
-        $this->load->view ( "templates/footer" ) ;
+//        $data['content_data'] = $this->content_model->get_contents_by_member_id () ;
+
+        $this->load->view("templates/header");
+        $this->load->view('home/member_profile', $data);
+        $this->load->view("templates/footer");
     }
 
 
@@ -94,8 +110,8 @@ class Login_con extends CI_Controller
             'FirstName' => $row['FirstName'],
             'Email' => $row['Email'],
             'ID' => $row['ID'],
-            'Password'=>$row['Password'],
-            'gid'=>0,
+            'Password' => $row['Password'],
+            'gid' => 0,
             'privilege' => $row['priviledge']
         );
         $this->session->set_userdata($member_session_data);

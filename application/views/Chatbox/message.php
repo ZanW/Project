@@ -22,7 +22,7 @@
             <?php foreach ($groups as $group_id => $name) {
                 echo "<a  id='link'><li id='groups_name' style='list-style-type: none' data-id='$group_id' data-name='$name' onclick='showDiv(this)'>  $name </li></a>";
             } ?>
-
+    
         </div>
     </div>
 </div>

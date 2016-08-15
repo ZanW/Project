@@ -91,7 +91,6 @@ class chat_model extends CI_Model
 
     public function group()
     {
-
         $resultArray = array();
         $ID = $_SESSION['ID'];
         $sql = ("SELECT group_id,group_name FROM gm_memberof AS gm,`group` AS g WHERE m_id=$ID AND g.group_id=gm.g_id ");

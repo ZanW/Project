@@ -11,6 +11,11 @@ foreach ($user_values->result_array() as $value) {
     $DOB = $value['DOB'];
 }
 
+
+    foreach ($interest as $val) {
+
+    }
+
 ?>
 
 
@@ -69,26 +74,30 @@ foreach ($user_values->result_array() as $value) {
                 <p id="dob" name="bday"></p><?php echo $DOB ?>
                 <hr>
             </div>
-<!--            <h2>Recent Activity in your group</h2> <br/>-->
-<!--            <div class="user_info"style="margin-left: 20px">-->
-<!--            --><?php //foreach ($content_data as $content): ?>
-<!--        	--><?php //echo $content['post_message']; ?><!--<br/>-->
-<!--			<img src="--><?php //echo base_url().'uploads/'.$content['file_path'] ?><!--" class="img-responsive"><br/>-->
-<!--			--><?php //echo "posted by  " . $content['FirstName']; ?><!--<br/>-->
-<!--			--><?php //echo "on  ". $content['dop']; ?><!--<br/>-->
-<!--			--><?php //echo "in group " . $content['group_name']; ?><!--<br/>		-->
-<!--        	--><?php //endforeach; ?>
+
+            <div class="user_info" style="margin-left: 20px">
+                <a id="link" href="<?php echo site_url('Member_report_con/index') ?>">Add Interest</a>
+                <p><?php echo $val['interest_member']; ?></p>
                 <hr>
             </div>
-
+            <!--            <h2>Recent Activity in your group</h2> <br/>-->
+            <!--            <div class="user_info"style="margin-left: 20px">-->
+            <!--            --><?php //foreach ($content_data as $content): ?>
+            <!--        	--><?php //echo $content['post_message']; ?><!--<br/>-->
+            <!--			<img src="-->
+            <?php //echo base_url().'uploads/'.$content['file_path'] ?><!--" class="img-responsive"><br/>-->
+            <!--			--><?php //echo "posted by  " . $content['FirstName']; ?><!--<br/>-->
+            <!--			--><?php //echo "on  ". $content['dop']; ?><!--<br/>-->
+            <!--			--><?php //echo "in group " . $content['group_name']; ?><!--<br/>		-->
+            <!--        	--><?php //endforeach; ?>
+            <hr>
         </div>
 
     </div>
-    </a>
+
 </div>
 
 <script>
-
 </script>
 
 </body>
