@@ -31,7 +31,11 @@ th, td {
     <?php foreach ($records as $record_item): ?>
         <tr>
 			<td><?php echo $record_item['post_message']; ?></td>
-			<td><img src="<?php echo base_url().'uploads/'.$record_item['file_path'] ?>" class="img-responsive">
+			<?php if ($record_item['file_path']) { ?>
+				<td><img src="<?php echo base_url().'uploads/'.$record_item['file_path'] ?>" class="img-responsive"> </td>
+			<?php } else { ?>
+				<td></td>
+			<?php } ?>
 			<td><?php echo $record_item['dop']; ?></td>
 			<td><?php echo $record_item['FirstName']; ?></td>
 			<td><?php echo $record_item['group_name']; ?></td>
@@ -47,9 +51,9 @@ th, td {
 				href='<?php echo base_url("index.php/content/openCommentForm/".$record_item['id']);?>'>Add Comment</a></td>
 			<td>
 			<!-- ACTIONS only availabel to content owner -->
-            <?php if($_SESSION['ID'] == $record_item['POWON_id'] ) : ?>
+            <?php if($_SESSION['ID'] == $record_item['POWON_id'] || $record_item['permission'] == 0 ) : ?>
                 <td><a
-				href='<?php echo base_url("index.php/content/update/".$record_item['id']);?>'>Edit</a></td>
+				href='<?php echo base_url("index.php/content/openEditMessage/".$record_item['id']);?>'>Edit</a></td>
 			<td><a
 				href='<?php echo base_url("index.php/content/delete/".$record_item['id']);?>'>Delete</a></td>
 			<?php endif; ?>

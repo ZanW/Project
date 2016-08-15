@@ -49,10 +49,26 @@ class Group_crud extends CI_Model
         $this->db->where ( array('gm.m_id'=>$mid) ) ;
 //        $this->db->where ( array('members.status'=>0) ) ;
         $this->db->join ( 'group as g', 'g.group_id=gm.g_id', 'inner' ) ;
+        $this->db->join ( 'members as m', 'm.ID=g.POWON_id', 'inner' ) ;
         $querie = $this->db->get () ;
         return $querie->result_array () ;
     }
 
+    /**
+     * returns groups that logged in user is onlt the member of the groups and not the owner
+     * 
+     */
+    
+    function otherGroupsOfMember($mid)
+    {
+        $sql = "SELECT * FROM (SELECT * FROM `gm_memberof` AS gm  LEFT JOIN `group` AS g
+                                ON gm.m_id = g.POWON_id AND gm.g_id = g.group_id 
+                                WHERE  g.group_id IS NULL AND gm.m_id=".$mid.")
+                         AS other_group, `group` AS gp, `members` AS m
+                         WHERE other_group.g_id = gp.group_id AND m.ID = gp.POWON_id";
+        $querie = $this->db->query($sql);
+        return $querie->result_array () ;
+    }
     //TODO add try catch clause
     function edit($id)
     {
@@ -65,6 +81,11 @@ class Group_crud extends CI_Model
     {
         $this->db->delete ( 'group', array('group_id'=>$gid) ) ;
         return ;
+    }
+    
+    function deleteMemberFromGroup($g_id,$m_id)
+    {
+        $this->db->delete ( 'gm_memberof', array('g_id'=>$g_id, 'm_id'=>$m_id) ) ;
     }
     //TODO add try catch clause
     function update($gid)

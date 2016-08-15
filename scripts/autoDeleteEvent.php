@@ -3,9 +3,9 @@
 echo "Current time is " . date("h:i:sa") . "\r\n";
 echo "Checking if any messages needs to DELETED" . "\r\n";
 
-$servername = "ioc55311.encs.concordia.ca";
-$username = "ioc55311";
-$password = "group2hw";
+$servername = "localhost";
+$username = "shivam";
+$password = "pass";
 $dbname = "ioc55311";
 
 // Create connection

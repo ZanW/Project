@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'ioc55311.encs.concordia.ca',
+	'username' => 'ioc55311',
+	'password' => 'group2hw',
 	'database' => 'ioc55311',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
-	'pconnect' => TRUE,
+	'pconnect' => FALSE,
 	'db_debug' => TRUE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
