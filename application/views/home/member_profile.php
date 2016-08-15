@@ -12,9 +12,6 @@ foreach ($user_values->result_array() as $value) {
 }
 
 
-    foreach ($interest as $val) {
-
-    }
 
 ?>
 
@@ -77,7 +74,7 @@ foreach ($user_values->result_array() as $value) {
 
             <div class="user_info" style="margin-left: 20px">
                 <a id="link" href="<?php echo site_url('Member_report_con/index') ?>">Add Interest</a>
-                <p><?php echo $val['interest_member']; ?></p>
+<!--                <p>--><?php //echo $inte; ?><!--</p>-->
                 <hr>
             </div>
             <!--            <h2>Recent Activity in your group</h2> <br/>-->
