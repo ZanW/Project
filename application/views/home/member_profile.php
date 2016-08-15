@@ -10,9 +10,6 @@ foreach ($user_values->result_array() as $value) {
     $Gender = $value['Gender'];
     $DOB = $value['DOB'];
 }
-
-
-
 ?>
 
 
