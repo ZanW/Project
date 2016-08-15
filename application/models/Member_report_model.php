@@ -47,7 +47,7 @@ class Member_report_model extends CI_Model
             $row = $this->db->query ( $sql ) ;
         }
         
-        return $result ;
+        return ;
 //        $keyword = explode(",", $body);
 //        $keywordSerialized = serialize($keyword);
 
