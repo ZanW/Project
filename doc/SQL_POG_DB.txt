@@ -205,13 +205,13 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `vote_event` (
-  `vote_event_id` int(11) NOT NULL AUTO_INCREMENT,
-  `e_id` int(11) DEFAULT NULL,
-  `date_one_votes` int(11) DEFAULT NULL,
-  `date_two_votes` int(11) DEFAULT NULL,
-  PRIMARY KEY (`vote_event_id`),
-  KEY `eventid_idx` (`e_id`),
-  CONSTRAINT `e_id` FOREIGN KEY (`e_id`) REFERENCES `event` (`event_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CCREATE TABLE `vote_event` (
+   `vote_event_id` int(11) NOT NULL AUTO_INCREMENT,
+   `e_id` int(11) DEFAULT NULL,
+   `date_one_votes` int(11) DEFAULT NULL,
+   `date_two_votes` int(11) DEFAULT NULL,
+   PRIMARY KEY (`vote_event_id`),
+   KEY `eventid_idx` (`e_id`),
+   CONSTRAINT `e_id` FOREIGN KEY (`e_id`) REFERENCES `event` (`event_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
