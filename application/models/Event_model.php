@@ -51,7 +51,7 @@ class Event_model extends CI_Model
     public function vote_date($eventID, $selectedDate, $dateOne, $dateTwo)
     {
         if ($selectedDate == $dateOne) {
-            $voteQuery = "SELECT date_one_votes FROM ioc55311.vote_event WHERE event_id='" . $eventID . "';";
+            $voteQuery = "SELECT date_one_votes FROM ioc55311.vote_event WHERE e_id='" . $eventID . "';";
             $result = $this->db->query($voteQuery);
             $voteResult = $result->row();
             $voteCount = $voteResult->date_one_votes;
