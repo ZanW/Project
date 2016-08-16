@@ -30,16 +30,13 @@ foreach ($user_values->result_array() as $value) {
 
         <a href="<?php echo site_url('Event/index') ?>" style="margin-right: 20px;margin-top: 20px">Ctreate
             Event</a>
+        <a href="<?php echo site_url('profile_update_con/inactive_account') ?>"
+           style="margin-right: 20px;margin-top: 20px">inactive</a>
 
-        <a href="<?php echo site_url('profile_update_con/inactive_account') ?>" style="">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
-                  style="margin-right: 20px;margin-top: 20px""></span></a>
+        <a href="<?php echo site_url('profile_update_con/edit_profile') ?>"
+           style="margin-right: 20px;margin-top: 20px">Edit Profile</a>
 
-        <a href="<?php echo site_url('profile_update_con/edit_profile') ?>" style="">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"
-                              style="margin-right: 20px;margin-top: 20px"></span></a>
-        </a>
-
+    
         <h2 id="firstname" name="namefirst" style="margin-left: 20px"><?php echo $firstName; ?></h2>
 
         <h5 id="email" name="email" style="margin-left: 20px"><?php echo $Email ?></h5>
