@@ -32,6 +32,9 @@ class Event_model extends CI_Model
                  (select group_id from  ioc55311.`group` where group_name ='" . $group . "'),'" . $event_d_one . "','" . $event_d_two . "','" . $group . "'); ");
 
         $result = $this->db->query($query);
+
+        $sql= "INSERT INTO `ioc55311`.`vote_event` (`event_id`, `date_one_votes`, `date_two_votes`) VALUES ( '".$event."', '0', '0');";
+        $this->db->query($sql);
         return $result;
 
     }
@@ -53,7 +56,7 @@ class Event_model extends CI_Model
             $voteResult = $result->row();
             $voteCount = $voteResult->date_one_votes;
             $voteCount += 1;
-            $query = "UPDATE `ioc55311`.`vote_event` SET `date_one_votes`='" . $voteCount . "' WHERE `event_id`='" . $eventID . "';";
+            $query = "UPDATE `ioc55311`.`vote_event` SET `date_one_votes`='" . $voteCount . "' WHERE `e_id`='" . $eventID . "';";
             $this->db->query($query);
         } else if ($selectedDate == $dateTwo) {
             $voteQuery = "SELECT date_two_votes FROM ioc55311.vote_event WHERE event_id='" . $eventID . "';";
@@ -61,14 +64,14 @@ class Event_model extends CI_Model
             $voteResult = $result->row();
             $voteCount = $voteResult->date_two_votes;
             $voteCount += 1;
-            $query = "UPDATE `ioc55311`.`vote_event` SET `date_two_votes`='" . $voteCount . "' WHERE `event_id`='" . $eventID . "';";
+            $query = "UPDATE `ioc55311`.`vote_event` SET `date_two_votes`='" . $voteCount . "' WHERE `e_id`='" . $eventID . "';";
             $this->db->query($query);
         }
     }
 
     public function stop_voting($eventID, $dateOne, $dateTwo)
     {
-        $voteQuery = "SELECT date_one_votes,date_two_votes FROM ioc55311.vote_event WHERE event_id='" . $eventID . "';";
+        $voteQuery = "SELECT date_one_votes,date_two_votes FROM ioc55311.vote_event WHERE e_id='" . $eventID . "';";
         $result = $this->db->query($voteQuery);
         $voteResult = $result->row();
         $dateOneVoteCount = $voteResult->date_one_votes;
