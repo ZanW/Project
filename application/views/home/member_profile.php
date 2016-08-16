@@ -10,6 +10,12 @@ foreach ($user_values->result_array() as $value) {
     $Gender = $value['Gender'];
     $DOB = $value['DOB'];
 }
+
+foreach ($interest as $val) {
+    $inte = $val['interest_member'];
+
+}
+
 ?>
 
 
@@ -30,7 +36,10 @@ foreach ($user_values->result_array() as $value) {
 
         <a href="<?php echo site_url('profile_update_con/inactive_account') ?>" style="">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"
-                  style="float: right;margin-right: 20px;margin-top: 20px""></span></a>
+                  style="float: right;margin-right: 20px;margin-top: 20px"></span></a>
+
+        <a href="<?php echo site_url('Event/index') ?>" style="float: right;margin-right:
+           20px;margin-top: 20px""> Create Event </a>
 
         <a href="<?php echo site_url('profile_update_con/edit_profile') ?>" style="">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"
@@ -71,19 +80,19 @@ foreach ($user_values->result_array() as $value) {
 
             <div class="user_info" style="margin-left: 20px">
                 <a id="link" href="<?php echo site_url('Member_report_con/index') ?>">Add Interest</a>
-<!--                <p>--><?php //echo $inte; ?><!--</p>-->
+                <p><?php echo $val['interest_member']; ?></p>
                 <hr>
             </div>
-            <!--            <h2>Recent Activity in your group</h2> <br/>-->
-            <!--            <div class="user_info"style="margin-left: 20px">-->
-            <!--            --><?php //foreach ($content_data as $content): ?>
-            <!--        	--><?php //echo $content['post_message']; ?><!--<br/>-->
-            <!--			<img src="-->
-            <?php //echo base_url().'uploads/'.$content['file_path'] ?><!--" class="img-responsive"><br/>-->
-            <!--			--><?php //echo "posted by  " . $content['FirstName']; ?><!--<br/>-->
-            <!--			--><?php //echo "on  ". $content['dop']; ?><!--<br/>-->
-            <!--			--><?php //echo "in group " . $content['group_name']; ?><!--<br/>		-->
-            <!--        	--><?php //endforeach; ?>
+<!--                        <h2>Recent Activity in your group</h2> <br/>-->
+<!--                        <div class="user_info"style="margin-left: 20px">-->
+<!--                        --><?php //foreach ($content_data as $content): ?>
+<!--                    	--><?php //echo $content['post_message']; ?><!--<br/>-->
+<!--            			<img src="-->
+<!--            --><?php //echo base_url().'uploads/'.$content['file_path'] ?><!--" class="img-responsive"><br/>-->
+<!--            			--><?php //echo "posted by  " . $content['FirstName']; ?><!--<br/>-->
+<!--            			--><?php //echo "on  ". $content['dop']; ?><!--<br/>-->
+<!--            			--><?php //echo "in group " . $content['group_name']; ?><!--<br/>-->
+<!--                    	--><?php //endforeach; ?>
             <hr>
         </div>
 
