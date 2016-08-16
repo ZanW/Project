@@ -41,21 +41,6 @@ class Member_report_con extends CI_Controller
 
     public function dis_profile()
     {
-//        $interest = $this->Member_report_model->read_interest();
-//
-//        if ($interest) {
-//            $status = $this->Login_model->user_info_query();
-//            $data['inte'] = $interest;
-//            $data['user_values'] = $status;
-//            $this->load->view("templates/header");
-//            $this->load->view('home/member_profile', $data);
-//
-//
-//        } else {
-//            $this->load->view("home/login");
-//        }
-//
-//        return $interest;
         redirect('/Login_con/displayHomePage');
 
     }
