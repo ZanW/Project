@@ -5,6 +5,7 @@ class Login_con extends CI_Controller
     public $Login_model;
     public $Content_model;
     public $Member_report_model;
+    public $Event_model;
 
     public function __construct()
     {
@@ -12,6 +13,7 @@ class Login_con extends CI_Controller
         parent::__construct();
         $this->load->model("Login_model");
         $this->load->model("content_model");
+        $this->load->model("Event_model");
         $this->load->model("Member_report_model");
         $this->load->helper('url_helper');
         $this->load->helper('form');
@@ -46,7 +48,7 @@ class Login_con extends CI_Controller
             $data['user_values'] = $status;
 
             $interest = $this->Member_report_model->read_interest();
-          
+
             /**
              * Checks if returned interests are NULL
              */
@@ -56,10 +58,10 @@ class Login_con extends CI_Controller
                 $data['interest'] = $interest;
             }
 
+            $data['events'] = $this->Event_model->get_events();
             /*
              * send the contents of the group that he belong to his homepage
              */
-            //
             $data['content_data'] = $this->content_model->get_contents_by_member_id();
 
             $this->load->view("templates/header");
@@ -86,7 +88,10 @@ class Login_con extends CI_Controller
          * send the contents of the group that he belong to his homepage
          */
         //
-        $data['content_data'] = $this->content_model->get_contents_by_member_id () ;
+
+
+        $data['content_data'] = $this->content_model->get_contents_by_member_id();
+        $data['events'] = $this->Event_model->get_events();
 
         $this->load->view("templates/header");
         $this->load->view('home/member_profile', $data);

@@ -22,7 +22,7 @@
 
         <div class="input-group" style="padding: 2%">
 
-            Select your favorite fruit:
+            Select group:
             <select name="g_name" id="mySelect">
                 <?php foreach ($groups as $group) { ?>
                     <option><?php echo $group ['group_name']; ?></option>
