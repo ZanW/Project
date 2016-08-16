@@ -187,3 +187,29 @@ INSERT INTO `ioc55311`.`interest_member` (`int_id`, `interest_member`) VALUES ('
 INSERT INTO `ioc55311`.`interest_member` (`int_id`, `interest_member`) VALUES ('4', 'Coding');
 INSERT INTO `ioc55311`.`interest_member` (`int_id`, `interest_member`) VALUES ('5', 'Adventure');
 
+
+CREATE TABLE `event` (
+  `event_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_name` varchar(45) NOT NULL,
+  `created_by_memid` int(11) DEFAULT NULL,
+  `group_id` int(11) DEFAULT NULL,
+  `date_option_one` date NOT NULL,
+  `date_option_two` date NOT NULL,
+  `group_name` varchar(45) DEFAULT NULL,
+  `date_final` date DEFAULT NULL,
+  PRIMARY KEY (`event_id`),
+  KEY `powon_mem_idx` (`created_by_memid`),
+  KEY `grou_id_idx` (`group_id`),
+  CONSTRAINT `gro_id` FOREIGN KEY (`group_id`) REFERENCES `group` (`group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `powon_mem` FOREIGN KEY (`created_by_memid`) REFERENCES `members` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `vote_event` (
+  `vote_event_id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) DEFAULT NULL,
+  `date_one_votes` int(11) DEFAULT NULL,
+  `date_two_votes` int(11) DEFAULT NULL,
+  PRIMARY KEY (`vote_event_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
